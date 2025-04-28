@@ -520,48 +520,72 @@ void func_bt_sub_process(void)
 AT(.text.bfunc.bt)
 static void func_bt_process(void)
 {
+    /**
+     * @brief 蓝牙模式的主要处理函数，负责蓝牙相关的周期性任务
+     *
+     * 该函数在蓝牙模式的主循环中被不断调用，处理以下任务：
+     * 1. 通用功能处理（喂狗、电量检测等）
+     * 2. 蓝牙特有功能处理（状态更新、TWS连接等）
+     * 3. 来电/通话状态处理
+     * 4. 自动关机和睡眠处理
+     */
+
+    // 1. 通用功能处理（喂狗、电量检测等）
     func_process();
+
+    // 2. 蓝牙特有功能处理（状态更新、TWS连接等）
     func_bt_sub_process();
+
 #if BT_TWS_AUTO_SWITCH
+    // TWS自动切换功能：当满足切换条件时，执行主从切换
     if ((xcfg_cb.bt_tswi_msc_en) && tws_switch_is_need()) {
         bt_tws_switch();
     }
 #endif
 
 #if BT_MAP_EN
+    // 蓝牙MAP功能：获取实时信息（如日历、消息等）
     bsp_get_real_time_process();
 #endif
 
 #if BT_QUICK_TEST_EN
+    // 蓝牙快速测试功能
     if(f_bt.quick_test_flag){
         func_bt_quick_test();
     }
 #endif // BT_QUICK_TEST_EN
 
+    // 3. 来电/通话状态处理
     if(f_bt.disp_status == BT_STA_INCOMING) {
+        // 来电状态：进入来电子状态机
         sfunc_bt_ring();
-        reset_sleep_delay();
-        reset_pwroff_delay();
-        f_bt.siri_kl_flag = 0;
-        f_bt.user_kl_flag = 0;
+        reset_sleep_delay();      // 重置睡眠延时
+        reset_pwroff_delay();     // 重置关机延时
+        f_bt.siri_kl_flag = 0;    // 清除Siri长按标志
+        f_bt.user_kl_flag = 0;    // 清除用户长按标志
     } else if(f_bt.disp_status >= BT_STA_OUTGOING) {
+        // 通话状态：进入通话子状态机
         sfunc_bt_call();
-        reset_sleep_delay();
-        reset_pwroff_delay();
-        f_bt.siri_kl_flag = 0;
-        f_bt.user_kl_flag = 0;
+        reset_sleep_delay();      // 重置睡眠延时
+        reset_pwroff_delay();     // 重置关机延时
+        f_bt.siri_kl_flag = 0;    // 清除Siri长按标志
+        f_bt.user_kl_flag = 0;    // 清除用户长按标志
     }
 
+    // 4. 自动关机处理
     if(sys_cb.pwroff_delay == 0) {
+        // 如果关机延时到期且蓝牙未连接，则进入关机模式
         if (f_bt.disp_status < BT_STA_CONNECTED) {
-            sys_cb.discon_reason = 1;             //连接超时关主从切换,同步关机
-            sys_cb.pwrdwn_tone_en = 1;
-            func_cb.sta = FUNC_PWROFF;
+            sys_cb.discon_reason = 1;             // 连接超时关主从切换,同步关机
+            sys_cb.pwrdwn_tone_en = 1;            // 启用关机提示音
+            func_cb.sta = FUNC_PWROFF;            // 切换到关机模式
             return;
         }
     }
+
+    // 5. 睡眠处理
     if(sleep_process(bt_is_sleep)) {
-        f_bt.disp_status = 0xff;
+        f_bt.disp_status = 0xff;                  // 设置特殊状态值，触发状态更新
     }
 }
 
@@ -684,14 +708,14 @@ void func_bt(void)
 {
     printf("%s\n", __func__);
 
-    func_bt_enter();
+    func_bt_enter();    // 进入蓝牙模式，初始化资源
 
-    while (func_cb.sta == FUNC_BT) {
-        func_bt_process();
-        func_bt_message(msg_dequeue());
+    while (func_cb.sta == FUNC_BT) {    // 只要状态没变，就一直在这个循环中
+        func_bt_process();  // 处理蓝牙相关的周期性任务
+        func_bt_message(msg_dequeue());  // 处理蓝牙相关的消息
     }
 
-    func_bt_exit();
+    func_bt_exit(); // 退出蓝牙模式，清理资源
 }
 
 AT(.rodata.bt.cbt)

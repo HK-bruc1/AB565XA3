@@ -16,6 +16,7 @@ void bt_low_latency_set_busy(void);
 extern u8 bt_alg_dbb_on;
 
 ///检查USER_DEF按键消息处理
+//在配置工具中配置的按键事件
 bool user_def_key_msg(u8 func_sel)
 {
     if (func_sel == UDK_SIRI_REDIALING) {

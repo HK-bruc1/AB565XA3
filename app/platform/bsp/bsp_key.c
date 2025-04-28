@@ -608,6 +608,7 @@ void get_adc_val_hook(void)
 #endif // VBAT_DETECT_EN
 }
 
+// 触摸按键扫描函数
 AT(.com_text.bsp.key)
 u8 key_scan(void)
 {
@@ -621,10 +622,10 @@ u8 key_scan(void)
 #if USER_TKEY_SHORT_SLIDE
     key_val = bsp_short_slide_tkey_scan();
 #else
-    key_val = bsp_tkey_scan();
+    key_val = bsp_tkey_scan();  // 触摸按键扫描
 #endif
 #endif
-
+    // 其他类型按键的扫描...
 #if USER_ADKEY
     if (key_val == NO_KEY) {
         key_val = get_adkey();
@@ -666,11 +667,15 @@ u8 bsp_key_scan(void)
     u8 key_val;
     u16 key = NO_KEY;
 
+    // 扫描按键
     key_val = key_scan();
+
+    // 电池电量检测
 #if VBAT_DETECT_EN
     sys_cb.vbat = get_vbat_val();
 #endif // VBAT_DETECT_EN
 
+    // 处理按键值
 #if USER_TKEY_SHORT_SLIDE
     key = bsp_key_slide_process(key_val);
 #else
@@ -680,6 +685,7 @@ u8 bsp_key_scan(void)
 #if USER_TKEY_SLIDE
     key = bsp_tkey_slide_process(key);
 #endif
+    // 如果有有效按键，将消息放入队列
     if ((key != NO_KEY) && (!bsp_key_pwron_filter(key))) {
         //防止enqueue多次HOLD消息
         if ((key & KEY_TYPE_MASK) == KEY_LONG) {
@@ -688,6 +694,7 @@ u8 bsp_key_scan(void)
             msg_queue_detach(sys_cb.kh_vol_msg, 0);
             sys_cb.kh_vol_msg = NO_KEY;
         } else if (sys_cb.kh_vol_msg == key) {
+            // 将按键消息放入队列
             msg_queue_detach(key, 0);
         }
 #if WAV_KEY_VOICE_QUICK_EN

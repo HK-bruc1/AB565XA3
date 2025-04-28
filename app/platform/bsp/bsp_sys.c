@@ -276,134 +276,145 @@ void bsp_xcfg_init(void)
 AT(.text.bsp.sys.init)
 void bsp_sys_init(void)
 {
-    /// config
-    bsp_xcfg_init();
+    /**
+     * @brief 系统初始化函数，是整个耳机SDK的核心初始化入口
+     *
+     * 该函数完成所有硬件和软件模块的初始化工作，包括配置、IO、变量、电源、时钟、外设等
+     * 初始化完成后，会根据配置决定进入哪种功能模式（默认为蓝牙模式）
+     */
 
-    // io init
-    bsp_io_init();
+    /// 1. 配置初始化
+    bsp_xcfg_init();                                        // 初始化系统配置，包括电压Trim值、默认配置、蓝牙名称等
 
-    // var init
-    bsp_var_init();
+    /// 2. IO初始化
+    bsp_io_init();                                          // 初始化GPIO端口配置
 
-    // power init
-    pmu_init(BUCK_MODE_EN*xcfg_cb.buck_mode_en);
+    /// 3. 变量初始化
+    bsp_var_init();                                         // 初始化系统控制块和各种功能模块变量
 
-    // clock init
-    adpll_init(DAC_OUT_SPR);                                //要放在pmu_init之后
-    sys_clk_set(SYS_CLK_SEL);
+    /// 4. 电源初始化
+    pmu_init(BUCK_MODE_EN*xcfg_cb.buck_mode_en);            // 根据配置初始化电源管理单元，BUCK_MODE_EN默认为1
 
-    // peripheral init
-    rtc_init();
-#if SYS_PARAM_EEPROM
-    eeprom_init();
+    /// 5. 时钟初始化
+    adpll_init(DAC_OUT_SPR);                                // 初始化音频PLL，要放在pmu_init之后
+    sys_clk_set(SYS_CLK_SEL);                               // 设置系统时钟，SYS_CLK_SEL默认为SYS_26M
+
+    /// 6. 外设初始化
+    rtc_init();                                             // 初始化实时时钟
+#if SYS_PARAM_EEPROM                                        // 默认为0，不启用EEPROM记忆功能
+    eeprom_init();                                          // 初始化EEPROM
 #endif // SYS_PARAM_EEPROM
-    param_init(sys_cb.rtc_first_pwron);
+    param_init(sys_cb.rtc_first_pwron);                     // 初始化系统参数，包括音量、语言等
 
-#if IODM_TEST_MODE
+#if IODM_TEST_MODE                                          // 默认未启用，工厂测试模式
     iodm_init();
     iodm_reflash_bt_name();
 #endif
 
-    sw_reset_flag_get();
-    tws_lr_xcfg_sel();                                      //TWS声道初始化, 放在param_init之后
-    plugin_popup_auto_config();                             //popup初始化，放在param_init之后
-    x26m_cap_tune();                                        //26M晶振电容配置
+    sw_reset_flag_get();                                    // 获取软复位标志
+    tws_lr_xcfg_sel();                                      // TWS左右声道初始化，放在param_init之后
+    plugin_popup_auto_config();                             // 弹窗初始化，放在param_init之后
+    x26m_cap_tune();                                        // 26M晶振电容配置
 
-    clkgate_configure();
+    clkgate_configure();                                    // 配置时钟门控
 
-#if CHARGE_EN
+#if CHARGE_EN                                               // 充电功能使能
     if (xcfg_cb.charge_en) {
-        bsp_charge_init();
+        bsp_charge_init();                                  // 初始化充电模块
     }
 #endif // CHARGE_EN
 
-#if SYS_SUPPORT_DONGLE_EN
+#if SYS_SUPPORT_DONGLE_EN                                   // 默认为0，不支持加密狗
     dongle_check_key();
 #endif
 
-#if LINEIN_2_PWRDOWN_EN
+#if LINEIN_2_PWRDOWN_EN                                     // 默认为0，关闭插入Linein后直接软关机（大耳包功能）
     if (sys_cb.sleep_dac_en) {
-        dac_power_off_pulldown_daclr();
+        dac_power_off_pulldown_daclr();                     // DAC关闭时下拉DACLR
     }
 #endif
 
-    led_init();
-    key_init();
+    led_init();                                             // 初始化LED
+    key_init();                                             // 初始化按键
 
-#if LED_188LED_DISP_EN
+#if LED_188LED_DISP_EN                                      // 默认未启用，188LED显示功能
     bsp_188led_gpio_init();
     bsp_188led_var_init();
 #endif
 
-#if PWM_RGB_EN
+#if PWM_RGB_EN                                              // 默认为0，不启用PWM RGB三色灯功能
     pwm_init();
 #endif // PWM_RGB_EN
-    plugin_init();
+    plugin_init();                                          // 初始化插件
 
-    /// enable user timer for display & dac
-    user_tmr_set_enable(1, 1);
+    /// 7. 启用用户定时器
+    user_tmr_set_enable(1, 1);                              // 启用5ms和1ms定时器，用于显示和DAC
 
-    led_power_up();
-    motor_enable(MOTOR_PWRON, T_MOTOR_PWRON_SEL);         //开机马达振动
+    led_power_up();                                         // 开机LED指示
+    motor_enable(MOTOR_PWRON, T_MOTOR_PWRON_SEL);           // 开机马达振动
 
-#if BT_LIGHTNINIG_EN
+#if BT_LIGHTNINIG_EN                                        // Lightning接口功能
     if (xcfg_cb.lt_sa_en) {
         lt_uart_tx_auth_start();
         if (xcfg_cb.lt_chg_en) {
-            lt_charge_init();
+            lt_charge_init();                               // 初始化Lightning充电
         }
     }
 #endif
 
-    bt_init();
-    bt_work_mode_init();
-    if (!xcfg_cb.bt_init_fast_dis) {                    //是否蓝牙提前初始化，可以加速回连
-        func_bt_init();
+    /// 8. 蓝牙初始化
+    bt_init();                                              // 初始化蓝牙模块
+    bt_work_mode_init();                                    // 初始化蓝牙工作模式
+    if (!xcfg_cb.bt_init_fast_dis) {                        // 是否蓝牙提前初始化，可以加速回连
+        func_bt_init();                                     // 初始化蓝牙功能
     }
-    dac_init();
-#if VUSB_TBOX_QTEST_EN
+
+    /// 9. 音频初始化
+    dac_init();                                             // 初始化DAC
+#if VUSB_TBOX_QTEST_EN                                      // 充电盒快速测试功能
     qtest_create_env();
 #endif
 
-#if ANC_EN
-    bsp_anc_init();
-	bsp_anc_set_mode(1);
+#if ANC_EN                                                  // 主动降噪功能
+    bsp_anc_init();                                         // 初始化ANC
+	bsp_anc_set_mode(1);                                    // 设置ANC模式
 #endif
 
-    bsp_change_volume(sys_cb.vol);
+    bsp_change_volume(sys_cb.vol);                          // 设置系统音量
 
-#if LINEIN_2_PWRDOWN_EN
+#if LINEIN_2_PWRDOWN_EN                                     // 默认为0，关闭插入Linein后直接软关机（大耳包功能）
     if (xcfg_cb.linein_2_pwrdown_en) {
         delay_5ms(60);
-        if (device_is_online(DEV_LINEIN)) {
-            sys_cb.pwrdwn_tone_en = LINEIN_2_PWRDOWN_TONE_EN;
-            func_cb.sta = FUNC_PWROFF;
+        if (device_is_online(DEV_LINEIN)) {                 // 检测到Linein插入
+            sys_cb.pwrdwn_tone_en = LINEIN_2_PWRDOWN_TONE_EN; // 是否播放关机提示音
+            func_cb.sta = FUNC_PWROFF;                      // 设置为关机模式
             return;
         }
     }
 #endif // LINEIN_2_PWRDOWN_EN
 
-#if WARNING_POWER_ON
+#if WARNING_POWER_ON                                        // 开机提示音
     if ((xcfg_cb.bt_outbox_voice_pwron_en) || (!sys_cb.outbox_pwron_flag)) {
         mic_bias_trim_w4_done_do();
-        sys_warning_play(T_WARNING_POWER_ON, PIANO_POWER_ON);
+        sys_warning_play(T_WARNING_POWER_ON, PIANO_POWER_ON); // 播放开机提示音
     }
     sys_cb.outbox_pwron_flag = 0;
 #endif // WARNING_POWER_ON
 
-#if FUNC_AUX_EN
+#if FUNC_AUX_EN                                             // 默认为0，不启用AUX功能
     if ((xcfg_cb.func_aux_en) && (!xcfg_cb.linein_2_pwrdown_en)) {
-        if (device_is_online(DEV_LINEIN)) {
-            func_cb.sta = FUNC_AUX;
+        if (device_is_online(DEV_LINEIN)) {                 // 检测到Linein插入
+            func_cb.sta = FUNC_AUX;                         // 设置为AUX模式
             return;
         }
     }
 #endif // FUNC_AUX_EN
 
-    func_cb.sta = FUNC_BT;
+    /// 10. 设置默认功能模式
+    func_cb.sta = FUNC_BT;                                  // 默认进入蓝牙模式
 
-#if EQ_DBG_IN_UART || EQ_DBG_IN_SPP
-    eq_dbg_init();
+#if EQ_DBG_IN_UART || EQ_DBG_IN_SPP                         // EQ调试功能
+    eq_dbg_init();                                          // 初始化EQ调试
 #endif // EQ_DBG_IN_UART
 
 }

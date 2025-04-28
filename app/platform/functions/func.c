@@ -356,55 +356,64 @@ void func_exit(void)
 AT(.text.func)
 void func_run(void)
 {
+    /**
+     * @brief 功能运行函数，是整个耳机SDK的主循环入口
+     *
+     * 该函数是一个无限循环，根据func_cb.sta的值来决定执行哪个功能模式
+     * 默认情况下，系统会进入蓝牙模式(FUNC_BT)
+     * 各功能模式通过条件编译宏在config.h中配置是否启用
+     */
     printf("%s\n", __func__);
 
-    func_bt_chk_off();
-    while (1) {
-        func_clear();
+    func_bt_chk_off();                                      // 蓝牙关闭检查
+    while (1) {                                             // 无限循环，永不退出
+        func_clear();                                       // 清除功能状态，同步参数，重置睡眠延时等
 
+        // 根据func_cb.sta的值切换到不同的功能模式
+        // 进入模式的两个要素：在config.h中进行了宏定义使能，第二个是func_cb.sta的值要是对应的功能才行。
         switch (func_cb.sta) {
-#if FUNC_BT_EN
+#if FUNC_BT_EN                                              // 默认为1，启用蓝牙功能
         case FUNC_BT:
-            func_bt();
+            func_bt();                                      // 进入蓝牙模式
             break;
 #endif
 
-#if BT_DUT_TEST_EN
+#if BT_DUT_TEST_EN                                          // 蓝牙DUT测试模式
         case FUNC_BT_DUT:
-            func_bt_dut();
+            func_bt_dut();                                  // 进入蓝牙DUT测试模式
             break;
 #endif
 
-#if FUNC_BTHID_EN
+#if FUNC_BTHID_EN                                           // 默认为0，不启用蓝牙HID功能（自拍器模式）
         case FUNC_BTHID:
-            func_bthid();
+            func_bthid();                                   // 进入蓝牙HID模式
             break;
 #endif // FUNC_BTHID_EN
 
-#if FUNC_AUX_EN
+#if FUNC_AUX_EN                                             // 默认为0，不启用AUX功能
         case FUNC_AUX:
-            func_aux();
+            func_aux();                                     // 进入AUX模式（线路输入模式）
             break;
 #endif // FUNC_AUX_EN
 
-#if FUNC_SPEAKER_EN
+#if FUNC_SPEAKER_EN                                         // 默认为0，不启用Speaker模式
         case FUNC_SPEAKER:
-            func_speaker();
+            func_speaker();                                 // 进入Speaker模式
             break;
 #endif // FUNC_SPEAKER_EN
 
-        case FUNC_PWROFF:
-            func_pwroff(sys_cb.pwrdwn_tone_en);
+        case FUNC_PWROFF:                                   // 关机模式，不受条件编译控制，始终可用
+            func_pwroff(sys_cb.pwrdwn_tone_en);             // 进入关机模式，参数控制是否播放关机提示音
             break;
 
-#if BT_FCC_TEST_EN
+#if BT_FCC_TEST_EN                                          // 蓝牙FCC测试模式
         case FUNC_BT_FCC:
-            func_bt_fcc();
+            func_bt_fcc();                                  // 进入蓝牙FCC测试模式
             break;
 #endif // BT_FCC_TEST_EN
 
-        default:
-            func_exit();
+        default:                                            // 未知模式或未启用的模式
+            func_exit();                                    // 切换到下一个可用的功能模式
             break;
         }
     }

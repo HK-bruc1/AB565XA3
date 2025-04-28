@@ -355,11 +355,27 @@ void func_bt_message_do(u16 msg)
 AT(.text.bfunc.bt)
 void func_bt_message(u16 msg)
 {
-    if (msg == NO_MSG || msg == MSG_SYS_1S) {       //减少flash缺页
+    /**
+     * @brief 蓝牙模式的消息处理函数，负责处理蓝牙相关的按键和事件消息
+     *
+     * 该函数在蓝牙模式的主循环中被调用，处理各种消息：
+     * 1. 按键消息（如播放/暂停、音量调节、通话控制等）
+     * 2. 系统消息（如定时消息）
+     * 3. 蓝牙事件消息（如连接、断开、音乐播放等）
+     *
+     * @param msg 待处理的消息代码
+     */
+
+    // 特殊消息处理（空消息和1秒定时消息）
+    // 这些消息通过func_bt_message_m处理，以减少flash缺页
+    if (msg == NO_MSG || msg == MSG_SYS_1S) {
         func_bt_message_m(msg);
         if (msg == MSG_SYS_1S) {
+            // 1秒定时消息的额外处理（如果有）
         }
     } else {
+        // 其他所有消息通过func_bt_message_do处理
+        // 包括按键消息和蓝牙事件消息
         func_bt_message_do(msg);
     }
 }
