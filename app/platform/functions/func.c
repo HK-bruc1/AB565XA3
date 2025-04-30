@@ -372,7 +372,10 @@ void func_run(void)
         // 根据func_cb.sta的值切换到不同的功能模式
         // 进入模式的两个要素：在config.h中进行了宏定义使能，第二个是func_cb.sta的值要是对应的功能才行。
         switch (func_cb.sta) {
-#if FUNC_BT_EN                                              // 默认为1，启用蓝牙功能
+#if FUNC_BT_EN 
+        //蓝牙宏启用的前提下,默认为1，启用蓝牙功能
+        //func_cb.sta的值要是FUNC_BT（枚举值），才会进入蓝牙模式
+        //这是状态机轮询模型，蓝牙模式一直保持进入
         case FUNC_BT:
             func_bt();                                      // 进入蓝牙模式
             break;

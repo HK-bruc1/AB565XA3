@@ -229,6 +229,7 @@ void sfunc_bt_call_exit(void)
     }
 }
 
+//蓝牙模式下通话状态的处理函数
 AT(.text.func.bt)
 void sfunc_bt_call(void)
 {

@@ -52,7 +52,11 @@ void platform_user_init(void)
 int main(void)
 {
     printf("Hello AB565XA3: %x\n", LVDCON);
+
+    //系统初始化函数，是整个耳机SDK的核心初始化入口
     bsp_sys_init();
+
+    //功能运行函数，是整个耳机SDK的主循环入口
     func_run();
     return 0;
 }

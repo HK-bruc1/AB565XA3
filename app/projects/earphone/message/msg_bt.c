@@ -15,8 +15,8 @@ void bt_low_latency_set_busy(void);
 
 extern u8 bt_alg_dbb_on;
 
-///检查USER_DEF按键消息处理
-//在配置工具中配置的按键事件
+//检查USER_DEF按键消息处理
+//根据传入的按键类型消息调用对应的处理函数
 bool user_def_key_msg(u8 func_sel)
 {
     if (func_sel == UDK_SIRI_REDIALING) {
@@ -105,7 +105,8 @@ bool bt_tws_pair_mode(u8 method)
     return false;
 }
 
-//来电响铃时拒接操作(长按/双击)
+//来电响铃时拒接操作(长按/双击，配置工具只有这两个配置)
+//跟通话的挂断和接听是分开的逻辑
 void bt_ring_reject(void)
 {
     bt_ring_stop();
@@ -128,6 +129,7 @@ void func_bt_message_do(u16 msg)
             bt_tws_pair_mode(3);                                            //单击PLAY按键手动配对
             break;
         }
+        //传递一个播放和暂停的按键事件启动对应的处理
         user_def_key_msg(ku_sel);
         break;
 
@@ -138,6 +140,7 @@ void func_bt_message_do(u16 msg)
     case KL_PLAY_USER_DEF:
         f_bt.user_kl_flag = 0;
         if (xcfg_cb.user_def_kl_sel == UDK_GAME_SWITCH) {
+            //如果配置项中配置的是长按切换游戏模式的话
             klu_flag = 0;
         }
         if (!bt_tws_pair_mode(4)) {                                         //是否长按配对功能
@@ -148,12 +151,14 @@ void func_bt_message_do(u16 msg)
             if (klu_flag) {
                 f_bt.user_kl_flag = user_def_func_is_ready(xcfg_cb.user_def_kl_sel);     //长按抬键的时候再处理
             } else {
+                //经过一系列判断才处理的
                 user_def_key_msg(xcfg_cb.user_def_kl_sel);
             }
         }
         break;
 
         //SIRI, NEXT, PREV在长按抬键的时候响应,避免关机前切歌或呼SIRI了
+        //不然跟长按关机可能会冲突，那么可以推理出长按关机是不松开到达时间就会触发。
     case KLU_PLAY_PWR_USER_DEF:
         if (f_bt.user_kl_flag) {
             user_def_key_msg(xcfg_cb.user_def_kl_sel);
@@ -375,189 +380,368 @@ void func_bt_message(u16 msg)
     }
 }
 
+/**
+ * @brief 蓝牙来电状态下的具体按键消息处理函数
+ *
+ * 该函数负责处理蓝牙来电状态下的各种按键消息，实现接听、拒接等功能。
+ * 函数通过配置工具中的设置实现按键功能的自定义，具体工作原理：
+ *
+ * 1. 配置工具关联：
+ *    - xcfg_cb.user_def_ks_sel：配置工具中设置的短按功能选择（如接听、挂断等）
+ *    - xcfg_cb.user_def_kl_sel：配置工具中设置的长按功能选择（如拒接、语音助手等）
+ *    - xcfg_cb.user_def_kd_sel：配置工具中设置的双击功能选择
+ *    - xcfg_cb.user_def_kt_sel：配置工具中设置的三击功能选择
+ *    - xcfg_cb.user_def_kfour_sel：配置工具中设置的四击功能选择
+ *    - xcfg_cb.user_def_kfive_sel：配置工具中设置的五击功能选择
+ *    - xcfg_cb.user_def_kl_reject_en：配置工具中设置的长按是否拒接电话
+ *    - xcfg_cb.user_def_kd_reject_en：配置工具中设置的双击是否拒接电话
+ *
+ * 2. 按键功能映射：
+ *    - 当接收到按键消息(如KU_HSF)时，根据消息类型选择对应的配置值
+ *    - 通过user_def_key_msg()函数将配置值(如UDK_PLAY_PAUSE)转换为具体功能
+ *    - UDK_常量定义了各种可能的功能（如UDK_PLAY_PAUSE表示接听/挂断）
+ *
+ * 3. 按键处理流程：
+ *    - 短按：默认映射为接听电话(UDK_PLAY_PAUSE)
+ *    - 长按：根据user_def_kl_reject_en配置决定是拒接电话还是执行user_def_kl_sel指定的功能
+ *    - 双击：根据user_def_kd_reject_en配置决定是拒接电话还是执行user_def_kd_sel指定的功能
+ *    - 三击/四击/五击：分别执行user_def_kt_sel/user_def_kfour_sel/user_def_kfive_sel指定的功能
+ *
+ * 4. 按键复用机制：
+ *    - 蓝牙耳机通过状态感知实现按键复用，同一个按键在不同状态下有不同功能
+ *    - 特别是UDK_PLAY_PAUSE(值为12)这个功能值在不同状态下的行为：
+ *      * 在音乐播放状态：控制音乐的播放/暂停
+ *      * 在来电状态：控制接听电话
+ *      * 在通话状态：控制挂断电话
+ *    - 这种设计使得配置工具中的"PLAY/PAUSE"选项实际上是一个多功能选项
+ *    - 系统会根据当前状态(音乐/来电/通话)自动选择合适的功能
+ *    - 因此，通话中的接听/挂断与音乐的播放/暂停共用同一个逻辑值(UDK_PLAY_PAUSE)
+ *
+ * @param msg 待处理的按键消息，如KU_HSF(短按接听键)、KL_PLAY_USER_DEF(长按多功能键)等
+ */
 void sfunc_bt_ring_message_do(u16 msg)
 {
+    // 获取配置工具中设置的短按功能选择值
+    // 这个值对应配置工具中"USER_DEF键单按"的设置，如"PLAY/PAUSE"(12)
     u8 ku_sel = xcfg_cb.user_def_ks_sel;
 
     switch (msg) {
-    case KU_HSF:                //接听
-        ku_sel = UDK_PLAY_PAUSE;
-    case KU_PLAY_USER_DEF:
-    case KU_PLAY_PWR_USER_DEF:
+    // 短按接听键处理 - 强制设置为接听电话功能
+    case KU_HSF:                // 短按接听键
+        ku_sel = UDK_PLAY_PAUSE; // 强制设置为接听/挂断功能(UDK_PLAY_PAUSE=12)，覆盖配置工具的设置
+                                // 重要：这里体现了蓝牙耳机按键复用的核心机制 - UDK_PLAY_PAUSE(值为12)在不同状态下有不同功能：
+                                // 1. 在音乐播放状态：控制音乐的播放/暂停
+                                // 2. 在来电状态：控制接听电话
+                                // 3. 在通话状态：控制挂断电话
+                                // 这种设计使得同一个按键可以在不同状态下实现不同功能，系统会先判断当前状态(音乐/来电/通话)
+                                // 然后将同一个按键消息分发到不同的处理函数中
+    // 短按多功能键处理
+    case KU_PLAY_USER_DEF:      // 短按多功能键
+    case KU_PLAY_PWR_USER_DEF:  // 短按电源/多功能组合键
+        // 调用user_def_key_msg函数执行对应功能，传入配置值(ku_sel)
+        // 在来电状态下，这里通常会执行接听电话的功能
+        // user_def_key_msg函数是按键功能实现的核心，它会根据当前系统状态和传入的功能值执行不同操作：
+        // - 当ku_sel=UDK_PLAY_PAUSE(12)时：
+        //   * 在音乐播放状态：调用music_play_pause()控制音乐播放/暂停
+        //   * 在来电状态：调用bt_call_answer_incoming()接听电话
+        //   * 在通话状态：调用bt_call_terminate()挂断电话
+        // 这种状态感知的设计使得同一个配置值(UDK_PLAY_PAUSE)可以在不同状态下执行不同功能
+        // 配置工具中设置的"PLAY/PAUSE"(12)选项实际上是一个多功能选项，会根据当前状态自动适配
         user_def_key_msg(ku_sel);
         break;
 
-    case KL_PLAY_PWR_USER_DEF:
-        //PWRKEY松开前不产生KLH_PLAY_PWR_USER_DEF消息。按键松开自动清此标志。
+    // 长按电源键处理
+    case KL_PLAY_PWR_USER_DEF:  // 长按电源/多功能组合键
+        // 如果配置了长按电源键不关机(user_def_kl_call_pwrdwn_en=0)，则设置标志防止关机
+        // PWRKEY松开前不产生KLH_PLAY_PWR_USER_DEF消息。按键松开自动清此标志。
         if (!xcfg_cb.user_def_kl_call_pwrdwn_en) {
-            sys_cb.poweron_flag = 1;
+            sys_cb.poweron_flag = 1; // 设置标志防止关机
         }
-    case KL_PLAY_USER_DEF:
-    case KL_HSF:
+    // 长按多功能键或接听键处理
+    case KL_PLAY_USER_DEF:      // 长按多功能键
+    case KL_HSF:                // 长按接听键
+        // 根据配置决定是拒接电话还是执行自定义功能
+        // 如果配置了长按拒接(user_def_kl_reject_en=1)或按键是接听键(KL_HSF)，则拒接电话
         if (xcfg_cb.user_def_kl_reject_en || msg == KL_HSF) {
-            bt_ring_reject();
+            bt_ring_reject(); // 拒接来电
         } else {
+            // 否则执行配置工具中设置的长按功能
             user_def_key_msg(xcfg_cb.user_def_kl_sel);
         }
         break;
 
-    case KD_PLAY_USER_DEF:
-    case KD_PLAY_PWR_USER_DEF:
+    // 双击多功能键处理
+    case KD_PLAY_USER_DEF:      // 双击多功能键
+    case KD_PLAY_PWR_USER_DEF:  // 双击电源/多功能组合键
+        // 根据配置决定是拒接电话还是执行自定义功能
+        // 如果配置了双击拒接(user_def_kd_reject_en=1)，则拒接电话
         if (xcfg_cb.user_def_kd_reject_en) {
-            bt_ring_reject();
+            bt_ring_reject(); // 拒接来电
         } else {
+            // 否则执行配置工具中设置的双击功能
             user_def_key_msg(xcfg_cb.user_def_kd_sel);
         }
         break;
 
-    ///三击按键处理
-    case KTH_PLAY_USER_DEF:
-    case KTH_PLAY_PWR_USER_DEF:
+    // 三击按键处理
+    case KTH_PLAY_USER_DEF:     // 三击多功能键
+    case KTH_PLAY_PWR_USER_DEF: // 三击电源/多功能组合键
+        // 执行配置工具中设置的三击功能
         user_def_key_msg(xcfg_cb.user_def_kt_sel);
         break;
 
-	    ///四击按键处理
-    case KFO_PLAY_USER_DEF:
-    case KFO_PLAY_PWR_USER_DEF:
+    // 四击按键处理
+    case KFO_PLAY_USER_DEF:     // 四击多功能键
+    case KFO_PLAY_PWR_USER_DEF: // 四击电源/多功能组合键
+        // 执行配置工具中设置的四击功能
         user_def_key_msg(xcfg_cb.user_def_kfour_sel);
         break;
 
-    ///五击按键处理
-    case KFI_PLAY_USER_DEF:
-    case KFI_PLAY_PWR_USER_DEF:
+    // 五击按键处理
+    case KFI_PLAY_USER_DEF:     // 五击多功能键
+    case KFI_PLAY_PWR_USER_DEF: // 五击电源/多功能组合键
+        // 执行配置工具中设置的五击功能
         user_def_key_msg(xcfg_cb.user_def_kfive_sel);
         break;
 
+    // 1秒定时消息处理
     case MSG_SYS_1S:
+        // 每秒向手机报告电池电量
         bt_send_msg(BT_MSG_HFP_REPORT_BAT);
         break;
 
+    // 长按电源键超时消息处理
     case KLH_PLAY_PWR_USER_DEF:
-        //ring不响应关机消息，解决关机时间1.5时长按拒接偶尔触发关机的问题。
+        // 来电状态下特殊处理长按电源键，避免与拒接功能冲突
+        // 如果配置了长按电源键不关机(user_def_kl_call_pwrdwn_en=0)，则忽略此消息
+        // ring不响应关机消息，解决关机时间1.5时长按拒接偶尔触发关机的问题。
         if (!xcfg_cb.user_def_kl_call_pwrdwn_en) {
             break;
         }
+    // 其他消息处理
     default:
+        // 将消息传递给通用消息处理函数
         func_message(msg);
         break;
     }
 }
 
+/**
+ * @brief 蓝牙来电状态下的按键消息处理函数
+ *
+ * 该函数负责处理蓝牙来电状态下的各种按键消息，包括接听、拒接等操作。
+ * 为了减少flash缺页，将常见的空消息和1秒定时消息单独处理。
+ *
+ * 主要功能：
+ * 1. 处理来电时的按键操作，如接听、拒接电话
+ * 2. 根据配置工具设置的按键功能执行相应操作
+ * 3. 支持多种按键组合（单击、长按、双击、三击等）
+ *
+ * 按键处理逻辑：
+ * - 短按：默认接听电话
+ * - 长按：根据配置可拒接电话或执行其他功能
+ * - 双击：根据配置可拒接电话或执行其他功能
+ * - 三击/四击/五击：执行配置的自定义功能
+ *
+ * @param msg 待处理的按键消息
+ */
 AT(.text.bfunc.bt)
 void sfunc_bt_ring_message(u16 msg)
 {
     if (msg == NO_MSG || msg == MSG_SYS_1S) {       //减少flash缺页
+        //不可见的消息处理函数，可能在其他文件中实现
         sfunc_bt_ring_message_m(msg);
     } else {
+        //针对蓝牙模式下的来电时，根据获取的消息来走不同的处理分支
         sfunc_bt_ring_message_do(msg);
     }
 }
 
+/**
+ * @brief 蓝牙通话状态下的具体按键消息处理函数
+ *
+ * 该函数负责处理蓝牙通话状态下的各种按键消息，实现挂断、切换通话、麦克风静音等功能。
+ * 函数通过配置工具中的设置实现按键功能的自定义，支持多路通话场景。
+ *
+ * 主要功能：
+ * 1. 挂断当前通话：短按多功能键
+ * 2. 私密接听切换：长按多功能键（在手机和耳机之间切换通话）
+ * 3. 多路通话控制：
+ *    - 拒接第二路来电：长按多功能键
+ *    - 接听第二路来电：双击多功能键
+ *    - 在两路通话间切换：双击多功能键
+ * 4. 麦克风静音控制：双击多功能键（在非多路通话状态下）
+ * 5. 音量调节：长按保持多功能键
+ *
+ * 按键复用机制：
+ * - 与来电状态和音乐播放状态类似，通话状态下的按键也采用状态感知的复用机制
+ * - 同一个UDK_PLAY_PAUSE(值为12)在通话状态下表示挂断电话
+ * - 系统会根据当前通话状态(单路通话/多路通话/来电等)自动选择合适的功能
+ *
+ * @param msg 待处理的按键消息，如KU_HSF(短按接听键)、KL_PLAY_USER_DEF(长按多功能键)等
+ */
 void sfunc_bt_call_message_do(u16 msg)
 {
+    // 用于存储当前通话状态(单路通话/多路通话/来电等)
     u8 call_status;
+    // 获取配置工具中设置的短按功能选择值
     u8 ku_sel = xcfg_cb.user_def_ks_sel;
 
     switch (msg) {
 #if BT_LIGHTNINIG_EN
-    case KU_HOME:
-    case KL_HOME:
+    // Lightning接口设备的HOME键处理（如苹果设备）
+    case KU_HOME:    // 短按HOME键
+    case KL_HOME:    // 长按HOME键
         if (bt_get_siri_status()) {
-            bt_call_terminate();                        //结束SIRI
+            bt_call_terminate();    // 如果Siri正在活动，结束Siri
         }
         break;
 #endif
 
-    ///挂断当前通话，或者结束当前通话并接听第2路通
-    case KU_HSF:
+    // 短按处理：挂断当前通话，或者结束当前通话并接听第二路来电
+    case KU_HSF:    // 短按接听键
+        // 强制设置为挂断功能(UDK_PLAY_PAUSE=12)，覆盖配置工具的设置
+        // 这里体现了按键复用机制：UDK_PLAY_PAUSE在通话状态下表示挂断电话
         ku_sel = UDK_PLAY_PAUSE;
-    case KU_PLAY_USER_DEF:
-    case KU_PLAY_PWR_USER_DEF:
+    case KU_PLAY_USER_DEF:    // 短按多功能键
+    case KU_PLAY_PWR_USER_DEF:    // 短按电源/多功能组合键
+        // 调用user_def_key_msg函数执行对应功能
+        // 在通话状态下，这里通常会执行挂断电话的功能
+        // 如果有第二路来电，则会结束当前通话并接听第二路来电
         user_def_key_msg(ku_sel);
         break;
 
-    ///拒接第2路通话, 或私密接听切换
-    case KL_PLAY_PWR_USER_DEF:
+    // 长按处理：拒接第二路来电或私密接听切换
+    case KL_PLAY_PWR_USER_DEF:    // 长按电源/多功能组合键
+        // 如果配置了长按电源键不关机(user_def_kl_call_pwrdwn_en=0)，则设置标志防止关机
         if (!xcfg_cb.user_def_kl_call_pwrdwn_en) {
-            sys_cb.poweron_flag = 1;                    //PWRKEY松开前不产生KLH_PLAY_PWR_USER_DEF消息。按键松开自动清此标志。
+            // 设置标志防止关机，PWRKEY松开前不产生KLH_PLAY_PWR_USER_DEF消息
+            // 按键松开时会自动清除此标志
+            sys_cb.poweron_flag = 1;
         }
-    case KL_PLAY_USER_DEF:
+    case KL_PLAY_USER_DEF:    // 长按多功能键
+        // 尝试执行配置工具中设置的长按功能
+        // 如果user_def_key_msg返回true，表示已处理该消息，直接退出
         if (user_def_key_msg(xcfg_cb.user_def_kl_sel)) {
             break;
         }
-    case KL_HSF:
+    case KL_HSF:    // 长按接听键
+        // 获取当前通话状态
         call_status = bt_get_call_indicate();
         if(call_status == BT_CALL_INCOMING) {
-            bt_call_terminate();                        //拒接第2路通话
+            // 如果有第二路来电，则拒接该来电
+            bt_call_terminate();    // 拒接第二路来电
+            // 播放拒接提示音
             sys_warning_play(T_WARNING_REJECT, PIANO_REJECT);
         } else if (xcfg_cb.bt_hfp_private_switch_en) {
-            bt_call_private_switch();                   //私密接听切换
+            // 如果没有第二路来电且启用了私密接听切换功能
+            // 则在手机和耳机之间切换通话
+            bt_call_private_switch();    // 私密接听切换
         }
         break;
 
-    ///保持当前通话并接通第2路通话，或者2路通话切换
-    case KD_PLAY_PWR_USER_DEF:
-    case KD_PLAY_USER_DEF:
+    // 双击处理：接听第二路来电，切换通话，或麦克风静音控制
+    case KD_PLAY_PWR_USER_DEF:    // 双击电源/多功能组合键
+    case KD_PLAY_USER_DEF:    // 双击多功能键
+        // 尝试执行配置工具中设置的双击功能
+        // 如果user_def_key_msg返回true，表示已处理该消息，直接退出
         if (user_def_key_msg(xcfg_cb.user_def_kd_sel)) {
             break;
         }
-    case KD_HSF:
+    case KD_HSF:    // 双击接听键
+        // 获取当前通话状态
         call_status = bt_get_call_indicate();
         if (call_status == BT_CALL_INCOMING) {
-            set_mic_mute(0);
-            bt_call_answer_incoming();                  //接听第2路通话
+            // 如果有第二路来电，则接听该来电
+            set_mic_mute(0);    // 确保麦克风不是静音状态
+            bt_call_answer_incoming();    // 接听第二路来电
         } else if(call_status == BT_CALL_3WAY_CALL) {
-            set_mic_mute(0);
-            bt_call_swap();                             //切换两路通话
+            // 如果当前是三方通话状态，则切换两路通话
+            set_mic_mute(0);    // 确保麦克风不是静音状态
+            bt_call_swap();    // 切换两路通话
         } else if (xcfg_cb.bt_hfp_mute_switch_en) {
-            set_mic_mute(2);                            //MIC left channel mute toggle
+            // 如果是普通通话状态且启用了麦克风静音切换功能
+            // 则切换麦克风静音状态
+            set_mic_mute(2);    // 切换麦克风左声道静音状态
         }
         break;
 
-    ///长按调音量
-    case KH_PLAY_PWR_USER_DEF:
-    case KH_PLAY_USER_DEF:
+    // 长按保持处理：音量调节
+    case KH_PLAY_PWR_USER_DEF:    // 长按保持电源/多功能组合键
+    case KH_PLAY_USER_DEF:    // 长按保持多功能键
+        // 根据配置的长按功能获取对应的音量调节消息
+        // 并将该消息传递给通用消息处理函数
         func_message(get_user_def_vol_msg(xcfg_cb.user_def_kl_sel));
         break;
 
-    ///三击按键处理
-    case KTH_PLAY_USER_DEF:
-    case KTH_PLAY_PWR_USER_DEF:
+    // 三击按键处理
+    case KTH_PLAY_USER_DEF:    // 三击多功能键
+    case KTH_PLAY_PWR_USER_DEF:    // 三击电源/多功能组合键
+        // 执行配置工具中设置的三击功能
         user_def_key_msg(xcfg_cb.user_def_kt_sel);
         break;
 
-    ///四击按键处理
-    case KFO_PLAY_USER_DEF:
-    case KFO_PLAY_PWR_USER_DEF:
+    // 四击按键处理
+    case KFO_PLAY_USER_DEF:    // 四击多功能键
+    case KFO_PLAY_PWR_USER_DEF:    // 四击电源/多功能组合键
+        // 执行配置工具中设置的四击功能
         user_def_key_msg(xcfg_cb.user_def_kfour_sel);
         break;
 
-    ///五击按键处理
-    case KFI_PLAY_USER_DEF:
-    case KFI_PLAY_PWR_USER_DEF:
+    // 五击按键处理
+    case KFI_PLAY_USER_DEF:    // 五击多功能键
+    case KFI_PLAY_PWR_USER_DEF:    // 五击电源/多功能组合键
+        // 执行配置工具中设置的五击功能
         user_def_key_msg(xcfg_cb.user_def_kfive_sel);
         break;
 
+    // A2DP音乐播放事件处理
     case EVT_A2DP_MUSIC_PLAY:
+        // 音频淡入，避免声音突变
         dac_fade_in();
         break;
 
+    // 1秒定时消息处理
     case MSG_SYS_1S:
+        // 每秒向手机报告电池电量
         bt_send_msg(BT_MSG_HFP_REPORT_BAT);
         break;
 
+    // 其他消息处理
     default:
+        // 将消息传递给通用消息处理函数
         func_message(msg);
         break;
     }
 }
 
+/**
+ * @brief 蓝牙通话状态下的按键消息处理函数
+ *
+ * 该函数负责分发蓝牙通话状态下的各种按键消息，是通话状态下按键处理的入口函数。
+ * 为了减少flash缺页，将常见的空消息和1秒定时消息单独处理。
+ *
+ * 工作流程：
+ * 1. 对于空消息(NO_MSG)和1秒定时消息(MSG_SYS_1S)，调用sfunc_bt_call_message_m处理
+ * 2. 对于其他所有消息，调用sfunc_bt_call_message_do处理
+ *
+ * 按键复用机制：
+ * - 该函数是通话状态下按键复用机制的入口
+ * - 通过状态感知，同一个按键在不同状态下执行不同功能：
+ *   * 在音乐播放状态：UDK_PLAY_PAUSE表示播放/暂停
+ *   * 在来电状态：UDK_PLAY_PAUSE表示接听电话
+ *   * 在通话状态：UDK_PLAY_PAUSE表示挂断电话
+ *
+ * @param msg 待处理的按键消息
+ */
 AT(.text.bfunc.bt)
 void sfunc_bt_call_message(u16 msg)
 {
-    if (msg == NO_MSG || msg == MSG_SYS_1S) {       //减少flash缺页
+    if (msg == NO_MSG || msg == MSG_SYS_1S) {       // 减少flash缺页
+        // 处理空消息和1秒定时消息
         sfunc_bt_call_message_m(msg);
     } else {
+        // 处理其他所有消息
         sfunc_bt_call_message_do(msg);
     }
 }

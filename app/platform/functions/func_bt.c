@@ -283,26 +283,85 @@ void func_bt_disp_status_do(void)
 AT(.text.bfunc.bt)
 static void func_bt_disp_status(void)
 {
-    uint status = bt_get_disp_status();
+    /**
+     * @brief 蓝牙状态获取和LED显示控制函数
+     *
+     * 该函数负责获取当前蓝牙状态，并根据状态变化控制LED显示、DAC状态和TWS呼吸灯效果。
+     * 主要功能：
+     * 1. 获取当前蓝牙状态并检测是否有变化
+     * 2. 如果状态有变化，更新状态并执行相应的LED显示控制
+     * 3. 根据蓝牙连接状态控制DAC开关
+     * 4. 控制TWS呼吸灯效果
+     */
 
-    if(f_bt.disp_status != status) {
-        f_bt.disp_status = status;
-        func_bt_disp_status_do();
+    // 1. 获取当前蓝牙状态
+    uint status = bt_get_disp_status(); // 调用底层函数获取当前蓝牙状态
+
+    // 2. 检测状态是否有变化，如有变化则更新LED显示
+    if(f_bt.disp_status != status) {    // 如果状态有变化
+        f_bt.disp_status = status;      // 更新状态变量
+        func_bt_disp_status_do();       // 执行状态变化后的操作（更新LED显示）
+                                        // 不同状态对应不同的LED显示模式：
+                                        // - BT_STA_CONNECTING: led_bt_reconnect()
+                                        // - BT_STA_IDLE: led_bt_idle()
+                                        // - BT_STA_SCANNING: led_bt_scan()
+                                        // - BT_STA_CONNECTED: led_bt_connected()
+                                        // - BT_STA_PLAYING: led_bt_play()
+                                        // - BT_STA_INCOMING: led_bt_ring()
+                                        // - BT_STA_OUTGOING/BT_STA_INCALL: led_bt_call()
     }
-    func_bt_dac_ctrl();
-    func_bt_tws_bre_led_ctl();
+
+    // 3. 根据蓝牙连接状态控制DAC开关
+    func_bt_dac_ctrl();                 // 根据蓝牙连接状态控制DAC开关
+                                        // 如果配置了蓝牙断开时关闭DAC(dac_off_for_bt_disconn)：
+                                        // - 已连接时打开DAC
+                                        // - 未连接时关闭DAC，节省功耗
+
+    // 4. 控制TWS呼吸灯效果
+    func_bt_tws_bre_led_ctl();          // 控制TWS呼吸灯效果
+                                        // 根据TWS连接状态和配置控制呼吸灯：
+                                        // - TWS已连接但未连接手机：可能启用T_BRE_TWS_CON模式呼吸灯
+                                        // - TWS已连接且正在播放音乐/通话：可能启用T_BRE_TWS_PLAY模式呼吸灯
 }
 
 AT(.text.bfunc.bt)
 void func_bt_status(void)
 {
+    /**
+     * @brief 蓝牙状态更新和提示音处理函数
+     *
+     * 该函数负责更新蓝牙状态并根据状态变化控制LED显示和播放提示音。
+     * 它在一个循环中执行，直到状态更新完成（f_bt.disp_status != 0xff）。
+     *
+     * 主要功能：
+     * 1. 调用func_bt_disp_status()获取并更新蓝牙状态，同时根据状态控制LED显示
+     * 2. 调用func_bt_warning()处理各种提示音播放（如连接/断开/配对等）
+     * 3. 当睡眠唤醒时，f_bt.disp_status会被设为0xff，此时需要重新获取状态
+     */
     while(1) {
+        // 1. 获取并更新蓝牙状态，同时根据状态控制LED显示
+        // 调用bt_get_disp_status()获取当前蓝牙状态，可能的值包括：
+        // BT_STA_OFF(0)：蓝牙已关闭
+        // BT_STA_INITING(1)：蓝牙初始化中
+        // BT_STA_IDLE(2)：蓝牙空闲（未连接）
+        // BT_STA_SCANNING(3)：正在扫描
+        // BT_STA_DISCONNECTING(4)：正在断开连接
+        // BT_STA_CONNECTING(5)：正在连接
+        // BT_STA_CONNECTED(6)：已连接
+        // BT_STA_PLAYING(7)：正在播放音乐
+        // BT_STA_INCOMING(8)：来电振铃
+        // BT_STA_OUTGOING(9)：正在拨号
+        // BT_STA_INCALL(10)：通话中
         func_bt_disp_status();
 
+        // 2. 处理各种提示音播放（如连接/断开/配对等）
         {
             func_bt_warning();
         }
 
+        // 3. 检查状态是否已更新完成
+        // 当从睡眠唤醒时，f_bt.disp_status会被设为0xff，需要重新获取状态
+        // 一旦状态更新完成（不等于0xff），就退出循环
         if(f_bt.disp_status != 0xff) {
             break;
         }
@@ -470,48 +529,77 @@ void func_bt_default_volume_process(void)
 AT(.text.bfunc.bt)
 void func_bt_sub_process(void)
 {
-    func_bt_status();
+    /**
+     * @brief 蓝牙模式的子处理函数，负责处理蓝牙模式下的各种周期性任务
+     *
+     * 该函数在蓝牙主循环中被调用，处理以下任务：
+     * 1. 蓝牙状态更新和显示
+     * 2. 各种蓝牙特性的周期性处理（如TWS、BLE弹窗等）
+     * 3. 电量监测和同步
+     * 4. 信号强度检测和主从切换
+     */
+
+    // 1. 更新蓝牙状态和LED显示
+    func_bt_status();                                // 更新蓝牙状态并处理LED显示
+
 #if USER_TKEY
-    bsp_tkey_spp_tx();
+    // 2. 触摸按键SPP数据发送（如果启用）
+    bsp_tkey_spp_tx();                               // 通过SPP发送触摸按键数据
 #endif
+
 #if BT_EARIN_DETECT_EN
-    func_bt_inear_process();
+    // 3. 入耳检测处理（如果启用）
+    func_bt_inear_process();                         // 处理入耳检测功能，可能会触发自动开关机或播放/暂停
 #endif
+
 #if VUSB_SMART_VBAT_HOUSE_EN
-    bsp_smart_vhouse_process(0);
+    // 4. 智能充电仓处理（如果启用）
+    bsp_smart_vhouse_process(0);                     // 处理智能充电仓相关功能，如电量显示、开盖检测等
 #endif
-    ble_popup_delay_process();
+
+    // 5. BLE弹窗功能处理
+    ble_popup_delay_process();                       // 处理BLE弹窗延时，用于iOS设备连接时显示电量弹窗
+
 #if BT_2ACL_AUTO_SWITCH
-    if (xcfg_cb.bt_2acl_auto_switch) {
-        if (bt_play_data_check()) {
-            bt_music_play_switch();
+    // 6. 双ACL自动切换功能（如果启用）
+    if (xcfg_cb.bt_2acl_auto_switch) {               // 如果启用了双ACL自动切换功能
+        if (bt_play_data_check()) {                  // 检查是否需要切换播放设备
+            bt_music_play_switch();                  // 执行音乐播放设备切换
         }
     }
 #endif
+
 #if BT_TWS_VBAT_AUTO_SWITCH
-    if (xcfg_cb.bt_tswi_vbat_en && f_bt.disp_status != BT_STA_INCOMING) {
+    // 7. TWS根据电量自动主从切换功能（如果启用）
+    if (xcfg_cb.bt_tswi_vbat_en && f_bt.disp_status != BT_STA_INCOMING) {  // 如果启用了电量切换且不在来电状态
 #if BT_DISP_LOW_VBAT_EN
-        bt_tws_vbat_switch();
+        bt_tws_vbat_switch();                        // 根据电量执行TWS主从切换（显示低电量版本）
 #else
-        bt_tws_vbat_switch_m();
+        bt_tws_vbat_switch_m();                      // 根据电量执行TWS主从切换（标准版本）
 #endif
     }
 #endif
+
 #if BT_A2DP_DEFAULT_VOLUME_EN
-    func_bt_default_volume_process();
+    // 8. A2DP默认音量处理（如果启用）
+    func_bt_default_volume_process();                // 处理A2DP默认音量设置，确保连接后音量正确
 #endif
+
 #if BT_TWS_STANDBY_SUPPORT_SWITCH_EN
-    if(bt_check_snoop_rssi(-65,-65,30)){
+    // 9. 根据信号强度自动主从切换功能（如果启用）
+    if(bt_check_snoop_rssi(-65,-65,30)){            // 检查手机和TWS信号强度，如果低于阈值
        printf("Standby_AUDIO SWITCH\n");
-       bt_tws_switch();
+       bt_tws_switch();                              // 执行TWS主从切换
     }
 #endif
+
 #if BT_DISP_LOW_VBAT_EN
-    if(tick_check_expire(sys_cb1.disp_low_vbat_ticks, 10000)) {
-        sys_cb1.disp_low_vbat_ticks = tick_get();
-        hfp_get_bat_level();                        //更新一下f_bt.loc_vbat
-        if (bt_tws_is_connected()) {
-            bt_send_msg(BT_MSG_TWS_SYNC_INFO);
+    // 10. 低电量显示和同步功能（如果启用）
+    if(tick_check_expire(sys_cb1.disp_low_vbat_ticks, 10000)) {  // 每10秒检查一次
+        sys_cb1.disp_low_vbat_ticks = tick_get();    // 更新计时器
+        hfp_get_bat_level();                         // 更新本地电量值(f_bt.loc_vbat)
+        if (bt_tws_is_connected()) {                 // 如果TWS已连接
+            bt_send_msg(BT_MSG_TWS_SYNC_INFO);       // 发送消息同步TWS信息（包括电量）
         }
     }
 #endif
@@ -538,6 +626,7 @@ static void func_bt_process(void)
 
 #if BT_TWS_AUTO_SWITCH
     // TWS自动切换功能：当满足切换条件时，执行主从切换
+    //比如一个耳机入仓了
     if ((xcfg_cb.bt_tswi_msc_en) && tws_switch_is_need()) {
         bt_tws_switch();
     }
@@ -550,6 +639,7 @@ static void func_bt_process(void)
 
 #if BT_QUICK_TEST_EN
     // 蓝牙快速测试功能
+    //不开启的话，就是正常处理：来电/通话状态处理，自动关机处理
     if(f_bt.quick_test_flag){
         func_bt_quick_test();
     }
@@ -578,13 +668,36 @@ static void func_bt_process(void)
         if (f_bt.disp_status < BT_STA_CONNECTED) {
             sys_cb.discon_reason = 1;             // 连接超时关主从切换,同步关机
             sys_cb.pwrdwn_tone_en = 1;            // 启用关机提示音
-            func_cb.sta = FUNC_PWROFF;            // 切换到关机模式
+            func_cb.sta = FUNC_PWROFF;            // 切换到关机模式，不受模式宏控制
             return;
         }
     }
 
     // 5. 睡眠处理
     if(sleep_process(bt_is_sleep)) {
+        /**
+         * @brief 设置特殊状态值0xff，触发状态更新机制
+         *
+         * 这里的0xff是一个特殊的状态标志值，不是实际的蓝牙状态。
+         * 当系统从睡眠状态唤醒时，需要重新获取当前的蓝牙状态并更新显示。
+         *
+         * 工作原理：
+         * 1. 设置f_bt.disp_status = 0xff作为一个特殊标记
+         * 2. 在func_bt_status()函数中，会检测到这个特殊值
+         * 3. func_bt_status()会进入一个循环，不断调用func_bt_disp_status()直到状态更新完成
+         * 4. func_bt_disp_status()会调用bt_get_disp_status()获取实际的蓝牙状态
+         * 5. 当检测到状态变化时，会调用func_bt_disp_status_do()更新LED显示
+         *
+         * LED状态更新机制：
+         * - 在func_bt_disp_status_do()中，根据不同的蓝牙状态调用不同的LED显示函数：
+         *   * BT_STA_IDLE: led_bt_idle() - 蓝牙空闲状态LED显示
+         *   * BT_STA_CONNECTED: led_bt_connected() - 蓝牙已连接状态LED显示
+         *   * BT_STA_PLAYING: led_bt_play() - 音乐播放状态LED显示
+         *   * BT_STA_INCOMING: led_bt_ring() - 来电状态LED显示
+         *   * BT_STA_INCALL: led_bt_call() - 通话状态LED显示
+         *
+         * 因此，设置f_bt.disp_status = 0xff会触发整个状态更新链，最终导致LED状态根据当前蓝牙状态更新。
+         */
         f_bt.disp_status = 0xff;                  // 设置特殊状态值，触发状态更新
     }
 }

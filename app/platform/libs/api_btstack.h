@@ -1,59 +1,59 @@
 #ifndef _API_BTSTACK_H
 #define _API_BTSTACK_H
 
-//¹¤×÷Ä£Ê½
-#define MODE_NORMAL                     0       //Õý³£Á¬½ÓÄ£Ê½£¬¹Ø±ÕDUT²âÊÔ
-#define MODE_NORMAL_DUT                 1       //Õý³£Á¬½ÓÄ£Ê½£¬Ê¹ÄÜDUT²âÊÔ
-#define MODE_FCC_TEST                   2       //FCC²âÊÔÄ£Ê½£¬Í¨¹ý´®¿ÚÍ¨ÐÅ
-#define MODE_BQB_RF_BREDR               3       //BR/EDR DUT²âÊÔÄ£Ê½£¬Í¨¹ýÀ¶ÑÀÍ¨ÐÅ
-#define MODE_BQB_RF_BLE                 4       //BLE DUT²âÊÔÄ£Ê½£¬Í¨¹ý´®¿ÚÍ¨ÐÅ
-#define MODE_IODM_TEST                  5       //IODM²âÊÔÄ£Ê½£¬Í¨¹ý´®¿ÚÍ¨ÐÅ
+//ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+#define MODE_NORMAL                     0       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½Ø±ï¿½DUTï¿½ï¿½ï¿½ï¿½
+#define MODE_NORMAL_DUT                 1       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Ê¹ï¿½ï¿½DUTï¿½ï¿½ï¿½ï¿½
+#define MODE_FCC_TEST                   2       //FCCï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+#define MODE_BQB_RF_BREDR               3       //BR/EDR DUTï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+#define MODE_BQB_RF_BLE                 4       //BLE DUTï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+#define MODE_IODM_TEST                  5       //IODMï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
 
-//À¶ÑÀ¹¦ÄÜ
-#define PROF_A2DP                       0x0007  //À¶ÑÀÒôÀÖ¹¦ÄÜ
-#define PROF_HID                        0x0018  //À¶ÑÀ¼üÅÌ¹¦ÄÜ
-#define PROF_HFP                        0x0060  //À¶ÑÀÍ¨»°¹¦ÄÜ
-#define PROF_SPP                        0x0080  //À¶ÑÀ´®¿Ú¹¦ÄÜ
-#define PROF_PBAP                       0x0100  //À¶ÑÀµç»°±¾¹¦ÄÜ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define PROF_A2DP                       0x0007  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½
+#define PROF_HID                        0x0018  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
+#define PROF_HFP                        0x0060  //ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define PROF_SPP                        0x0080  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½
+#define PROF_PBAP                       0x0100  //ï¿½ï¿½ï¿½ï¿½ï¿½ç»°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define PROF_HSP                        0x0200
-#define PROF_MAP                        0x0400  //À¶ÑÀ¶ÌÏ¢¹¦ÄÜ
-#define PROF_TWS                        0x8000  //TWS¹¦ÄÜ
+#define PROF_MAP                        0x0400  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
+#define PROF_TWS                        0x8000  //TWSï¿½ï¿½ï¿½ï¿½
 
 #define PROF_AVDTP_SIGNAL               0x0001
 #define PROF_AVDTP_MEDIA                0x0002
 #define PROF_AVCTP                      0x0004
 #define PROF_AVDTP                      (PROF_AVDTP_SIGNAL|PROF_AVDTP_MEDIA)
 
-//À¶ÑÀÌØÐÔ
-#define HFP_BAT_REPORT                  0x01    //ÊÇ·ñÖ§³ÖÊÖ»úµçÁ¿ÏÔÊ¾
-#define HFP_3WAY_CALL                   0x02    //ÊÇ·ñÖ§³ÖÈýÍ¨µç»°
-#define HFP_INBAND_RING_TONE            0x04    //ÊÇ·ñÖ§³ÖIOSÀ´µçÁåÉù
-#define HFP_CALL_PRIVATE                0x08    //ÊÇ·ñ´ò¿ªÇ¿ÖÆË½ÃÜ½ÓÌý
-#define HFP_SIRI_CMD                    0x10    //ÊÇ·ñ´ò¿ªsiri¿ØÖÆÃüÁî
-#define HFP_EC_AND_NR                   0x20    //ÊÇ·ñ´ò¿ªÊÖ»ú¶Ë»ØÒôºÍ½µÔë
-#define HFP_RING_NUMBER_EN              0x40    //ÊÇ·ñÖ§³ÖÀ´µç±¨ºÅ
-#define A2DP_AVRCP_VOL_CTRL             0x01    //ÊÇ·ñÖ§³ÖÊÖ»úÒôÁ¿¿ØÖÆÍ¬²½
-#define A2DP_RECON_CTRL                 0x02    //ÊÇ·ñ´ò¿ªA2DP¿ØÖÆ¼ü»ØÁ¬
-#define A2DP_AVRCP_PLAY_STATUS          0x04    //ÊÇ·ñÖ§³ÖÊÖ»ú²¥·Å×´Ì¬Í¬²½£¬¿É¼Ó¿ì²¥·ÅÔÝÍ£ÏìÓ¦ËÙ¶È£¬À¶ÑÀºóÌ¨½¨Òé´ò¿ª
-#define A2DP_RESTORE_PLAYING            0x08    //ÊÇ·ñÖ§³ÖµôÏß»ØÁ¬ºó»Ö¸´²¥·Å
-#define A2DP_AVDTP_DELAY_REPORT         0x10    //ÊÇ·ñÖ§³ÖAVDTP delay report¹¦ÄÜ
-#define A2DP_IOS_FLAG                   0x80    //ÊÇ·ñisoÏµÍ³
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define HFP_BAT_REPORT                  0x01    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+#define HFP_3WAY_CALL                   0x02    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ç»°
+#define HFP_INBAND_RING_TONE            0x04    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½IOSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define HFP_CALL_PRIVATE                0x08    //ï¿½Ç·ï¿½ï¿½Ç¿ï¿½ï¿½Ë½ï¿½Ü½ï¿½ï¿½ï¿½
+#define HFP_SIRI_CMD                    0x10    //ï¿½Ç·ï¿½ï¿½siriï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define HFP_EC_AND_NR                   0x20    //ï¿½Ç·ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½
+#define HFP_RING_NUMBER_EN              0x40    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ç±¨ï¿½ï¿½
+#define A2DP_AVRCP_VOL_CTRL             0x01    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½
+#define A2DP_RECON_CTRL                 0x02    //ï¿½Ç·ï¿½ï¿½A2DPï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½
+#define A2DP_AVRCP_PLAY_STATUS          0x04    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬Í¬ï¿½ï¿½ï¿½ï¿½ï¿½É¼Ó¿ì²¥ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ó¦ï¿½Ù¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½
+#define A2DP_RESTORE_PLAYING            0x08    //ï¿½Ç·ï¿½Ö§ï¿½Öµï¿½ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½
+#define A2DP_AVDTP_DELAY_REPORT         0x10    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½AVDTP delay reportï¿½ï¿½ï¿½ï¿½
+#define A2DP_IOS_FLAG                   0x80    //ï¿½Ç·ï¿½isoÏµÍ³
 
-#define HID_CONN_IOS_ONLY               0x01    //ÊÇ·ñÖ§³ÖHIDÖ»Á¬½ÓIOSÏµÍ³µÄ¹¦ÄÜ
+#define HID_CONN_IOS_ONLY               0x01    //ï¿½Ç·ï¿½Ö§ï¿½ï¿½HIDÖ»ï¿½ï¿½ï¿½ï¿½IOSÏµÍ³ï¿½Ä¹ï¿½ï¿½ï¿½
 
-//À©Õ¹±êÖ¾
+//ï¿½ï¿½Õ¹ï¿½ï¿½Ö¾
 #define BT_FLAG0_TWS_SCAN           0x01
 #define BT_FLAG0_CLK_ADVANCE        0x02
 #define BT_FLAG0_TWS_M_RECON        0x04
-#define BT_FLAG0_TWS_FAST_RECON     0x08        //¿ìËÙ°æTWS»ØÁ¬
-#define BT_FLAG0_TWS_MENU_PAIR      0x10        //ÊÖ¶¯¿ØÖÆtwsÁ¬½Ó
-#define BT_FLAG0_TWS_FAST_PAIR      0x20        //¿ª»úTWS²»»ØÁ¬Ö±½Ó½øÈëËÑË÷Åä¶Ô
+#define BT_FLAG0_TWS_FAST_RECON     0x08        //ï¿½ï¿½ï¿½Ù°ï¿½TWSï¿½ï¿½ï¿½ï¿½
+#define BT_FLAG0_TWS_MENU_PAIR      0x10        //ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½twsï¿½ï¿½ï¿½ï¿½
+#define BT_FLAG0_TWS_FAST_PAIR      0x20        //ï¿½ï¿½ï¿½ï¿½TWSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define BT_FLAG0_POPUP_3BAT         0x40
 #define BT_FLAG0_NAME_MENU          0x80
 
-#define BT_TWS_SYNC_TO              50          //BTÍ¬²½µÈ´ý£¬¶ÔÆëµ½Ò»¸ö50ms£¬250ms³¬Ê±
+#define BT_TWS_SYNC_TO              50          //BTÍ¬ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½Ò»ï¿½ï¿½50msï¿½ï¿½250msï¿½ï¿½Ê±
 
-//AVRCPÏûÏ¢
+//AVRCPï¿½ï¿½Ï¢
 #define AVC_VOLUME_UP               0x41
 #define AVC_VOLUME_DOWN             0x42
 #define AVC_MUTE                    0x43
@@ -69,11 +69,11 @@
 #define AVC_SPEED_DOUBLE            0x4d
 #define AVC_SPEED_HALF              0x4e
 
-//×Ô¶¨ÒåµÄUSER KEY
+//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½USER KEY
 #define TWS_USER_KEY_RING_STOP      0x101
 #define TWS_USER_KEY_ATMOS          0x102
 
-#define TWS_USER_KEY_DOUYIN_CTRL    0x110           //0x110~0x120, ¶¶Òô¿ØÖÆ
+#define TWS_USER_KEY_DOUYIN_CTRL    0x110           //0x110~0x120, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define TWS_USER_KEY_DOUYIN_DOWN    0x110
 #define TWS_USER_KEY_DOUYIN_UP      0x111
 #define TWS_USER_KEY_DOUYIN_PP      0x112
@@ -86,20 +86,20 @@
 #define BT_FEAT_NEGO_AAC        0x0008
 #define BT_FEAT_NEGO_SW         0x0010
 #define BT_FEAT_NEGO_WARNING    0x0020
-#define BT_FEAT_NEGO_LINK_TICKS 0x0040              //½¨Á¢snoop linkÊ±Í¬²½ticks¡£Ôö¼ÓÒ»¸öfeat, ¼æÈÝÖ®Ç°¾É°æ±¾TWS×é¶Ó¡£
+#define BT_FEAT_NEGO_LINK_TICKS 0x0040              //ï¿½ï¿½ï¿½ï¿½snoop linkÊ±Í¬ï¿½ï¿½ticksï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½feat, ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½É°æ±¾TWSï¿½ï¿½Ó¡ï¿½
 #define BT_FEAT_NEGO_TICKS      0x0080
-#define BT_FEAT_NEGO_PUBLIC_ADDR 0x0100             //TWSÁ¬½ÓºóÖ÷¶úÊ¹ÓÃ¹«¹²µØÖ·Á¬½ÓÊÖ»ú
+#define BT_FEAT_NEGO_PUBLIC_ADDR 0x0100             //TWSï¿½ï¿½ï¿½Óºï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
 #define BT_FEAT_NEGO_CHK1       0x0200   //res
 #define BT_FEAT_NEGO_CHK2       0x0400   //res
 #define BT_FEAT_NEGO_CHK3       0x0800   //res
-#define BT_FEAT_NEGO_RECONNECT	0x4000				//ÊÇ·ñÔÚ·¢Æð»ØÁ¬ÊÖ»ú
+#define BT_FEAT_NEGO_RECONNECT	0x4000				//ï¿½Ç·ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
 
 typedef struct {
-    u8 pwrup_connect_times;                     //µ¥¶ú£¨ÎÞTWS¹¦ÄÜ£©ÉÏµç»ØÁ¬ÊÖ»ú´ÎÊý
-    u8 sup_to_connect_times;                    //Ô¶¾àÀëµôÏß»ØÁ¬´ÎÊý
-    u8 nor_connect_times;                       //¶Ô¶ú»ØÁ¬ÊÖ»ú´ÎÊý
-    u8 tws_connect_times;                       //¶Ô¶úTWS»ØÁ¬´ÎÊý
-    u8 tws_sup_to_connect_times;                //TWSÔ¶¾àÀëµôÏß»ØÁ¬´ÎÊý
+    u8 pwrup_connect_times;                     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TWSï¿½ï¿½ï¿½Ü£ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
+    u8 sup_to_connect_times;                    //Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    u8 nor_connect_times;                       //ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
+    u8 tws_connect_times;                       //ï¿½Ô¶ï¿½TWSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    u8 tws_sup_to_connect_times;                //TWSÔ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     u16 profile;
     u8 max_acl_link;
     u8 max_nor_link;
@@ -119,7 +119,7 @@ typedef struct {
     u16 sco_plc_en          : 1;
     u16 sco_msbc_en         : 1;
 
-    u16 tws_fast_con_en     : 1;                //TWS¿ìËÙÅä¶ÔÁ¬½Ó
+    u16 tws_fast_con_en     : 1;                //TWSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     u16 remote_name_req_en  : 1;
     u16 sdp_client_avrcp_en : 1;
 //#if BT_QUICK_TEST_EN
@@ -128,69 +128,69 @@ typedef struct {
 } bt_cfg_t;
 extern bt_cfg_t bt_cfg;
 
-//À¶ÑÀ×´Ì¬
+//ï¿½ï¿½ï¿½ï¿½×´Ì¬
 enum {
-    BT_STA_OFF,                                 //À¶ÑÀÄ£¿éÒÑ¹Ø±Õ
-    BT_STA_INITING,                             //³õÊ¼»¯ÖÐ
-    BT_STA_IDLE,                                //À¶ÑÀÄ£¿é´ò¿ª£¬Î´Á¬½Ó
+    BT_STA_OFF,                                 // è“ç‰™æ¨¡å—å·²å…³é—­
+    BT_STA_INITING,                             // åˆå§‹åŒ–ä¸­
+    BT_STA_IDLE,                                // è“ç‰™æ¨¡å—æ‰“å¼€ï¼Œæœªè¿žæŽ¥
 
-    BT_STA_SCANNING,                            //É¨ÃèÖÐ
-    BT_STA_DISCONNECTING,                       //¶Ï¿ªÖÐ
-    BT_STA_CONNECTING,                          //Á¬½ÓÖÐ
+    BT_STA_SCANNING,                            // æ‰«æä¸­
+    BT_STA_DISCONNECTING,                       // æ–­å¼€ä¸­
+    BT_STA_CONNECTING,                          // è¿žæŽ¥ä¸­
 
-    BT_STA_CONNECTED,                           //ÒÑÁ¬½Ó
-    BT_STA_PLAYING,                             //²¥·Å
-    BT_STA_INCOMING,                            //À´µçÏìÁå
-    BT_STA_OUTGOING,                            //ÕýÔÚºô³ö
-    BT_STA_INCALL,                              //Í¨»°ÖÐ
+    BT_STA_CONNECTED,                           // å·²è¿žæŽ¥
+    BT_STA_PLAYING,                             // æ’­æ”¾ä¸­
+    BT_STA_INCOMING,                            // æ¥ç”µæŒ¯é“ƒ
+    BT_STA_OUTGOING,                            // æ­£åœ¨æ‹¨å·
+    BT_STA_INCALL,                              // é€šè¯ä¸­
 };
 
-//Í¨»°×´Ì¬
+//Í¨ï¿½ï¿½×´Ì¬
 enum {
     BT_CALL_IDLE,                               //
-    BT_CALL_INCOMING,                           //À´µçÏìÁå
-    BT_CALL_OUTGOING,                           //ÕýÔÚºô³ö
-    BT_CALL_ACTIVE,                             //Í¨»°ÖÐ
-    BT_CALL_3WAY_CALL,                          //ÈýÍ¨µç»°»òÁ½²¿ÊÖ»úÍ¨»°
+    BT_CALL_INCOMING,                           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_CALL_OUTGOING,                           //ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½
+    BT_CALL_ACTIVE,                             //Í¨ï¿½ï¿½ï¿½ï¿½
+    BT_CALL_3WAY_CALL,                          //ï¿½ï¿½Í¨ï¿½ç»°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Í¨ï¿½ï¿½
 };
 
-//À¶ÑÀÍ¨Öª
+//ï¿½ï¿½ï¿½ï¿½Í¨Öª
 enum {
-    BT_NOTICE_INIT_FINISH,                      //À¶ÑÀ³õÊ¼»¯Íê³É
-    BT_NOTICE_CONNECT_START,                    //¿ªÊ¼»ØÁ¬ÊÖ»ú, param[0]=nouse,  param[6:1]=bd_addr
-    BT_NOTICE_CONNECT_FAIL,                     //»ØÁ¬ÊÖ»úÊ§°Ü, param[0]=reason, param[6:1]=bd_addr
-    BT_NOTICE_DISCONNECT,                       //À¶ÑÀ¶Ï¿ª,     param[0]=reason, param[6:1]=bd_addr
-    BT_NOTICE_LOSTCONNECT,                      //À¶ÑÀÁ¬½Ó¶ªÊ§, param[0]=nouse,  param[6:1]=bd_addr
-    BT_NOTICE_CONNECTED,                        //À¶ÑÀÁ¬½Ó³É¹¦, param[0]=feat,index,  param[6:1]=bd_addr
+    BT_NOTICE_INIT_FINISH,                      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_CONNECT_START,                    //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½, param[0]=nouse,  param[6:1]=bd_addr
+    BT_NOTICE_CONNECT_FAIL,                     //ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ê§ï¿½ï¿½, param[0]=reason, param[6:1]=bd_addr
+    BT_NOTICE_DISCONNECT,                       //ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½,     param[0]=reason, param[6:1]=bd_addr
+    BT_NOTICE_LOSTCONNECT,                      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½Ê§, param[0]=nouse,  param[6:1]=bd_addr
+    BT_NOTICE_CONNECTED,                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³É¹ï¿½, param[0]=feat,index,  param[6:1]=bd_addr
     BT_NOTICE_CONNECT_STATUS,
     BT_NOTICE_DISCONNECT_STATUS,
-    BT_NOTICE_RECON_FINISH,                     //À¶ÑÀ»ØÁ¬½áÊø
+    BT_NOTICE_RECON_FINISH,                     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     BT_NOTICE_SCO_SETUP,
     BT_NOTICE_SCO_KILL,
-    BT_NOTICE_INCOMING,                         //À´µç
-    BT_NOTICE_RING,                             //À´µçÏìÁå
-    BT_NOTICE_OUTGOING,                         //È¥µç
-    BT_NOTICE_CALL,                             //½¨Á¢Í¨»°
-    BT_NOTICE_SET_SPK_GAIN,                     //ÉèÖÃÍ¨»°ÒôÁ¿
-    BT_NOTICE_MUSIC_PLAY,                       //À¶ÑÀÒôÀÖ¿ªÊ¼²¥·Å
-    BT_NOTICE_MUSIC_STOP,                       //À¶ÑÀÒôÀÖÍ£Ö¹²¥·Å
-    BT_NOTICE_MUSIC_CHANGE_VOL,                 //¸Ä±äÀ¶ÑÀÒôÀÖÒôÁ¿
-    BT_NOTICE_MUSIC_SET_VOL,                    //ÉèÖÃÀ¶ÑÀÒôÀÖÒôÁ¿
-    BT_NOTICE_HID_CONN_EVT,                     //HID·þÎñÁ¬½ÓÊÂ¼þ
+    BT_NOTICE_INCOMING,                         //ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_RING,                             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_OUTGOING,                         //È¥ï¿½ï¿½
+    BT_NOTICE_CALL,                             //ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+    BT_NOTICE_SET_SPK_GAIN,                     //ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_MUSIC_PLAY,                       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¿ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_MUSIC_STOP,                       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_MUSIC_CHANGE_VOL,                 //ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_MUSIC_SET_VOL,                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_HID_CONN_EVT,                     //HIDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
     BT_NOTICE_SET_QTEST_CH,
-    BT_NOTICE_FIRST_CONNECT,                    //µÚÒ»´ÎÁ¬½ÓÊÖ»ú, param[5:0]=bd_addr
+    BT_NOTICE_FIRST_CONNECT,                    //ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½, param[5:0]=bd_addr
     BT_NOTICE_A2DP_VOL_CTRL,
 
-    BT_NOTICE_TWS_SEARCH_TIMEOUT = 0x40,        //ËÑË÷TWS³¬Ê±
-    BT_NOTICE_TWS_CONNECT_START,                //¿ªÊ¼»ØÁ¬TWS, param[0]=nouse,  param[6:1]=bd_addr
-    BT_NOTICE_TWS_CONNECT_FAIL,                 //TWS»ØÁ¬Ê§°Ü, param[0]=reason, param[6:1]=bd_addr
-    BT_NOTICE_TWS_DISCONNECT,                   //TWSÑÀ¶Ï¿ª,   param[0]=reason, param[6:1]=bd_addr
-    BT_NOTICE_TWS_LOSTCONNECT,                  //TWSÁ¬½Ó¶ªÊ§, param[0]=nouse,  param[6:1]=bd_addr
-    BT_NOTICE_TWS_CONNECTED,                    //TWSÁ¬½Ó³É¹¦, param[0]=feat,index,  param[6:1]=bd_addr
-    BT_NOTICE_TWS_SET_VOL,                      //ÉèÖÃTWSÒôÀÖÒôÁ¿
-    BT_NOTICE_TWS_HID_SHUTTER,                  //Ô¶¶ËTWSÅÄÕÕ¼ü
-    BT_NOTICE_TWS_INFO,                         //TWSÍ¬²½ÐÅÏ¢
-    BT_NOTICE_TWS_USER_KEY,                     //TWS×Ô¶¨Òå°´¼ü
+    BT_NOTICE_TWS_SEARCH_TIMEOUT = 0x40,        //ï¿½ï¿½ï¿½ï¿½TWSï¿½ï¿½Ê±
+    BT_NOTICE_TWS_CONNECT_START,                //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½TWS, param[0]=nouse,  param[6:1]=bd_addr
+    BT_NOTICE_TWS_CONNECT_FAIL,                 //TWSï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½, param[0]=reason, param[6:1]=bd_addr
+    BT_NOTICE_TWS_DISCONNECT,                   //TWSï¿½ï¿½ï¿½Ï¿ï¿½,   param[0]=reason, param[6:1]=bd_addr
+    BT_NOTICE_TWS_LOSTCONNECT,                  //TWSï¿½ï¿½ï¿½Ó¶ï¿½Ê§, param[0]=nouse,  param[6:1]=bd_addr
+    BT_NOTICE_TWS_CONNECTED,                    //TWSï¿½ï¿½ï¿½Ó³É¹ï¿½, param[0]=feat,index,  param[6:1]=bd_addr
+    BT_NOTICE_TWS_SET_VOL,                      //ï¿½ï¿½ï¿½ï¿½TWSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_NOTICE_TWS_HID_SHUTTER,                  //Ô¶ï¿½ï¿½TWSï¿½ï¿½ï¿½Õ¼ï¿½
+    BT_NOTICE_TWS_INFO,                         //TWSÍ¬ï¿½ï¿½ï¿½ï¿½Ï¢
+    BT_NOTICE_TWS_USER_KEY,                     //TWSï¿½Ô¶ï¿½ï¿½å°´ï¿½ï¿½
     BT_NOTICE_TWS_SEARCH_STATUS,
     BT_NOTICE_TWS_TO_STATUS,
     BT_NOTICE_TWS_GET_MAP_TIME,
@@ -201,113 +201,113 @@ enum {
     BT_NOTICE_TWS_RES7,
 };
 
-//¿ØÖÆÏûÏ¢
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 enum bt_msg_t {
-    BT_MSG_OFF          = 0,                    //¹Ø±ÕÀ¶ÑÀ
-    BT_MSG_ON,                                  //´ò¿ªÀ¶ÑÀ
+    BT_MSG_OFF          = 0,                    //ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_ON,                                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     BT_MSG_RES0,
     BT_MSG_RES1,
-    BT_MSG_CONNECT,                             //Á¬½ÓÀ¶ÑÀ
-    BT_MSG_DISCONNECT,                          //¶Ï¿ªÀ¶ÑÀ
-    BT_MSG_PLAY_PAUSE,                          //ÇÐ»»²¥·Å¡¢ÔÝÍ£
-    BT_MSG_VOL_CHANGE,                          //ÒôÁ¿µ÷Õû
-    BT_MSG_CALL_REDIAL,                         //»Ø²¦µç»°£¨×îºóÒ»´ÎÍ¨»°£©
-    BT_MSG_CALL_ANSWER_INCOM,                   //½ÓÌýÀ´µç
-    BT_MSG_CALL_TERMINATE,                      //¹Ò¶ÏÍ¨»°»òÀ´µç
-    BT_MSG_CALL_SWAP,                           //ÇÐ»»ÈýÍ¨µç»°
-    BT_MSG_HFP_REPORT_BAT,                      //±¨¸æµç³ØµçÁ¿
-    BT_MSG_HFP_SPK_GAIN,                        //ÉèÖÃÍ¨»°ÑïÉùÆ÷ÒôÁ¿
-    BT_MSG_HFP_MIC_GAIN,                        //ÉèÖÃÍ¨»°Âó¿Ë·çÒôÁ¿
-    BT_MSG_HFP_PRIVATE_SWITCH,                  //ÇÐ»»Ë½ÃÜÍ¨»°
-    BT_MSG_HID_CONNECT,                         //Á¬½ÓHID
-    BT_MSG_HID_DISCONNECT,                      //¶Ï¿ªHID
-    BT_MSG_AUDIO_BYPASS,                        //ºöÂÔÀ¶ÑÀSBC/SCO AUDIO
-    BT_MSG_AUDIO_ENABLE,                        //Ê¹ÄÜÀ¶ÑÀSBC/SCO AUDIO
+    BT_MSG_CONNECT,                             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_DISCONNECT,                          //ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_PLAY_PAUSE,                          //ï¿½Ð»ï¿½ï¿½ï¿½ï¿½Å¡ï¿½ï¿½ï¿½Í£
+    BT_MSG_VOL_CHANGE,                          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_CALL_REDIAL,                         //ï¿½Ø²ï¿½ï¿½ç»°ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_CALL_ANSWER_INCOM,                   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_CALL_TERMINATE,                      //ï¿½Ò¶ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_CALL_SWAP,                           //ï¿½Ð»ï¿½ï¿½ï¿½Í¨ï¿½ç»°
+    BT_MSG_HFP_REPORT_BAT,                      //ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½
+    BT_MSG_HFP_SPK_GAIN,                        //ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_HFP_MIC_GAIN,                        //ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_HFP_PRIVATE_SWITCH,                  //ï¿½Ð»ï¿½Ë½ï¿½ï¿½Í¨ï¿½ï¿½
+    BT_MSG_HID_CONNECT,                         //ï¿½ï¿½ï¿½ï¿½HID
+    BT_MSG_HID_DISCONNECT,                      //ï¿½Ï¿ï¿½HID
+    BT_MSG_AUDIO_BYPASS,                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SBC/SCO AUDIO
+    BT_MSG_AUDIO_ENABLE,                        //Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SBC/SCO AUDIO
     BT_MSG_LOW_LATENCY_EN,
     BT_MSG_LOW_LATENCY_DIS,
-    BT_MSG_TWS_DISCONNECT,                      //¶Ï¿ªTWSÁ¬½Ó
-    BT_MSG_TWS_CONNECT,                         //½¨Á¢TWSÁ¬½Ó
-    BT_MSG_TWS_SEARCH_SLAVE,                    //ËÑË÷²¢½¨Á¢TWSÁ¬½Ó
+    BT_MSG_TWS_DISCONNECT,                      //ï¿½Ï¿ï¿½TWSï¿½ï¿½ï¿½ï¿½
+    BT_MSG_TWS_CONNECT,                         //ï¿½ï¿½ï¿½ï¿½TWSï¿½ï¿½ï¿½ï¿½
+    BT_MSG_TWS_SEARCH_SLAVE,                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TWSï¿½ï¿½ï¿½ï¿½
     BT_MSG_TWS_NOTICE_RING,
     BT_MSG_SWITCH_SIRI,
     BT_MSG_EAR_STA_CHANGE,
     BT_MSG_NR_STA_CHANGE,
     BT_MSG_TWS_NOTICE_INCOME_NUMBER,
-    BT_MSG_HFP_AT_CMD,                          //»Ø²¦µç»°£¨´Óhfp_get_outgoing_number»ñÈ¡ºÅÂë£©
+    BT_MSG_HFP_AT_CMD,                          //ï¿½Ø²ï¿½ï¿½ç»°ï¿½ï¿½ï¿½ï¿½hfp_get_outgoing_numberï¿½ï¿½È¡ï¿½ï¿½ï¿½ë£©
     BT_MSG_SIRI_ON,
-    BT_MSG_CALL_ANSWER_INCOM_REJ_OTHER,         //½ÓÌýÀ´µç£¬ÈýÍ¨Ê±¹Ò¶Ïµ±Ç°Í¨»°
+    BT_MSG_CALL_ANSWER_INCOM_REJ_OTHER,         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç£¬ï¿½ï¿½Í¨Ê±ï¿½Ò¶Ïµï¿½Ç°Í¨ï¿½ï¿½
     BT_MSG_CONNECT_ADDRESS,
     BT_MSG_FCC_TEST_FUNC,
-    BT_MSG_PLAY_PRIVATE_SWITCH,                 //ÇÐ»»ÊÖ»ú²¥·Å/À¶ÑÀ²¥·Å
+    BT_MSG_PLAY_PRIVATE_SWITCH,                 //ï¿½Ð»ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     BT_MSG_TWS_SYNC_INFO,
     BT_MSG_NOR_CONNECT,
     BT_MSG_NOR_DISCONNECT,
-    BT_MSG_2ACL_PALY_SWITCH,                    //Ò»ÍÏ¶þ²¥·ÅÇÐ»»
+    BT_MSG_2ACL_PALY_SWITCH,                    //Ò»ï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
     BT_MSG_TWS_SET_BYPASS,
     BT_MSG_RESET_BT_NAME,
-    BT_MSG_TWS_SWITCH,                          //Ö÷´ÓÇÐ»»
+    BT_MSG_TWS_SWITCH,                          //ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
     BT_MSG_CALL_REDIAL_NUMBER,
     BT_MSG_MAX,
 
-    BT_MSG_HID_KEY      = 0x30,                 //HID°´¼ü
-    BT_MSG_HID_CONSUMER,                        //CONSUMER°´¼ü
-    BT_MSG_TWS_USER_KEY,                        //TWSÓÃ»§×Ô¶¨ÒåÏûÏ¢
-    BT_MSG_HID_TOUCH_SCREEN,                    //´¥ÃþÆÁ
+    BT_MSG_HID_KEY      = 0x30,                 //HIDï¿½ï¿½ï¿½ï¿½
+    BT_MSG_HID_CONSUMER,                        //CONSUMERï¿½ï¿½ï¿½ï¿½
+    BT_MSG_TWS_USER_KEY,                        //TWSï¿½Ã»ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+    BT_MSG_HID_TOUCH_SCREEN,                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     BT_MSG_PBAP,
     BT_MSG_BAT_HOUSE_CTRL,
     BT_MSG_HSP_SEND,
-    BT_MSG_SYNC_INFO,                           //Ö÷¸±¶úÍ¬²½Ò»Ð©×´Ì¬ÏûÏ¢
+    BT_MSG_SYNC_INFO,                           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ò»Ð©×´Ì¬ï¿½ï¿½Ï¢
     BT_MSG_TWS_SET_SCAN,
     BT_MSG_SET_SCAN,
     BT_MSG_START_WORK,
 	BT_MSG_ATT_VA,
-	BT_MSG_STORE_A2DP_VOLUME,                   //±£´æÁ¬½ÓµÄÍ¬²½ÒôÁ¿
+	BT_MSG_STORE_A2DP_VOLUME,                   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	BT_MSG_MAP,
 	BT_MSG_ADV0_SET_EN,
     BT_MSG_PARAM_MAX,
 
-    BT_MSG_PLAY         = AVC_PLAY,             //²¥·Å
-    BT_MSG_PAUSE        = AVC_PAUSE,            //ÔÝÍ£
+    BT_MSG_PLAY         = AVC_PLAY,             //ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_PAUSE        = AVC_PAUSE,            //ï¿½ï¿½Í£
     BT_MSG_STOP         = AVC_STOP,             //Í£Ö¹
-    BT_MSG_PREV         = AVC_BACKWARD,         //ÉÏÒ»Çú
-    BT_MSG_NEXT         = AVC_FORWARD,          //ÏÂÒ»Çú
-    BT_MSG_REWIND       = AVC_REWIND,           //¿ªÊ¼¿ìÍË
-    BT_MSG_FAST_FORWARD = AVC_FAST_FORWARD,     //¿ªÊ¼¿ì½ø
-    BT_MSG_REWIND_END       = AVC_REWIND|0x80,  //½áÊø¿ìÍË
-    BT_MSG_FAST_FORWARD_END = AVC_FAST_FORWARD|0x80, //½áÊø¿ì½ø
-    BT_MSG_SPEED_DOUBLE     = AVC_SPEED_DOUBLE|0x80, //¿ì²¥*2
-    BT_MSG_SPEED_HALF       = AVC_SPEED_HALF|0x80,   //Âý·Å1/2
+    BT_MSG_PREV         = AVC_BACKWARD,         //ï¿½ï¿½Ò»ï¿½ï¿½
+    BT_MSG_NEXT         = AVC_FORWARD,          //ï¿½ï¿½Ò»ï¿½ï¿½
+    BT_MSG_REWIND       = AVC_REWIND,           //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_FAST_FORWARD = AVC_FAST_FORWARD,     //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½
+    BT_MSG_REWIND_END       = AVC_REWIND|0x80,  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_FAST_FORWARD_END = AVC_FAST_FORWARD|0x80, //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BT_MSG_SPEED_DOUBLE     = AVC_SPEED_DOUBLE|0x80, //ï¿½ì²¥*2
+    BT_MSG_SPEED_HALF       = AVC_SPEED_HALF|0x80,   //ï¿½ï¿½ï¿½ï¿½1/2
 
     BT_MSG_NO           = 0xff,
 };
 
 enum sync_info_enum {
-    TWS_SYNC_INFO_LEDCNT,               //Í¬²½ led cnt
+    TWS_SYNC_INFO_LEDCNT,               //Í¬ï¿½ï¿½ led cnt
     TWS_SYNC_INFO_EQ,
 
     TWS_SYNC_TWS_RES0 = 0x40,           //0x40~0x7f for tws_res
     TWS_SYNC_TWS_RES_MAX = 0x7f,
 
-    TWS_SYNC_RUN = 0x80,                //Í¬²½ÔËÐÐ
+    TWS_SYNC_RUN = 0x80,                //Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 //control
-void bt_init(void);                             //³õÊ¼»¯À¶ÑÀ±äÁ¿
-int bt_setup(void);                             //´ò¿ªÀ¶ÑÀÄ£¿é
-void bt_off(void);                              //¹Ø±ÕÀ¶ÑÀÄ£¿é
-void bt_wakeup(void);                           //»½ÐÑÀ¶ÑÀÄ£¿é
-void bt_start_work(uint8_t opcode, uint8_t scan_en); //À¶ÑÀ¿ªÊ¼¹¤×÷£¬opcode: 0=»ØÁ¬, 1=²»»ØÁ¬, 2=tws²»»ØÁ¬,Ö±½Ó×Ô¶¯Åä¶Ô
-void bt_send_msg(uint msg);                     //À¶ÑÀ¿ØÖÆÏûÏ¢£¬²ÎÊýÏê¼ûbt_msg_t
-void bt_audio_bypass(void);                     //À¶ÑÀSBC/SCOÍ¨Â·¹Ø±Õ
-void bt_audio_enable(void);                     //À¶ÑÀSBC/SCOÍ¨Â·Ê¹ÄÜ
-void bt_connect_address(void);                  //À¶ÑÀ¸ù¾ÝµØÖ·Á´½Ó ÐèÒª°Ñ uint8_t bt_get_connect_addr(uint8_t *bd_addr);º¯Êý´ò¿ª
+void bt_init(void);                             //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+int bt_setup(void);                             //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
+void bt_off(void);                              //ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
+void bt_wakeup(void);                           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
+void bt_start_work(uint8_t opcode, uint8_t scan_en); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½opcode: 0=ï¿½ï¿½ï¿½ï¿½, 1=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2=twsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ö±ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½
+void bt_send_msg(uint msg);                     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bt_msg_t
+void bt_audio_bypass(void);                     //ï¿½ï¿½ï¿½ï¿½SBC/SCOÍ¨Â·ï¿½Ø±ï¿½
+void bt_audio_enable(void);                     //ï¿½ï¿½ï¿½ï¿½SBC/SCOÍ¨Â·Ê¹ï¿½ï¿½
+void bt_connect_address(void);                  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½Ö·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Òªï¿½ï¿½ uint8_t bt_get_connect_addr(uint8_t *bd_addr);ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void bt_set_sco_far_delay(void *buf, uint size, uint delay);
 
-void bt_set_scan(uint8_t scan_en);              //´ò¿ª/¹Ø±Õ¿É±»·¢ÏÖºÍ¿É±»Á¬½Ó, bit0=¿É±»·¢ÏÖ, bit1=¿É±»Á¬½Ó
-void bt_connect(void);                          //À¶ÑÀÉè±¸»ØÁ¬
-void bt_disconnect(void);                       //À¶ÑÀÉè±¸¶Ï¿ª
-void bt_hid_connect(void);                      //À¶ÑÀHID·þÎñ»ØÁ¬
-void bt_hid_disconnect(void);                   //À¶ÑÀHID·þÎñ¶Ï¿ª
+void bt_set_scan(uint8_t scan_en);              //ï¿½ï¿½/ï¿½Ø±Õ¿É±ï¿½ï¿½ï¿½ï¿½ÖºÍ¿É±ï¿½ï¿½ï¿½ï¿½ï¿½, bit0=ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½, bit1=ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½
+void bt_connect(void);                          //ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½
+void bt_disconnect(void);                       //ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ï¿½Ï¿ï¿½
+void bt_hid_connect(void);                      //ï¿½ï¿½ï¿½ï¿½HIDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void bt_hid_disconnect(void);                   //ï¿½ï¿½ï¿½ï¿½HIDï¿½ï¿½ï¿½ï¿½Ï¿ï¿½
 int bt_hid_is_connected(void);
 bool bt_hid_is_ready_to_discon(void);
 void ble_popup_ctrl(uint opcode);
@@ -315,60 +315,60 @@ bool sco_is_connected(void);
 bool bt_sco_is_msbc(void);
 
 //status
-uint bt_get_disp_status(void);                  //»ñÈ¡À¶ÑÀµÄµ±Ç°ÏÔÊ¾×´Ì¬, V060
-uint bt_get_status(void);                       //»ñÈ¡À¶ÑÀµÄµ±Ç°×´Ì¬
-uint8_t bt_get_scan(void);                      //ÅÐ¶Ïµ±Ç°¿É±»Á¬½Ó¿É±»É¨Ãè×´Ì¬
-uint bt_get_call_indicate(void);                //»ñÈ¡Í¨»°µÄµ±Ç°×´Ì¬
-uint bt_get_siri_status(void);                  //»ñÈ¡SIRIµ±Ç°×´Ì¬, 0=SIRIÒÑÍË³ö, 1=SIRIÒÑ»½³ö
-bool bt_is_calling(void);                       //ÅÐ¶ÏÊÇ·ñÕýÔÚÍ¨»°
-bool bt_is_playing(void);                       //ÅÐ¶ÏÊÇ·ñÕýÔÚ²¥·Å
-bool bt_is_ring(void);                          //ÅÐ¶ÏÊÇ·ñÕýÔÚÏìÁå
-bool bt_is_testmode(void);                      //ÅÐ¶Ïµ±Ç°À¶ÑÀÊÇ·ñ´¦ÓÚ²âÊÔÄ£Ê½
-bool bt_is_sleep(void);                         //ÅÐ¶ÏÀ¶ÑÀÊÇ·ñ½øÈëÐÝÃß×´Ì¬
-bool bt_is_connected(void);                     //ÅÐ¶ÏÀ¶ÑÀÊÇ·ñÒÑÁ¬½Ó£¨TWS¸±¶ú±»Á¬½Ó£¬»òÖ÷¶úÓëÊÖ»úÒÑÁ¬½Ó£©
-bool bt_is_ios_device(void);                    //ÅÐ¶Ïµ±Ç°²¥·ÅµÄÊÇ·ñiosÉè±¸
+uint bt_get_disp_status(void);                  //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ç°ï¿½ï¿½Ê¾×´Ì¬, V060
+uint bt_get_status(void);                       //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ç°×´Ì¬
+uint8_t bt_get_scan(void);                      //ï¿½Ð¶Ïµï¿½Ç°ï¿½É±ï¿½ï¿½ï¿½ï¿½Ó¿É±ï¿½É¨ï¿½ï¿½×´Ì¬
+uint bt_get_call_indicate(void);                //ï¿½ï¿½È¡Í¨ï¿½ï¿½ï¿½Äµï¿½Ç°×´Ì¬
+uint bt_get_siri_status(void);                  //ï¿½ï¿½È¡SIRIï¿½ï¿½Ç°×´Ì¬, 0=SIRIï¿½ï¿½ï¿½Ë³ï¿½, 1=SIRIï¿½Ñ»ï¿½ï¿½ï¿½
+bool bt_is_calling(void);                       //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+bool bt_is_playing(void);                       //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½
+bool bt_is_ring(void);                          //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+bool bt_is_testmode(void);                      //ï¿½Ð¶Ïµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Ä£Ê½
+bool bt_is_sleep(void);                         //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+bool bt_is_connected(void);                     //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½TWSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½
+bool bt_is_ios_device(void);                    //ï¿½Ð¶Ïµï¿½Ç°ï¿½ï¿½ï¿½Åµï¿½ï¿½Ç·ï¿½iosï¿½è±¸
 uint32_t bt_sleep_proc(void);
 void bt_enter_sleep(void);
 void bt_exit_sleep(void);
 bool bt_is_silence(void);
 bool bt_cur_dev_is_silence(void);
 void bt_other_dev_silence_reset(void);
-bool bt_sync_tick(void);                        //¸ù¾ÝÀ¶ÑÀÊ±ÖÓÍ¬²½µ½50ms£¬Îó²îÎª5ms
+bool bt_sync_tick(void);                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½50msï¿½ï¿½ï¿½ï¿½ï¿½Îª5ms
 
 //tws
-bool bt_tws_is_connected(void);                 //twsÉè±¸ÊÇ·ñÒÑÁ¬½Ó
-bool bt_tws_is_slave(void);                     //twsÖ÷´ÓÅÐ¶Ï£¬×¢ÒâÒªÏÈÅÐ¶ÏtwsÊÇ·ñÒÑÁ¬½Ó
-uint8_t bt_tws_get_scan(void);                  //twsÊÇ·ñÒÑ´ò¿ª¿É±»ËÑË÷ÓëÁ¬½Ó
-void bt_tws_set_scan(uint8_t scan_en);          //´ò¿ª/¹Ø±Õtws¿É±»ËÑË÷ÓëÁ¬½Ó, bit0=¿É±»·¢ÏÖ, bit1=¿É±»Á¬½Ó
-void bt_tws_disconnect(void);                   //¶Ï¿ªtwsÉè±¸
-void bt_tws_connect(void);                      //»ØÁ¬twsÉè±¸
-void bt_tws_search_slave(void);                 //ËÑË÷twsÉè±¸£¬²¢½¨Á¢Á¬½Ó
-uint bt_tws_get_link_info(uint8_t *bd_addr);    //»ñÈ¡twsÅä¶ÔÐÅÏ¢£¬¿É×÷ÎªÊÇ·ñÅä¶Ô¹ýTWSµÄÅÐ¶Ï
-bool bt_tws_user_key(uint keycode);             //·¢ËÍtws×Ô¶¨Òå°´¼ü, 10bitÓÐÐ§
-bool bt_tws_sync_ring_tone(void);               //Í¬²½µÈtwsÀ´µçºÅÂë
+bool bt_tws_is_connected(void);                 //twsï¿½è±¸ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+bool bt_tws_is_slave(void);                     //twsï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï£ï¿½×¢ï¿½ï¿½Òªï¿½ï¿½ï¿½Ð¶ï¿½twsï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+uint8_t bt_tws_get_scan(void);                  //twsï¿½Ç·ï¿½ï¿½Ñ´ò¿ª¿É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+void bt_tws_set_scan(uint8_t scan_en);          //ï¿½ï¿½/ï¿½Ø±ï¿½twsï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, bit0=ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½, bit1=ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½
+void bt_tws_disconnect(void);                   //ï¿½Ï¿ï¿½twsï¿½è±¸
+void bt_tws_connect(void);                      //ï¿½ï¿½ï¿½ï¿½twsï¿½è±¸
+void bt_tws_search_slave(void);                 //ï¿½ï¿½ï¿½ï¿½twsï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+uint bt_tws_get_link_info(uint8_t *bd_addr);    //ï¿½ï¿½È¡twsï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ç·ï¿½ï¿½ï¿½Ô¹ï¿½TWSï¿½ï¿½ï¿½Ð¶ï¿½
+bool bt_tws_user_key(uint keycode);             //ï¿½ï¿½ï¿½ï¿½twsï¿½Ô¶ï¿½ï¿½å°´ï¿½ï¿½, 10bitï¿½ï¿½Ð§
+bool bt_tws_sync_ring_tone(void);               //Í¬ï¿½ï¿½ï¿½ï¿½twsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void bt_tws_clr_ring_tone(void);                //
 bool bt_tws_need_ring_sync(void);
-void bt_tws_switch(void);                       //Ö÷´ÓÇÐ»»£¬ÀýÈçÍ¨»°Ê±ÇÐÖ÷¸±MIC
-bool tws_switch_is_need(void);                  //²é¿´ÊÇ·ñÐèÒªÇÐ»»
-void bt_tws_sync(uint sync_info);               //Í¬²½×´Ì¬ÐÅÏ¢ sync_info_enum
-void bt_tws_sync_run(uint ntick);               //Í¬²½µ½ntick * 50ms
-bool bt_nor_is_connected(void);                 //ÊÇ·ñÒÑÁ¬½ÓÊÖ»ú
-void bt_nor_connect(void);                      //»ØÁ¬ÊÖ»ú
-void bt_nor_disconnect(void);                   //¶Ï¿ªÊÖ»ú
-bool bt_nor_get_link_info(uint8_t *bd_addr);    //»ñÈ¡ÊÖ»úÅä¶ÔÐÅÏ¢£¬bd_addr=NULLÊ±½ö²éÑ¯ÊÇ·ñ´æÔÚ»ØÁ¬ÐÅÏ¢
-uint8_t bt_connect_for_the_first_time(uint8_t *bd_addr);//¼ì²é¸ø¶¨µÄÀ¶ÑÀµØÖ·ÊÇ·ñÎªµÚÒ»´ÎÁ¬½Ó¡£0:first_time, 1:not_first_time, 255:no record for given bd_addr
-bool bt_nor_get_link_info_addr(uint8_t *bd_addr, uint8_t order);    //»ñÈ¡µÚn¸öÊÖ»úÅä¶ÔÐÅÏ¢£¬bd_addr=NULLÊ±½ö²éÑ¯ÊÇ·ñ´æÔÚ»ØÁ¬ÐÅÏ¢
+void bt_tws_switch(void);                       //ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MIC
+bool tws_switch_is_need(void);                  //ï¿½é¿´ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½Ð»ï¿½
+void bt_tws_sync(uint sync_info);               //Í¬ï¿½ï¿½×´Ì¬ï¿½ï¿½Ï¢ sync_info_enum
+void bt_tws_sync_run(uint ntick);               //Í¬ï¿½ï¿½ï¿½ï¿½ntick * 50ms
+bool bt_nor_is_connected(void);                 //ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+void bt_nor_connect(void);                      //ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½
+void bt_nor_disconnect(void);                   //ï¿½Ï¿ï¿½ï¿½Ö»ï¿½
+bool bt_nor_get_link_info(uint8_t *bd_addr);    //ï¿½ï¿½È¡ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½bd_addr=NULLÊ±ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+uint8_t bt_connect_for_the_first_time(uint8_t *bd_addr);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½Ç·ï¿½Îªï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½0:first_time, 1:not_first_time, 255:no record for given bd_addr
+bool bt_nor_get_link_info_addr(uint8_t *bd_addr, uint8_t order);    //ï¿½ï¿½È¡ï¿½ï¿½nï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½bd_addr=NULLÊ±ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 bool bt_tws_is_auto_switch(void);
 bool bt_tws_get_auto_channel(void);
 bool btstack_tws_atmos_led(void);
 bool btstack_tws_qtest_channel(uint8_t ch);
 void lm_set_name_buf(const char *bt_name, uint max_len);
 bool bt_tws_get_link_rssi(int8_t *buffer, bool left_channel);
-u8 bt_get_tws_remote_status(void);              //»ñÈ¡¶Ô¶úµÄ×´Ì¬
+u8 bt_get_tws_remote_status(void);              //ï¿½ï¿½È¡ï¿½Ô¶ï¿½ï¿½ï¿½×´Ì¬
 
-void bt_clr_all_link_info(u8 flag);             //É¾³ýÈ«²¿Åä¶ÔÐÅÏ¢
-void bt_nor_clr_link_info(u8 flag);             //É¾³ýÊÖ»úÅä¶ÔÐÅÏ¢
-void bt_tws_clr_link_info(u8 flag);             //É¾³ýtwsÅä¶ÔÐÅÏ¢
+void bt_clr_all_link_info(u8 flag);             //É¾ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+void bt_nor_clr_link_info(u8 flag);             //É¾ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+void bt_tws_clr_link_info(u8 flag);             //É¾ï¿½ï¿½twsï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 
 enum {
@@ -403,7 +403,7 @@ enum {
     TWS_RES_WAV_TEST,
     TWS_RES_MAX,
 
-    //ÏÂÃæMSG²»´ò¶Ïµ±Ç°²¥·ÅµÄÌáÊ¾Òô
+    //ï¿½ï¿½ï¿½ï¿½MSGï¿½ï¿½ï¿½ï¿½Ïµï¿½Ç°ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½Ê¾ï¿½ï¿½
     TWS_RES_RING_STOP   = 50,
     TWS_BRE_LED_START,
     TWS_BRE_LED_START1,
@@ -411,16 +411,16 @@ enum {
     TWS_ATMOS_LED_ON,
     TWS_ATMOS_LED_OFF,
 
-    //×î´óÖ»ÄÜ63
+    //ï¿½ï¿½ï¿½Ö»ï¿½ï¿½63
 };
 
 void tws_res_init(void);                        //api
 void tws_res_play(uint8_t index);               //api
 
-void tws_mp3_res_play_kick(u32 addr, u32 len);  //tws_res¿ªÊ¼²¥·Å
-u32 tws_res_sync(u32 limit);                    //tws_resÍ¬²½
-void tws_res_add(u8 index, u32 ticks);          //tws_res¼ÓÈëÁÐ±í
-void tws_res_proc(void);                        //tws_resÁ÷³Ì´¦Àí
+void tws_mp3_res_play_kick(u32 addr, u32 len);  //tws_resï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+u32 tws_res_sync(u32 limit);                    //tws_resÍ¬ï¿½ï¿½
+void tws_res_add(u8 index, u32 ticks);          //tws_resï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+void tws_res_proc(void);                        //tws_resï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½
 bool tws_res_play_sync(u32 flag);
 void tws_res_done(void);
 void tws_res_reset(void);
@@ -428,37 +428,37 @@ u32 tws_res_get_ticks(u8 index);
 bool tws_res_hssi_sync_wait(isr_t isr_callback);
 bool tws_res_is_busy(void);
 
-//À¶ÑÀÁ¬½Ó
-#define bt_scan_enable()                        bt_set_scan(0x03)                       //´ò¿ªÉ¨Ãè
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define bt_scan_enable()                        bt_set_scan(0x03)                       //ï¿½ï¿½É¨ï¿½ï¿½
 #define bt_scan_disable()                       bt_set_scan(0x00)
 #define bt_fcc_test_start()                     bt_send_msg(BT_MSG_FCC_TEST_FUNC)   //fcc kick
 
-//À¶ÑÀÒôÀÖ
-#define bt_music_play()                         bt_send_msg(BT_MSG_PLAY)            //²¥·Å
-#define bt_music_pause()                        bt_send_msg(BT_MSG_PAUSE)           //ÔÝÍ£
-#define bt_music_play_pause()                   bt_send_msg(BT_MSG_PLAY_PAUSE)      //ÇÐ»»²¥·Å/ÔÝÍ£
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define bt_music_play()                         bt_send_msg(BT_MSG_PLAY)            //ï¿½ï¿½ï¿½ï¿½
+#define bt_music_pause()                        bt_send_msg(BT_MSG_PAUSE)           //ï¿½ï¿½Í£
+#define bt_music_play_pause()                   bt_send_msg(BT_MSG_PLAY_PAUSE)      //ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Í£
 #define bt_music_stop()                         bt_send_msg(BT_MSG_STOP)            //Í£Ö¹
-#define bt_music_prev()                         bt_send_msg(BT_MSG_PREV)            //ÉÏÒ»Çú
-#define bt_music_next()                         bt_send_msg(BT_MSG_NEXT)            //ÏÂÒ»Çú
-#define bt_music_rewind()                       bt_send_msg(BT_MSG_REWIND)          //¿ªÊ¼¿ìÍË
-#define bt_music_rewind_end()                   bt_send_msg(BT_MSG_REWIND_END)      //½áÊø¿ìÍË
-#define bt_music_fast_forward()                 bt_send_msg(BT_MSG_FAST_FORWARD)    //¿ªÊ¼¿ì½ø
-#define bt_music_fast_forward_end()             bt_send_msg(BT_MSG_FAST_FORWARD_END)//½áÊø¿ì½ø
-#define bt_low_latency_enble()                  bt_send_msg(BT_MSG_LOW_LATENCY_EN)      //À¶ÑÀÊ¹ÄÜµÍÑÓÊ±
-#define bt_low_latency_disable()                bt_send_msg(BT_MSG_LOW_LATENCY_DIS)     //À¶ÑÀ¹Ø±ÕµÍÑÓÊ±
+#define bt_music_prev()                         bt_send_msg(BT_MSG_PREV)            //ï¿½ï¿½Ò»ï¿½ï¿½
+#define bt_music_next()                         bt_send_msg(BT_MSG_NEXT)            //ï¿½ï¿½Ò»ï¿½ï¿½
+#define bt_music_rewind()                       bt_send_msg(BT_MSG_REWIND)          //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+#define bt_music_rewind_end()                   bt_send_msg(BT_MSG_REWIND_END)      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define bt_music_fast_forward()                 bt_send_msg(BT_MSG_FAST_FORWARD)    //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½
+#define bt_music_fast_forward_end()             bt_send_msg(BT_MSG_FAST_FORWARD_END)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define bt_low_latency_enble()                  bt_send_msg(BT_MSG_LOW_LATENCY_EN)      //ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Üµï¿½ï¿½ï¿½Ê±
+#define bt_low_latency_disable()                bt_send_msg(BT_MSG_LOW_LATENCY_DIS)     //ï¿½ï¿½ï¿½ï¿½ï¿½Ø±Õµï¿½ï¿½ï¿½Ê±
 #define bt_music_play_switch()                  bt_send_msg(BT_MSG_2ACL_PALY_SWITCH)
-#define bt_music_play_private_switch()          bt_send_msg(BT_MSG_PLAY_PRIVATE_SWITCH) //ÇÐ»»ÊÖ»ú²¥·Å/À¶ÑÀ²¥·ÅÒôÀÖ
+#define bt_music_play_private_switch()          bt_send_msg(BT_MSG_PLAY_PRIVATE_SWITCH) //ï¿½Ð»ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 bool bt_is_low_latency(void);
 
-//À¶ÑÀÍ¨»°
-#define bt_call_redial_last_number()            bt_send_msg(BT_MSG_CALL_REDIAL)     //µç»°»Ø²¦£¨×îºóÒ»´ÎÍ¨»°£©
-#define bt_call_answer_incoming()               bt_send_msg(BT_MSG_CALL_ANSWER_INCOM) //½ÓÌýµç»°£¬ÈýÍ¨Ê±¹ÒÆðµ±Ç°Í¨»°
-#define bt_call_answer_incom_rej_other()        bt_send_msg(BT_MSG_CALL_ANSWER_INCOM_REJ_OTHER)	//½ÓÌýµç»°£¬ÈýÍ¨Ê±¹Ò¶Ïµ±Ç°Í¨»°
-#define bt_call_terminate()                     bt_send_msg(BT_MSG_CALL_TERMINATE)  //¹Ò¶Ïµç»°
-#define bt_call_swap()                          bt_send_msg(BT_MSG_CALL_SWAP)       //ÇÐ»»ÈýÍ¨µç»°
-#define bt_call_private_switch()                bt_send_msg(BT_MSG_HFP_PRIVATE_SWITCH)       //ÇÐ»»ÈýÍ¨µç»°
-#define bt_siri_switch()                        bt_send_msg(BT_MSG_SWITCH_SIRI)     //¿ª¹ØSIRI, androidÐèÒªÔÚÓïÒôÖúÊÖÖÐ´ò¿ª¡°À¶ÑÀ¶ú»ú°´¼üÆô¶¯¡±, iosÐèÒª´ò¿ªsiri¹¦ÄÜ
-#define bt_siri_on()                            bt_send_msg(BT_MSG_SIRI_ON)         //´ò¿ªÓïÒôÖúÊÖ
+//ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+#define bt_call_redial_last_number()            bt_send_msg(BT_MSG_CALL_REDIAL)     //ï¿½ç»°ï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½
+#define bt_call_answer_incoming()               bt_send_msg(BT_MSG_CALL_ANSWER_INCOM) //ï¿½ï¿½ï¿½ï¿½ï¿½ç»°ï¿½ï¿½ï¿½ï¿½Í¨Ê±ï¿½ï¿½ï¿½ï¿½Ç°Í¨ï¿½ï¿½
+#define bt_call_answer_incom_rej_other()        bt_send_msg(BT_MSG_CALL_ANSWER_INCOM_REJ_OTHER)	//ï¿½ï¿½ï¿½ï¿½ï¿½ç»°ï¿½ï¿½ï¿½ï¿½Í¨Ê±ï¿½Ò¶Ïµï¿½Ç°Í¨ï¿½ï¿½
+#define bt_call_terminate()                     bt_send_msg(BT_MSG_CALL_TERMINATE)  //ï¿½Ò¶Ïµç»°
+#define bt_call_swap()                          bt_send_msg(BT_MSG_CALL_SWAP)       //ï¿½Ð»ï¿½ï¿½ï¿½Í¨ï¿½ç»°
+#define bt_call_private_switch()                bt_send_msg(BT_MSG_HFP_PRIVATE_SWITCH)       //ï¿½Ð»ï¿½ï¿½ï¿½Í¨ï¿½ç»°
+#define bt_siri_switch()                        bt_send_msg(BT_MSG_SWITCH_SIRI)     //ï¿½ï¿½ï¿½ï¿½SIRI, androidï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ò¿ª¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, iosï¿½ï¿½Òªï¿½ï¿½siriï¿½ï¿½ï¿½ï¿½
+#define bt_siri_on()                            bt_send_msg(BT_MSG_SIRI_ON)         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 #define bt_ctl_ear_sta_change()                 bt_send_msg(BT_MSG_EAR_STA_CHANGE)
 #define bt_ctl_nr_sta_change()                  bt_send_msg(BT_MSG_NR_STA_CHANGE)
@@ -488,27 +488,27 @@ extern uint8_t cfg_bt_hid_feature;
 
 
 uint bt_get_hfp_feature(void);
-int bt_spp_tx(uint8_t *packet, uint16_t len);           //·¢ËÍSPPÃüÁî
-bool bt_spp_tx_ex(u8 idx, const char * cmd, u8 len);    //´ø³¤¶ÈµÄ·¢ËÍSPPÃüÁî
+int bt_spp_tx(uint8_t *packet, uint16_t len);           //ï¿½ï¿½ï¿½ï¿½SPPï¿½ï¿½ï¿½ï¿½
+bool bt_spp_tx_ex(u8 idx, const char * cmd, u8 len);    //ï¿½ï¿½ï¿½ï¿½ï¿½ÈµÄ·ï¿½ï¿½ï¿½SPPï¿½ï¿½ï¿½ï¿½
 
 //hid
 bool bt_hid_send_key(uint msg, uint keycode);
-#define bt_hid_key(keycode)                     bt_hid_send_key(BT_MSG_HID_KEY, keycode)        //±ê×¼HID¼ü, ÈçEnter
-#define bt_hid_consumer(keycode)                bt_hid_send_key(BT_MSG_HID_CONSUMER, keycode)   //×Ô¶¨ÒåHID¼ü, ÈçVOL+ VOL-
+#define bt_hid_key(keycode)                     bt_hid_send_key(BT_MSG_HID_KEY, keycode)        //ï¿½ï¿½×¼HIDï¿½ï¿½, ï¿½ï¿½Enter
+#define bt_hid_consumer(keycode)                bt_hid_send_key(BT_MSG_HID_CONSUMER, keycode)   //ï¿½Ô¶ï¿½ï¿½ï¿½HIDï¿½ï¿½, ï¿½ï¿½VOL+ VOL-
 /**
- * @brief Ä£Äâ´¥µãº¯Êý
-   ×¢Òâ:IOS ·¶Î§ÊÇ-2047-2048 £¬°²×¿ÊÇ0-4096;
-        IOSÉè±¸£¬x,yÊÇÏà¶ÔÎ»ÖÃ£¬±ÈÈç10,10ÊÇÏà¶Ôµ±Ç°Î»ÖÃÒÆ¶¯10,10;
-        °²×¿Éè±¸£¬x£¬yÊÇ¾ø¶ÔÎ»ÖÃ£¬10,10ÊÇÔÚÊÖ»ú10,10µÄÎ»ÖÃÉÏ;
- * @param is_press	1°´ÏÂ£¬0Ì§Æð
- * @param x	Ä£Äâ´¥µãºá×ø±ê
- * @param y	Ä£Äâ´¥µã×Ý×ø±ê
+ * @brief Ä£ï¿½â´¥ï¿½ãº¯ï¿½ï¿½
+   ×¢ï¿½ï¿½:IOS ï¿½ï¿½Î§ï¿½ï¿½-2047-2048 ï¿½ï¿½ï¿½ï¿½×¿ï¿½ï¿½0-4096;
+        IOSï¿½è±¸ï¿½ï¿½x,yï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½10,10ï¿½ï¿½ï¿½ï¿½Ôµï¿½Ç°Î»ï¿½ï¿½ï¿½Æ¶ï¿½10,10;
+        ï¿½ï¿½×¿ï¿½è±¸ï¿½ï¿½xï¿½ï¿½yï¿½Ç¾ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½10,10ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½10,10ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½;
+ * @param is_press	1ï¿½ï¿½ï¿½Â£ï¿½0Ì§ï¿½ï¿½
+ * @param x	Ä£ï¿½â´¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param y	Ä£ï¿½â´¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  **/
 void bt_hid_point_pos(bool is_press, s16 x, s16 y);
-#define bt_hid_finger_select_ios()              bt_send_msg(BT_MSG_HID_TOUCH_SCREEN | 1 << 8)                //¶¶ÒôÊÓÆµÑ¡ÔñIOSÏµÍ³, ÐèÒªÔÚbtÁ¬½ÓÇ°µ÷ÓÃÇø·Ö
-#define bt_hid_finger_select_andriod()          bt_send_msg(BT_MSG_HID_TOUCH_SCREEN | 2 << 8)                //¶¶ÒôÊÓÆµÑ¡ÔñandriodÏµÍ³, ÐèÒªÔÚbtÁ¬½ÓÇ°µ÷ÓÃÇø·Ö
+#define bt_hid_finger_select_ios()              bt_send_msg(BT_MSG_HID_TOUCH_SCREEN | 1 << 8)                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆµÑ¡ï¿½ï¿½IOSÏµÍ³, ï¿½ï¿½Òªï¿½ï¿½btï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define bt_hid_finger_select_andriod()          bt_send_msg(BT_MSG_HID_TOUCH_SCREEN | 2 << 8)                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆµÑ¡ï¿½ï¿½andriodÏµÍ³, ï¿½ï¿½Òªï¿½ï¿½btï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-//¶¶ÒôÉñÆ÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void bt_hid_douyin_down(void);
 void bt_hid_douyin_up(void);
 void bt_hid_douyin_p(void);
@@ -517,7 +517,7 @@ void bt_hid_douyin_ctrl(u8 ctrl);
 
 
 /*****************************************************************************
- * BLE APIº¯Êý½Ó¿Ú
+ * BLE APIï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½
  *****************************************************************************/
 void le_set_adv_interval(u16 interval);
 
