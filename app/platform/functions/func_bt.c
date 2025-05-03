@@ -824,7 +824,7 @@ void func_bt(void)
     func_bt_enter();    // 进入蓝牙模式，初始化资源
 
     while (func_cb.sta == FUNC_BT) {    // 只要状态没变，就一直在这个循环中
-        func_bt_process();  // 处理蓝牙相关的周期性任务
+        func_bt_process();  // 处理蓝牙相关的周期性任务，来电状态和通话状态会自己处理。让来电和通话状态有完全独立的处理逻辑，不受主循环的干扰，确保这些重要功能的稳定性和响应速度。
         func_bt_message(msg_dequeue());  // 处理蓝牙相关的消息
     }
 

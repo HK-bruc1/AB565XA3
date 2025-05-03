@@ -102,14 +102,42 @@ void bt_ring_reject(void)
     sys_warning_play(T_WARNING_REJECT, PIANO_REJECT);
 }
 
+/**
+ * @brief 蓝牙模式下主循环中除了空消息和1秒定时消息外的消息处理函数
+ * 
+ * @param msg 动作被捕获后，从对队列中取出的消息对应的处理
+ */
 void func_bt_message_do(u16 msg)
 {
     int klu_flag = 0;
-    u8 ku_sel = xcfg_cb.user_def_ks_sel;
+    u8 ku_sel = xcfg_cb.user_def_ks_sel; // 从配置工具读取单击功能设置
 
     switch (msg) {
+    //如果是标准播放键消息的话，就强制执行UDK_PLAY_PAUSE功能代码，覆盖之前读取的配置，前提是蓝牙已经连接，不然就是手动配对
+    /*
+        * 重要说明：此处的功能代码覆盖机制
+        * -----------------------------
+        * 1. 此行代码仅在处理KU_PLAY消息时执行，会覆盖从配置工具读取的功能代码
+        * 2. 由于C语言case穿透特性，执行完此行后会继续执行下面KU_PLAY_USER_DEF和KU_PLAY_PWR_USER_DEF的代码
+        * 
+        * 功能代码处理逻辑：
+        * 1. 如果按键产生KU_PLAY消息：
+        *    - 无论配置工具如何设置，功能代码都会被强制设置为UDK_PLAY_PAUSE（播放/暂停）
+        *    - 在蓝牙已连接的情况下，最终会执行播放/暂停功能
+        * 
+        * 2. 如果按键产生KU_PLAY_USER_DEF或KU_PLAY_PWR_USER_DEF消息：
+        *    - 不会执行此行代码，功能代码保持为配置工具中设置的值
+        *    - 在蓝牙已连接的情况下，会执行配置工具中设置的功能
+        * 
+        * 3. 对于所有这三种消息，如果蓝牙未连接，都会执行手动配对功能
+        * 
+        * 注意：如果您希望自定义单击功能，应确保按键配置为产生KU_PLAY_USER_DEF
+        * 或KU_PLAY_PWR_USER_DEF消息，而不是KU_PLAY消息
+        */
     case KU_PLAY:
         ku_sel = UDK_PLAY_PAUSE;
+    
+    //如果是用户定义的多功能键单击或者用户定义的电源/多功能组合键单击的话在蓝牙连接的前提下，就会使用配置中的功能代码
     case KU_PLAY_USER_DEF:
     case KU_PLAY_PWR_USER_DEF:
 //        key_voice_play(501, 100, 3);                                        //按键音
