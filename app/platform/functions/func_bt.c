@@ -226,55 +226,71 @@ void func_bt_dac_ctrl(void)
     }
 }
 
+/**
+ * @brief 关于配置工具都没有的LED灯效配置项，他们从哪里读取灯效配置？？？
+ * 
+ */
 void func_bt_disp_status_do(void)
 {
+    // 根据蓝牙连接状态更新电源管理设置
     if(!bt_is_connected()) {
-        en_auto_pwroff();
-        sys_cb.sleep_en = BT_PAIR_SLEEP_EN;
+        en_auto_pwroff();  // 未连接时启用自动关机
+        sys_cb.sleep_en = BT_PAIR_SLEEP_EN;  // 设置睡眠模式
     } else {
-        dis_auto_pwroff();
-        sys_cb.sleep_en = 1;
+        dis_auto_pwroff();  // 已连接时禁用自动关机
+        sys_cb.sleep_en = 1;  // 保持常亮模式
     }
 
+    // 根据蓝牙状态触发光效
     switch (f_bt.disp_status) {
     case BT_STA_CONNECTING:
-        led_bt_reconnect();
+        led_bt_reconnect();  // 连接过程中显示重连灯效，此配置在配置工具中配置
         break;
     case BT_STA_INITING:
     case BT_STA_IDLE:
+        //主耳TWS组队成功后进入到BT_STA_IDLE
+        //副耳TWS组队成功后进入到BT_STA_CONNECTED
         led_bt_idle();
 #if WARNING_BT_PAIR
+        // 当需要配对且处于空闲状态时（仅在TWS组队模式下触发）
         if(f_bt.need_pairing && f_bt.disp_status == BT_STA_IDLE) {
             f_bt.need_pairing = 0;
+            // 当启用蓝牙配对提醒且TWS功能开启时
             if(xcfg_cb.warning_bt_pair && xcfg_cb.bt_tws_en) {
-                f_bt.warning_status |= BT_WARN_PAIRING;
+                f_bt.warning_status |= BT_WARN_PAIRING;  // 触发配对提醒
             }
         }
 #endif
         break;
     case BT_STA_SCANNING:
-        led_bt_scan();
+        //首次上电左右耳机首先显示开机灯效，然后进入 case BT_STA_SCANNING,TWS 未组队和蓝牙未配对灯效
+        led_bt_scan();  // 扫描状态显示扫描灯效
         break;
 
     case BT_STA_DISCONNECTING:
+        //为什么连接状态与未连接状态都是一个灯效？
+        //这个应该时TWS未组队，蓝牙未配对
         led_bt_connected();
         break;
 
     case BT_STA_CONNECTED:
-        led_bt_connected();
+        //TWS组队成功，副耳的状态
+        //蓝牙连接成功后，主耳也会进入这个状态
+        led_bt_connected();  // 已连接状态灯效
         break;
     case BT_STA_INCOMING:
-        led_bt_ring();
+        led_bt_ring();  // 来电状态显示来电灯效
         break;
     case BT_STA_PLAYING:
-        led_bt_play();
+        led_bt_play();  // 播放状态显示动态灯效
         break;
     case BT_STA_OUTGOING:
     case BT_STA_INCALL:
-        led_bt_call();
+        led_bt_call();  // 拨出/通话状态显示通话灯效
         break;
     }
 
+    // 当状态为已连接及以上时，标记需要配对（用于断开后快速回连）
     if(f_bt.disp_status >= BT_STA_CONNECTED) {
         f_bt.need_pairing = 1;
     }

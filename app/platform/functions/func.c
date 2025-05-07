@@ -55,11 +55,38 @@ void func_process(void)
 #endif // USER_NTC
 }
 
+/**
+ * @brief  统一处理所有“音量加”相关的按键事件
+ * 
+ * 【蓝牙模式处理流程】
+ * 1. 当前功能模式为蓝牙模式(FUNC_BT)时：
+ *    a) 若处于通话中(in_call_flag为真)：
+ *       - 调用bt_call_volume_change处理通话专用音量
+ *    b) 非通话状态时：
+ *       - 检查HID音量同步使能(BT_HID_VOL_SYNC_EN)
+ *         - 如果同步成功：通过hid协议设置音量
+ *         - 否则：直接增加系统音量
+ *       - 如果启用A2DP音量存储(BT_A2DP_STORE_VOL_EN)：
+ *         - 存储当前A2DP音量值
+ *       - 触发蓝牙音量变化通知(bsp_bt_vol_change)
+ *       - 达到最大音量且非来电响铃时：
+ *         - 如果支持TWS同步：延迟后同步播放提示音
+ *         - 否则：播放本地最大音量提示
+ * 
+ * 【非蓝牙模式处理流程】
+ * 2. 非蓝牙模式时：
+ *    a) 直接增加系统音量
+ *    b) 达到最大音量时播放本地提示音
+ * 
+ * 【通用处理】
+ * 无论何种模式，音量变化后都会触发回调函数(set_vol_callback)，
+ * 用于通知系统音量已更新
+ */
 void func_volume_up(void)
 {
-    if (func_cb.sta == FUNC_BT) {
-        if (sys_cb.incall_flag) {
-            bt_call_volume_change(KU_VOL_UP);
+    if (func_cb.sta == FUNC_BT) {// 蓝牙模式
+        if (sys_cb.incall_flag) {// 通话中
+            bt_call_volume_change(KU_VOL_UP);// 调用通话音量加
         } else {
 #if BT_HID_VOL_SYNC_EN
             if (bsp_bt_hid_vol_set(HID_KEY_VOL_UP)) {
@@ -70,31 +97,59 @@ void func_volume_up(void)
                 bsp_set_volume(bsp_volume_inc(sys_cb.vol, 1));
             }
 #if BT_A2DP_STORE_VOL_EN
-            bt_store_a2dp_volume(sys_cb.vol);
+            bt_store_a2dp_volume(sys_cb.vol);// 存储A2DP音量
 #endif
-            bsp_bt_vol_change();
+            bsp_bt_vol_change();// 蓝牙音量变化通知
 #if WARNING_MAX_VOLUME
+            // 音量到达最大且非来电响铃时，播放最大音量提示音
             if (sys_cb.vol == VOL_MAX && !f_bt.ring_sta) {
                 if (bt_tws_is_sync_voice()) {
                     delay_5ms(4);
-                    tws_res_play(TWS_RES_MAX_VOL);
+                    tws_res_play(TWS_RES_MAX_VOL);// TWS同步播放
                 } else {
                     sys_warning_play(T_WARNING_MAX_VOL, PIANO_MAX_VOL);
                 }
             }
 #endif
         }
-    } else {
+    } else {// 非蓝牙模式
         bsp_set_volume(bsp_volume_inc(sys_cb.vol, 1));
         if (sys_cb.vol == VOL_MAX) {
             sys_warning_play(T_WARNING_MAX_VOL, PIANO_MAX_VOL);
         }
     }
+    // 音量变化回调
     if (func_cb.set_vol_callback) {
         func_cb.set_vol_callback(1);
     }
 }
 
+/**
+ * @brief  统一处理所有“音量减”相关的按键事件
+ * 
+ * 【蓝牙模式处理流程】
+ * 1. 蓝牙模式(FUNC_BT)下：
+ *    a) 通话中(in_call_flag为真)：
+ *       - 调用bt_call_volume_change处理通话专用音量
+ *    b) 非通话状态：
+ *       - 检查HID音量同步使能(BT_HID_VOL_SYNC_EN)
+ *         - 同步成功：通过hid协议设置音量
+ *         - 否则：直接减少系统音量
+ *       - 如果启用A2DP音量存储(BT_A2DP_STORE_VOL_EN)：
+ *         - 存储当前A2DP音量值
+ *       - 触发蓝牙音量变化通知(bsp_bt_vol_change)
+ *       - 音量为0且非来电响铃时：
+ *         - 播放最小音量提示音(minvol_tone_play)
+ * 
+ * 【非蓝牙模式处理流程】
+ * 2. 非蓝牙模式时：
+ *    a) 直接减少系统音量
+ *    b) 音量为0时播放本地提示音
+ * 
+ * 【通用处理】
+ * 所有模式下音量变化后都会触发回调函数(set_vol_callback)，
+ * 参数0表示音量减少操作
+ */
 void func_volume_down(void)
 {
     if (func_cb.sta == FUNC_BT) {
@@ -151,6 +206,8 @@ void func_message(u16 msg)
         case KL_VOL_UP:
         case KH_VOL_UP:
         case KU_VOL_UP_DOWN:
+        //这些 case 都是不同的“音量加”相关的消息事件（比如短按、长按、组合键等），
+        //无论是哪种类型的音量加操作，最终都会调用 func_volume_up() 进行统一处理。
             func_volume_up();
             break;
 
