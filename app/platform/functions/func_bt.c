@@ -727,42 +727,76 @@ void func_bt_chk_off(void)
     }
 }
 
+/**
+ * @brief 在进入蓝牙模式主循环前，做蓝牙相关的初始化和资源准备。它的主要作用是：
+ * 初始化LED、蓝牙协议栈、自动关机、提示音、DAC、重拨、音频、降噪、配对等相关功能，为后续蓝牙主循环做好准备。
+ * 1. 初始化蓝牙LED显示（如蓝牙模式下的灯效）
+ * 2. 初始化蓝牙相关变量和协议栈（如清消息队列、变量清零、协议栈初始化等）
+ * 3. 使能自动关机功能（如长时间未连接自动关机）
+ * 4. 播放进入蓝牙模式的提示音（如"蓝牙模式"）
+ * 5. 播放"等待连接"提示音
+ * 6. 如果当前蓝牙未连接或处于特殊状态，则关闭DAC（节省功耗）   
+ * 7. 初始化蓝牙重拨功能（如来电重拨相关变量）
+ * 8. 使能蓝牙音频功能（如打开音频通路）
+ * 9. 设置DAC降噪功能（如果配置了降噪）
+ * 10. 检查是否长按电源键进入配对模式
+ * 11. 如果支持双ACL自动切换，初始化相关变量
+ */
 void func_bt_enter(void)
 {
+    // 1. 初始化蓝牙LED显示（如蓝牙模式下的灯效）,不可见
     led_bt_init();
+
+    // 2. 初始化蓝牙相关变量和协议栈（如清消息队列、变量清零、协议栈初始化等）
     func_bt_init();
+
+    // 3. 使能自动关机功能（如长时间未连接自动关机），不可见
     en_auto_pwroff();
 
 #if WARNING_FUNC_BT
+    // 4. 播放进入蓝牙模式的提示音（如"蓝牙模式"）
+    //通过 sys_warning_play(提示音ID, 音色ID) 指定。
+    //音色ID:type: 0->无提示音, 1->piano, 2->语音
     sys_warning_play(T_WARNING_BT_MODE, PIANO_BT_MODE);
 #endif
 
 #if WARNING_BT_WAIT_CONNECT
+    // 5. 播放"等待连接"提示音
     sys_warning_play(T_WARNING_BT_WAIT4CONN, 0);
 #endif
 
+    // 6. 如果当前蓝牙未连接或处于特殊状态，则关闭DAC（节省功耗）
     if (f_bt.disp_status < BT_STA_CONNECTED || f_bt.disp_status == 0xfe) {
         func_bt_set_dac(0);
     }
+
+    // 7. 初始化蓝牙重拨功能（如来电重拨相关变量）
     bsp_bt_redial_init();
+
+    // 8. 使能蓝牙音频功能（如打开音频通路）
     bt_audio_enable();
+
 #if DAC_DNR_EN
+    // 9. 设置DAC降噪功能（如果配置了降噪）
     dac_dnr_set_sta(xcfg_cb.dac_dnr_en);
 #endif
 
 #if BT_PWRKEY_5S_DISCOVER_EN
+    // 10. 检查是否长按电源键进入配对模式
     if(bsp_bt_pwrkey5s_check()) {
-        f_bt.need_pairing = 0;  //已经播报了
-        func_bt_disp_status();  //先更新显示，再播报
+        f_bt.need_pairing = 0;  // 已经播报过配对，不再重复
+        func_bt_disp_status();  // 先更新LED等显示
         if (xcfg_cb.bt_pwrkey_nsec_clr_pair_en) {
-            bt_clr_all_link_info('5');
+            bt_clr_all_link_info('5'); // 清除配对信息
         }
 #if WARNING_BT_PAIR
+        // 播放配对提示音
         sys_warning_play(T_WARNING_PAIRING, PIANO_PAIR);
 #endif // WARNING_BT_PAIR
     } else {
-        func_bt_disp_status();  //先更新显示，再播报
+        func_bt_disp_status();  // 先更新LED等显示
 #if WARNING_BT_PAIR
+        // 如果配置了配对提示音且未启用TWS，则播放配对提示音
         if (xcfg_cb.warning_bt_pair && !xcfg_cb.bt_tws_en) {
             sys_warning_play(T_WARNING_PAIRING, PIANO_PAIR);
         }
@@ -771,6 +805,7 @@ void func_bt_enter(void)
 #endif
 
 #if BT_2ACL_AUTO_SWITCH
+    // 11. 如果支持双ACL自动切换，初始化相关变量
     if (xcfg_cb.bt_2acl_auto_switch) {
         bt_play_data_init();
     }
@@ -825,7 +860,7 @@ void func_bt(void)
 
     while (func_cb.sta == FUNC_BT) {    // 只要状态没变，就一直在这个循环中
         func_bt_process();  // 处理蓝牙相关的周期性任务，来电状态和通话状态会自己处理。让来电和通话状态有完全独立的处理逻辑，不受主循环的干扰，确保这些重要功能的稳定性和响应速度。
-        func_bt_message(msg_dequeue());  // 处理蓝牙相关的消息
+        func_bt_message(msg_dequeue());  // 处理蓝牙相关的消息事件
     }
 
     func_bt_exit(); // 退出蓝牙模式，清理资源

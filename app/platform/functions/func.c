@@ -9,33 +9,48 @@ void func_qtest_process(void);
 void ble_box_process(void);
 void soft_timer_run(void);
 
+/**
+ * @brief 通用功能处理函数
+ * 
+ * 该函数负责处理一些通用的系统功能,主要包括:
+ * 1. 喂狗操作,防止系统复位
+ * 2. 电池电量检测和低电处理(如果启用)
+ * 3. 快速测试功能处理(如果启用)
+ * 4. 硬件按键关机处理:
+ *    - 当PWRKEY配置为硬开关时,检测关机标志
+ *    - 触发关机时启用提示音并切换到关机模式
+ * 5. 霍尔传感器触发关机处理
+ * 6. NTC温度保护关机处理(如果启用):
+ *    - 当温度超过阈值时触发关机保护
+ *    - 启用关机提示音并切换到关机模式
+ */
 AT(.text.func.process)
 void func_process(void)
 {
-    WDT_CLR();
+    WDT_CLR();                                     //清看门狗,防止系统复位
 #if VBAT_DETECT_EN
-    lowpower_vbat_process();
+    lowpower_vbat_process();                       //电池电量检测和低电处理
 #endif // VBAT_DETECT_EN
 
 #if VUSB_TBOX_QTEST_EN
-    func_qtest_process();
-    qtest_other_usage_process();
+    func_qtest_process();                          //快速测试功能处理
+    qtest_other_usage_process();                   //其他测试功能处理
 #endif
 
     //PWRKEY模拟硬开关关机处理
     if ((PWRKEY_2_HW_PWRON) && (sys_cb.pwrdwn_hw_flag)) {
-        sys_cb.pwrdwn_tone_en = 1;
-        func_cb.sta = FUNC_PWROFF;
-        sys_cb.pwrdwn_hw_flag = 0;
+        sys_cb.pwrdwn_tone_en = 1;                 //启用关机提示音
+        func_cb.sta = FUNC_PWROFF;                 //切换到关机模式
+        sys_cb.pwrdwn_hw_flag = 0;                 //清除关机标志
     }
 
-    hall_trigger_to_pwrdwn();
+    hall_trigger_to_pwrdwn();                      //霍尔传感器触发关机处理
 
 #if USER_NTC
-    if (sys_cb.ntc_2_pwrdwn_flag) {
-        sys_cb.pwrdwn_tone_en = 1;
-        func_cb.sta = FUNC_PWROFF;
-        sys_cb.ntc_2_pwrdwn_flag = 0;
+    if (sys_cb.ntc_2_pwrdwn_flag) {               //NTC温度保护关机处理
+        sys_cb.pwrdwn_tone_en = 1;                 //启用关机提示音
+        func_cb.sta = FUNC_PWROFF;                 //切换到关机模式
+        sys_cb.ntc_2_pwrdwn_flag = 0;             //清除温度保护标志
     }
 #endif // USER_NTC
 }

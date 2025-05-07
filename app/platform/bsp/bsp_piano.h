@@ -87,6 +87,8 @@ enum {
 
     ///新增项放到此处后面
     T_WARNING_TEST_WAV,
+    //新增提示音
+    T_WARNING_BALABALA,
 
     T_WARNING_ALL,
 };

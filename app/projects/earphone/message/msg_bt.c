@@ -94,10 +94,13 @@ static bool user_def_lkey_tone_is_enable(u8 func_sel)
 bool bt_tws_pair_mode(u8 method)
 {
     if ((xcfg_cb.bt_tws_en) && (xcfg_cb.bt_tws_pair_mode == method) && (!bt_nor_is_connected())) {
+        //如果TWS连接了，则断开连接
         if(bt_tws_is_connected()) {
             bt_tws_disconnect();
         } else {
+            //如果TWS没有连接，则搜索从机
 //            bt_tws_set_scan(0x3);
+            //搜索从机源码不可见
             bt_tws_search_slave();
         }
         return true;
@@ -126,6 +129,9 @@ void func_bt_message_do(u16 msg)
     case KU_PLAY_PWR_USER_DEF:
 //        key_voice_play(501, 100, 3);                                        //按键音
         if (!bt_nor_is_connected()) {
+            //如果蓝牙未连接，则单击PLAY按键手动配对
+            //TWS连接则断开重新搜索从耳，没有连接就直接搜索从耳
+            //这样设置很让人怀疑当TWS连接后，主耳才会会自动主动广播，让手机蓝牙可见
             bt_tws_pair_mode(3);                                            //单击PLAY按键手动配对
             break;
         }

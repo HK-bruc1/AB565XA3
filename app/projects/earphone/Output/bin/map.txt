@@ -1848,7 +1848,7 @@ LOAD Output\obj\projects\earphone\port\port_tkey.o
  *(.text.dbb*)
                 0x0000000000041400                . = ALIGN (0x200)
 
-.flash          0x0000000010002600    0x11400
+.flash          0x0000000010002600    0x11600
  *(.text.bb.tws.sw_nanos)
                 0x0000000010002600                . = ALIGN (0x200)
  *(.text.bfunc.bt)
@@ -2108,1262 +2108,1262 @@ LOAD Output\obj\projects\earphone\port\port_tkey.o
                 0x0000000010005a38                bsp_vusb_uart_init
  .text.sbc      0x0000000010005a40       0x60 Output\obj\platform\bsp\bsp_warning_play.o
                 0x0000000010005a40                sbc_res_dec_frame
- .text.warning  0x0000000010005aa0      0x6e4 Output\obj\platform\bsp\bsp_warning_play.o
+ .text.warning  0x0000000010005aa0      0x6e8 Output\obj\platform\bsp\bsp_warning_play.o
                 0x0000000010005aa0                sbcplay_set
-                0x0000000010005eee                sbc_res_var_init
-                0x0000000010005efe                bt_ring_sbc_stop
-                0x0000000010005f8a                bt_ring_sbc_play
-                0x0000000010006046                sbc_res_play
-                0x000000001000615e                wav_res_play_do
-                0x0000000010006160                warning_play
+                0x0000000010005ef2                sbc_res_var_init
+                0x0000000010005f02                bt_ring_sbc_stop
+                0x0000000010005f8e                bt_ring_sbc_play
+                0x000000001000604a                sbc_res_play
+                0x0000000010006162                wav_res_play_do
+                0x0000000010006164                warning_play
  .text.func.process
-                0x0000000010006184       0x76 Output\obj\platform\functions\func.o
-                0x0000000010006184                func_process
+                0x0000000010006188       0x76 Output\obj\platform\functions\func.o
+                0x0000000010006188                func_process
  .text.func_volume_up
-                0x00000000100061fa       0xec Output\obj\platform\functions\func.o
-                0x00000000100061fa                func_volume_up
+                0x00000000100061fe       0xec Output\obj\platform\functions\func.o
+                0x00000000100061fe                func_volume_up
  .text.func_volume_down
-                0x00000000100062e6       0xb2 Output\obj\platform\functions\func.o
-                0x00000000100062e6                func_volume_down
- .text.func     0x0000000010006398       0xce Output\obj\platform\functions\func.o
-                0x0000000010006398                func_clear
-                0x00000000100063c0                func_exit
-                0x0000000010006416                func_run
+                0x00000000100062ea       0xb2 Output\obj\platform\functions\func.o
+                0x00000000100062ea                func_volume_down
+ .text.func     0x000000001000639c       0xce Output\obj\platform\functions\func.o
+                0x000000001000639c                func_clear
+                0x00000000100063c4                func_exit
+                0x000000001000641a                func_run
  .text.func_bt_tws_status_update
-                0x0000000010006466       0x56 Output\obj\platform\functions\func_bt.o
-                0x0000000010006466                func_bt_tws_status_update
+                0x000000001000646a       0x56 Output\obj\platform\functions\func_bt.o
+                0x000000001000646a                func_bt_tws_status_update
  .text.func_bt_warning_discon
-                0x00000000100064bc       0xd2 Output\obj\platform\functions\func_bt.o
-                0x00000000100064bc                func_bt_warning_discon
+                0x00000000100064c0       0xd2 Output\obj\platform\functions\func_bt.o
+                0x00000000100064c0                func_bt_warning_discon
  .text.func_bt_warning_conn
-                0x000000001000658e       0x90 Output\obj\platform\functions\func_bt.o
-                0x000000001000658e                func_bt_warning_conn
+                0x0000000010006592       0x90 Output\obj\platform\functions\func_bt.o
+                0x0000000010006592                func_bt_warning_conn
  .text.func_bt_warning_tws_con
-                0x000000001000661e       0xd4 Output\obj\platform\functions\func_bt.o
-                0x000000001000661e                func_bt_warning_tws_con
+                0x0000000010006622       0xd4 Output\obj\platform\functions\func_bt.o
+                0x0000000010006622                func_bt_warning_tws_con
  .text.func_bt_dac_ctrl
-                0x00000000100066f2       0x46 Output\obj\platform\functions\func_bt.o
-                0x00000000100066f2                func_bt_dac_ctrl
- *fill*         0x0000000010006738        0x0 
+                0x00000000100066f6       0x46 Output\obj\platform\functions\func_bt.o
+                0x00000000100066f6                func_bt_dac_ctrl
+ *fill*         0x000000001000673c        0x0 
  .text.func_bt_disp_status_do
-                0x0000000010006738      0x132 Output\obj\platform\functions\func_bt.o
-                0x0000000010006738                func_bt_disp_status_do
+                0x000000001000673c      0x132 Output\obj\platform\functions\func_bt.o
+                0x000000001000673c                func_bt_disp_status_do
  .text.func_bt_init
-                0x000000001000686a       0x4e Output\obj\platform\functions\func_bt.o
-                0x000000001000686a                func_bt_init
+                0x000000001000686e       0x4e Output\obj\platform\functions\func_bt.o
+                0x000000001000686e                func_bt_init
  .text.func_bt_chk_off
-                0x00000000100068b8       0x3a Output\obj\platform\functions\func_bt.o
-                0x00000000100068b8                func_bt_chk_off
+                0x00000000100068bc       0x3a Output\obj\platform\functions\func_bt.o
+                0x00000000100068bc                func_bt_chk_off
  .text.func_bt_enter
-                0x00000000100068f2       0xee Output\obj\platform\functions\func_bt.o
-                0x00000000100068f2                func_bt_enter
+                0x00000000100068f6       0xee Output\obj\platform\functions\func_bt.o
+                0x00000000100068f6                func_bt_enter
  .text.func_bt_exit
-                0x00000000100069e0       0xd0 Output\obj\platform\functions\func_bt.o
-                0x00000000100069e0                func_bt_exit
+                0x00000000100069e4       0xd0 Output\obj\platform\functions\func_bt.o
+                0x00000000100069e4                func_bt_exit
  .text.lowpwr.sleep
-                0x0000000010006ab0      0x1b4 Output\obj\platform\functions\func_lowpwr.o
-                0x0000000010006ab0                sfunc_sleep
+                0x0000000010006ab4      0x1b4 Output\obj\platform\functions\func_lowpwr.o
+                0x0000000010006ab4                sfunc_sleep
  .text.sfunc_lowbat
-                0x0000000010006c64       0x24 Output\obj\platform\functions\func_lowpwr.o
-                0x0000000010006c64                sfunc_lowbat
+                0x0000000010006c68       0x24 Output\obj\platform\functions\func_lowpwr.o
+                0x0000000010006c68                sfunc_lowbat
  .text.sfunc_pwrdown
-                0x0000000010006c88       0x28 Output\obj\platform\functions\func_lowpwr.o
-                0x0000000010006c88                sfunc_pwrdown
+                0x0000000010006c8c       0x28 Output\obj\platform\functions\func_lowpwr.o
+                0x0000000010006c8c                sfunc_pwrdown
  .text.lowpwr.pwroff
-                0x0000000010006cb0      0x190 Output\obj\platform\functions\func_lowpwr.o
-                0x0000000010006cb0                func_pwroff
+                0x0000000010006cb4      0x190 Output\obj\platform\functions\func_lowpwr.o
+                0x0000000010006cb4                func_pwroff
  .text.sco_audio_init
-                0x0000000010006e40      0x268 Output\obj\platform\functions\sfunc_bt_call.o
-                0x0000000010006e40                sco_audio_init
+                0x0000000010006e44      0x268 Output\obj\platform\functions\sfunc_bt_call.o
+                0x0000000010006e44                sco_audio_init
  .text.sco_audio_exit
-                0x00000000100070a8       0x62 Output\obj\platform\functions\sfunc_bt_call.o
-                0x00000000100070a8                sco_audio_exit
+                0x00000000100070ac       0x62 Output\obj\platform\functions\sfunc_bt_call.o
+                0x00000000100070ac                sco_audio_exit
  .text.sfunc_bt_call_enter
-                0x000000001000710a       0x48 Output\obj\platform\functions\sfunc_bt_call.o
-                0x000000001000710a                sfunc_bt_call_enter
+                0x000000001000710e       0x48 Output\obj\platform\functions\sfunc_bt_call.o
+                0x000000001000710e                sfunc_bt_call_enter
  .text.sfunc_bt_call_exit
-                0x0000000010007152       0x6a Output\obj\platform\functions\sfunc_bt_call.o
-                0x0000000010007152                sfunc_bt_call_exit
- .text.func.bt  0x00000000100071bc       0x82 Output\obj\platform\functions\sfunc_bt_call.o
-                0x00000000100071bc                sfunc_bt_call
+                0x0000000010007156       0x6a Output\obj\platform\functions\sfunc_bt_call.o
+                0x0000000010007156                sfunc_bt_call_exit
+ .text.func.bt  0x00000000100071c0       0x82 Output\obj\platform\functions\sfunc_bt_call.o
+                0x00000000100071c0                sfunc_bt_call
  .text.bt_ring_var_init
-                0x000000001000723e        0xa Output\obj\platform\functions\sfunc_bt_ring.o
-                0x000000001000723e                bt_ring_var_init
+                0x0000000010007242        0xa Output\obj\platform\functions\sfunc_bt_ring.o
+                0x0000000010007242                bt_ring_var_init
  .text.bt_ring_stop
-                0x0000000010007248       0x1a Output\obj\platform\functions\sfunc_bt_ring.o
-                0x0000000010007248                bt_ring_stop
+                0x000000001000724c       0x1a Output\obj\platform\functions\sfunc_bt_ring.o
+                0x000000001000724c                bt_ring_stop
  .text.bt_ring_esbc_stop
-                0x0000000010007262       0x4a Output\obj\platform\functions\sfunc_bt_ring.o
-                0x0000000010007262                bt_ring_esbc_stop
+                0x0000000010007266       0x4a Output\obj\platform\functions\sfunc_bt_ring.o
+                0x0000000010007266                bt_ring_esbc_stop
  .text.bt_ring_esbc_play
-                0x00000000100072ac       0x86 Output\obj\platform\functions\sfunc_bt_ring.o
-                0x00000000100072ac                bt_ring_esbc_play
+                0x00000000100072b0       0x86 Output\obj\platform\functions\sfunc_bt_ring.o
+                0x00000000100072b0                bt_ring_esbc_play
  .text.sfunc_bt_ring_process
-                0x0000000010007332      0x298 Output\obj\platform\functions\sfunc_bt_ring.o
-                0x0000000010007332                sfunc_bt_ring_process
+                0x0000000010007336      0x298 Output\obj\platform\functions\sfunc_bt_ring.o
+                0x0000000010007336                sfunc_bt_ring_process
  .text.sfunc_bt_ring_enter
-                0x00000000100075ca      0x120 Output\obj\platform\functions\sfunc_bt_ring.o
-                0x00000000100075ca                sfunc_bt_ring_enter
+                0x00000000100075ce      0x120 Output\obj\platform\functions\sfunc_bt_ring.o
+                0x00000000100075ce                sfunc_bt_ring_enter
  .text.sfunc_bt_ring_exit
-                0x00000000100076ea       0x9a Output\obj\platform\functions\sfunc_bt_ring.o
-                0x00000000100076ea                sfunc_bt_ring_exit
+                0x00000000100076ee       0x9a Output\obj\platform\functions\sfunc_bt_ring.o
+                0x00000000100076ee                sfunc_bt_ring_exit
  .text.func.btring
-                0x0000000010007784       0x48 Output\obj\platform\functions\sfunc_bt_ring.o
-                0x0000000010007784                sfunc_bt_ring
+                0x0000000010007788       0x48 Output\obj\platform\functions\sfunc_bt_ring.o
+                0x0000000010007788                sfunc_bt_ring
  .text.dhook_func_set
-                0x00000000100077cc        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077cc                dhook_func_set
- .text.va_enc_process
-                0x00000000100077ce        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077ce                va_enc_process
- .text.latt_init
                 0x00000000100077d0        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077d0                latt_init
- .text.btstack_att_send
+                0x00000000100077d0                dhook_func_set
+ .text.va_enc_process
                 0x00000000100077d2        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077d2                btstack_att_send
+                0x00000000100077d2                va_enc_process
+ .text.latt_init
+                0x00000000100077d4        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077d4                latt_init
+ .text.btstack_att_send
+                0x00000000100077d6        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077d6                btstack_att_send
  .text.bt_va_get_sta
-                0x00000000100077d4        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077d4                bt_va_get_sta
- .text.bt_va_is_connect
                 0x00000000100077d8        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077d8                bt_va_is_connect
+                0x00000000100077d8                bt_va_get_sta
+ .text.bt_va_is_connect
+                0x00000000100077dc        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077dc                bt_va_is_connect
  .text.bt_va_start
-                0x00000000100077dc        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077dc                bt_va_start
- .text.magic_voice_process
-                0x00000000100077de        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077de                magic_voice_process
- .text.btstack_fcc_test_func
                 0x00000000100077e0        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077e0                btstack_fcc_test_func
- .text.btstack_fcc_init
+                0x00000000100077e0                bt_va_start
+ .text.magic_voice_process
                 0x00000000100077e2        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077e2                btstack_fcc_init
- .text.bt_fcc_test_ctrl_req
+                0x00000000100077e2                magic_voice_process
+ .text.btstack_fcc_test_func
                 0x00000000100077e4        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077e4                bt_fcc_test_ctrl_req
- .text.bt_fcc_send_packet
+                0x00000000100077e4                btstack_fcc_test_func
+ .text.btstack_fcc_init
                 0x00000000100077e6        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077e6                bt_fcc_send_packet
+                0x00000000100077e6                btstack_fcc_init
+ .text.bt_fcc_test_ctrl_req
+                0x00000000100077e8        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077e8                bt_fcc_test_ctrl_req
+ .text.bt_fcc_send_packet
+                0x00000000100077ea        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077ea                bt_fcc_send_packet
  .text.bt_fcc_test_is_en
-                0x00000000100077e8        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077e8                bt_fcc_test_is_en
- .text.codec    0x00000000100077ec        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077ec                dbb_pcm_out_exit
+                0x00000000100077ec        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077ec                bt_fcc_test_is_en
+ .text.codec    0x00000000100077f0        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077f0                dbb_pcm_out_exit
  .text.bt_a2dp_avrcp_play_status_patch
-                0x00000000100077ee        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077ee                bt_a2dp_avrcp_play_status_patch
+                0x00000000100077f2        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077f2                bt_a2dp_avrcp_play_status_patch
  .text.update_set_qcheck_code
-                0x00000000100077f0        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077f0                update_set_qcheck_code
+                0x00000000100077f4        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077f4                update_set_qcheck_code
  .text.qtest_beforehand_process
-                0x00000000100077f4        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077f4                qtest_beforehand_process
- .text.qtest_process
-                0x00000000100077f6        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077f6                qtest_process
- .text.param_bt_qpdn_boat_flag_write
                 0x00000000100077f8        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077f8                param_bt_qpdn_boat_flag_write
- .text.param_bt_qpdn_boat_flag_read
+                0x00000000100077f8                qtest_beforehand_process
+ .text.qtest_process
                 0x00000000100077fa        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077fa                param_bt_qpdn_boat_flag_read
+                0x00000000100077fa                qtest_process
+ .text.param_bt_qpdn_boat_flag_write
+                0x00000000100077fc        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077fc                param_bt_qpdn_boat_flag_write
+ .text.param_bt_qpdn_boat_flag_read
+                0x00000000100077fe        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x00000000100077fe                param_bt_qpdn_boat_flag_read
  .text.param_bt_qpaird_id_read
-                0x00000000100077fc        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x00000000100077fc                param_bt_qpaird_id_read
+                0x0000000010007800        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007800                param_bt_qpaird_id_read
  .text.map_client_init
-                0x0000000010007800        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007800                map_client_init
- .text.goep_client_init
-                0x0000000010007802        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007802                goep_client_init
- .text.btstack_map
                 0x0000000010007804        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007804                btstack_map
- .text.eq_check_res
+                0x0000000010007804                map_client_init
+ .text.goep_client_init
                 0x0000000010007806        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007806                eq_check_res
+                0x0000000010007806                goep_client_init
+ .text.btstack_map
+                0x0000000010007808        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007808                btstack_map
+ .text.eq_check_res
+                0x000000001000780a        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x000000001000780a                eq_check_res
  .text.btstack_tws_link_ctrl_timer_is_active
-                0x0000000010007808        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007808                btstack_tws_link_ctrl_timer_is_active
+                0x000000001000780c        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x000000001000780c                btstack_tws_link_ctrl_timer_is_active
  .text.btstack_store_a2dp_volume
-                0x000000001000780c        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000780c                btstack_store_a2dp_volume
+                0x0000000010007810        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007810                btstack_store_a2dp_volume
  .text.btstack_tws_set_scan
-                0x000000001000780e        0x8 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000780e                btstack_tws_set_scan
+                0x0000000010007812        0x8 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007812                btstack_tws_set_scan
  .text.charge_ntc_stop
-                0x0000000010007816        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007816                charge_ntc_stop
- .text.charge_detect_patch
-                0x0000000010007818        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007818                charge_detect_patch
- .text.bt_map_data_callback
                 0x000000001000781a        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000781a                bt_map_data_callback
- .text.a2dp_set_aac_max_bitrate
+                0x000000001000781a                charge_ntc_stop
+ .text.charge_detect_patch
                 0x000000001000781c        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000781c                a2dp_set_aac_max_bitrate
+                0x000000001000781c                charge_detect_patch
+ .text.bt_map_data_callback
+                0x000000001000781e        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x000000001000781e                bt_map_data_callback
+ .text.a2dp_set_aac_max_bitrate
+                0x0000000010007820        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007820                a2dp_set_aac_max_bitrate
  .text.btstack_tws_remote_send_nor_reconnect
-                0x000000001000781e        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000781e                btstack_tws_remote_send_nor_reconnect
- .text.tws_remote_reconnect_nor
                 0x0000000010007822        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007822                tws_remote_reconnect_nor
+                0x0000000010007822                btstack_tws_remote_send_nor_reconnect
+ .text.tws_remote_reconnect_nor
+                0x0000000010007826        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007826                tws_remote_reconnect_nor
  .text.tws_remote_set_reconnect
-                0x0000000010007826        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007826                tws_remote_set_reconnect
+                0x000000001000782a        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x000000001000782a                tws_remote_set_reconnect
  .text.bt_low_latency_clr_busy
-                0x0000000010007828        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007828                bt_low_latency_clr_busy
+                0x000000001000782c        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x000000001000782c                bt_low_latency_clr_busy
  .text.avdtp_set_configuration_rsp_hook
-                0x000000001000782a        0x4 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000782a                avdtp_set_configuration_rsp_hook
+                0x000000001000782e        0x4 Output\obj\platform\libs\strong_symbol.o
+                0x000000001000782e                avdtp_set_configuration_rsp_hook
  .text.vusb_huart_set_patch
-                0x000000001000782e        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x000000001000782e                vusb_huart_set_patch
+                0x0000000010007832        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007832                vusb_huart_set_patch
  .text.dac_digvol_fade_patch
-                0x0000000010007830        0x2 Output\obj\platform\libs\strong_symbol.o
-                0x0000000010007830                dac_digvol_fade_patch
- .text.func     0x0000000010007832        0x4 Output\obj\projects\earphone\config.o
-                0x0000000010007832                get_funcs_total
+                0x0000000010007834        0x2 Output\obj\platform\libs\strong_symbol.o
+                0x0000000010007834                dac_digvol_fade_patch
+ .text.func     0x0000000010007836        0x4 Output\obj\projects\earphone\config.o
+                0x0000000010007836                get_funcs_total
  .text.startup.init
-                0x0000000010007836       0x42 Output\obj\projects\earphone\main.o
-                0x0000000010007836                platform_user_init
+                0x000000001000783a       0x42 Output\obj\projects\earphone\main.o
+                0x000000001000783a                platform_user_init
  .text.startup.main
-                0x0000000010007878       0x22 Output\obj\projects\earphone\main.o
-                0x0000000010007878                main
+                0x000000001000787c       0x22 Output\obj\projects\earphone\main.o
+                0x000000001000787c                main
  .text.user_def_key_msg
-                0x000000001000789a      0x180 Output\obj\projects\earphone\message\msg_bt.o
-                0x000000001000789a                user_def_key_msg
+                0x000000001000789e      0x180 Output\obj\projects\earphone\message\msg_bt.o
+                0x000000001000789e                user_def_key_msg
  .text.bt_tws_pair_mode
-                0x0000000010007a1a       0x5a Output\obj\projects\earphone\message\msg_bt.o
-                0x0000000010007a1a                bt_tws_pair_mode
+                0x0000000010007a1e       0x5a Output\obj\projects\earphone\message\msg_bt.o
+                0x0000000010007a1e                bt_tws_pair_mode
  .text.bt_ring_reject
-                0x0000000010007a74       0x28 Output\obj\projects\earphone\message\msg_bt.o
-                0x0000000010007a74                bt_ring_reject
+                0x0000000010007a78       0x28 Output\obj\projects\earphone\message\msg_bt.o
+                0x0000000010007a78                bt_ring_reject
  .text.func_bt_message_do
-                0x0000000010007a9c      0x488 Output\obj\projects\earphone\message\msg_bt.o
-                0x0000000010007a9c                func_bt_message_do
+                0x0000000010007aa0      0x488 Output\obj\projects\earphone\message\msg_bt.o
+                0x0000000010007aa0                func_bt_message_do
  .text.sfunc_bt_ring_message_do
-                0x0000000010007f24      0x156 Output\obj\projects\earphone\message\msg_bt.o
-                0x0000000010007f24                sfunc_bt_ring_message_do
+                0x0000000010007f28      0x156 Output\obj\projects\earphone\message\msg_bt.o
+                0x0000000010007f28                sfunc_bt_ring_message_do
  .text.sfunc_bt_call_message_do
-                0x000000001000807a      0x1ea Output\obj\projects\earphone\message\msg_bt.o
-                0x000000001000807a                sfunc_bt_call_message_do
+                0x000000001000807e      0x1ea Output\obj\projects\earphone\message\msg_bt.o
+                0x000000001000807e                sfunc_bt_call_message_do
  .text.plugin_init
-                0x0000000010008264        0x2 Output\obj\projects\earphone\plugin\plugin.o
-                0x0000000010008264                plugin_init
- .text.eq       0x0000000010008266       0x2a Output\obj\projects\earphone\plugin\plugin.o
-                0x0000000010008266                plugin_music_eq
+                0x0000000010008268        0x2 Output\obj\projects\earphone\plugin\plugin.o
+                0x0000000010008268                plugin_init
+ .text.eq       0x000000001000826a       0x2a Output\obj\projects\earphone\plugin\plugin.o
+                0x000000001000826a                plugin_music_eq
  .text.plugin_var_init
-                0x0000000010008290       0x38 Output\obj\projects\earphone\plugin\plugin.o
-                0x0000000010008290                plugin_var_init
+                0x0000000010008294       0x38 Output\obj\projects\earphone\plugin\plugin.o
+                0x0000000010008294                plugin_var_init
  .text.led_func_init
-                0x00000000100082c8      0x168 Output\obj\projects\earphone\port\port_led.o
-                0x00000000100082c8                led_func_init
+                0x00000000100082cc      0x168 Output\obj\projects\earphone\port\port_led.o
+                0x00000000100082cc                led_func_init
  .text.pll_vco_band_trim
-                0x0000000010008430      0x188 ..\..\platform\libs\libplatform.a(audio.o)
-                0x0000000010008430                pll_vco_band_trim
+                0x0000000010008434      0x188 ..\..\platform\libs\libplatform.a(audio.o)
+                0x0000000010008434                pll_vco_band_trim
  .text.adpll_divider_update
-                0x00000000100085b8       0x38 ..\..\platform\libs\libplatform.a(audio.o)
-                0x00000000100085b8                adpll_divider_update
+                0x00000000100085bc       0x38 ..\..\platform\libs\libplatform.a(audio.o)
+                0x00000000100085bc                adpll_divider_update
  .text.adpll_spr_set
-                0x00000000100085f0       0x32 ..\..\platform\libs\libplatform.a(audio.o)
-                0x00000000100085f0                adpll_spr_set
+                0x00000000100085f4       0x32 ..\..\platform\libs\libplatform.a(audio.o)
+                0x00000000100085f4                adpll_spr_set
  .text.adpll_init
-                0x0000000010008622      0x14e ..\..\platform\libs\libplatform.a(audio.o)
-                0x0000000010008622                adpll_init
+                0x0000000010008626      0x14e ..\..\platform\libs\libplatform.a(audio.o)
+                0x0000000010008626                adpll_init
  .text.anc_var_init
-                0x0000000010008770       0x1e ..\..\platform\libs\libplatform.a(audio_anc.o)
-                0x0000000010008770                anc_var_init
- .text.eq       0x000000001000878e      0x144 ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x000000001000878e                music_eq_off
-                0x0000000010008796                mic_eq_fade_out
-                0x0000000010008798                mic_drc_off
-                0x00000000100087a8                mic_eq_off
-                0x00000000100087c6                music_set_eq
-                0x000000001000880a                mic_set_eq
-                0x0000000010008850                music_set_eq_by_res
- .text.drc      0x00000000100088d2        0xe ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x00000000100088d2                music_drc_off
+                0x0000000010008774       0x1e ..\..\platform\libs\libplatform.a(audio_anc.o)
+                0x0000000010008774                anc_var_init
+ .text.eq       0x0000000010008792      0x144 ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x0000000010008792                music_eq_off
+                0x000000001000879a                mic_eq_fade_out
+                0x000000001000879c                mic_drc_off
+                0x00000000100087ac                mic_eq_off
+                0x00000000100087ca                music_set_eq
+                0x000000001000880e                mic_set_eq
+                0x0000000010008854                music_set_eq_by_res
+ .text.drc      0x00000000100088d6        0xe ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x00000000100088d6                music_drc_off
  .text.eq_res_crc_check
-                0x00000000100088e0       0xf0 ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x00000000100088e0                eq_res_crc_check
- .text.eq.mic   0x00000000100089d0       0x7e ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x00000000100089d0                mic_set_eq_by_res
+                0x00000000100088e4       0xf0 ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x00000000100088e4                eq_res_crc_check
+ .text.eq.mic   0x00000000100089d4       0x7e ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x00000000100089d4                mic_set_eq_by_res
  .text.drc_param_cb_set
-                0x0000000010008a4e       0x3e ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x0000000010008a4e                drc_param_cb_set
+                0x0000000010008a52       0x3e ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x0000000010008a52                drc_param_cb_set
  .text.drc_res_crc_check
-                0x0000000010008a8c       0x6e ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x0000000010008a8c                drc_res_crc_check
+                0x0000000010008a90       0x6e ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x0000000010008a90                drc_res_crc_check
  .text.music_set_drc_by_res
-                0x0000000010008afa       0x5a ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x0000000010008afa                music_set_drc_by_res
+                0x0000000010008afe       0x5a ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x0000000010008afe                music_set_drc_by_res
  .text.mic_set_drc_by_res
-                0x0000000010008b54       0x5a ..\..\platform\libs\libplatform.a(audio_eq.o)
-                0x0000000010008b54                mic_set_drc_by_res
- .text.dac      0x0000000010008bae      0x180 ..\..\platform\libs\libplatform.a(dac.o)
-                0x0000000010008bae                src1_put_zero
-                0x0000000010008bce                dac_power_off_pulldown_daclr
-                0x0000000010008c3c                dac_power_off_restore_daclr
-                0x0000000010008cb4                dac_channel_enable
-                0x0000000010008ce0                dac_channel_disable
- .text.sdadc    0x0000000010008d2e      0x220 ..\..\platform\libs\libplatform.a(sdadc.o)
-                0x0000000010008d2e                sdadc_init
-                0x0000000010008e32                sdadc_start
-                0x0000000010008ec0                sdadc_exit
+                0x0000000010008b58       0x5a ..\..\platform\libs\libplatform.a(audio_eq.o)
+                0x0000000010008b58                mic_set_drc_by_res
+ .text.dac      0x0000000010008bb2      0x180 ..\..\platform\libs\libplatform.a(dac.o)
+                0x0000000010008bb2                src1_put_zero
+                0x0000000010008bd2                dac_power_off_pulldown_daclr
+                0x0000000010008c40                dac_power_off_restore_daclr
+                0x0000000010008cb8                dac_channel_enable
+                0x0000000010008ce4                dac_channel_disable
+ .text.sdadc    0x0000000010008d32      0x220 ..\..\platform\libs\libplatform.a(sdadc.o)
+                0x0000000010008d32                sdadc_init
+                0x0000000010008e36                sdadc_start
+                0x0000000010008ec4                sdadc_exit
  .text.sdadc_var_init
-                0x0000000010008f4e       0x20 ..\..\platform\libs\libplatform.a(sdadc.o)
-                0x0000000010008f4e                sdadc_var_init
+                0x0000000010008f52       0x20 ..\..\platform\libs\libplatform.a(sdadc.o)
+                0x0000000010008f52                sdadc_var_init
  .text.btstack_popup_ctrl
-                0x0000000010008f6e        0x8 ..\..\platform\libs\libplatform.a(bt.o)
-                0x0000000010008f6e                btstack_popup_ctrl
+                0x0000000010008f72        0x8 ..\..\platform\libs\libplatform.a(bt.o)
+                0x0000000010008f72                btstack_popup_ctrl
  .text.aap_init_var
-                0x0000000010008f76        0x8 ..\..\platform\libs\libplatform.a(bt.o)
-                0x0000000010008f76                aap_init_var
+                0x0000000010008f7a        0x8 ..\..\platform\libs\libplatform.a(bt.o)
+                0x0000000010008f7a                aap_init_var
  .text.aap_init
-                0x0000000010008f7e        0x8 ..\..\platform\libs\libplatform.a(bt.o)
-                0x0000000010008f7e                aap_init
- .text.aec.nr   0x0000000010008f86      0x1a8 ..\..\platform\libs\libplatform.a(bt_aec.o)
-                0x0000000010008f86                bt_aec_nr_dnn_gain2_smooth
-                0x000000001000904e                dnn_noise_sum_dynamic_eq
+                0x0000000010008f82        0x8 ..\..\platform\libs\libplatform.a(bt.o)
+                0x0000000010008f82                aap_init
+ .text.aec.nr   0x0000000010008f8a      0x1a8 ..\..\platform\libs\libplatform.a(bt_aec.o)
+                0x0000000010008f8a                bt_aec_nr_dnn_gain2_smooth
+                0x0000000010009052                dnn_noise_sum_dynamic_eq
  .text.aec_init
-                0x000000001000912e      0x172 ..\..\platform\libs\libplatform.a(bt_aec.o)
-                0x000000001000912e                aec_init
+                0x0000000010009132      0x172 ..\..\platform\libs\libplatform.a(bt_aec.o)
+                0x0000000010009132                aec_init
  .text.bt_voice_init
-                0x00000000100092a0      0x128 ..\..\platform\libs\libplatform.a(bt_sco.o)
-                0x00000000100092a0                bt_voice_init
+                0x00000000100092a4      0x128 ..\..\platform\libs\libplatform.a(bt_sco.o)
+                0x00000000100092a4                bt_voice_init
  .text.bt_voice_exit
-                0x00000000100093c8       0xa6 ..\..\platform\libs\libplatform.a(bt_sco.o)
-                0x00000000100093c8                bt_voice_exit
+                0x00000000100093cc       0xa6 ..\..\platform\libs\libplatform.a(bt_sco.o)
+                0x00000000100093cc                bt_voice_exit
  .text.cm_loadpage
-                0x000000001000946e       0xa8 ..\..\platform\libs\libplatform.a(cm.o)
+                0x0000000010009472       0xa8 ..\..\platform\libs\libplatform.a(cm.o)
  .text.cm_next_freepage
-                0x0000000010009516       0x54 ..\..\platform\libs\libplatform.a(cm.o)
+                0x000000001000951a       0x54 ..\..\platform\libs\libplatform.a(cm.o)
  .text.cm_movepage
-                0x000000001000956a       0x5e ..\..\platform\libs\libplatform.a(cm.o)
+                0x000000001000956e       0x5e ..\..\platform\libs\libplatform.a(cm.o)
  .text.cm_release
-                0x00000000100095c8      0x112 ..\..\platform\libs\libplatform.a(cm.o)
+                0x00000000100095cc      0x112 ..\..\platform\libs\libplatform.a(cm.o)
  .text.cm_savepage
-                0x00000000100096da       0xc2 ..\..\platform\libs\libplatform.a(cm.o)
+                0x00000000100096de       0xc2 ..\..\platform\libs\libplatform.a(cm.o)
  .text.cm_check_loadpage
-                0x000000001000979c       0xb0 ..\..\platform\libs\libplatform.a(cm.o)
- .text.cm_sync  0x000000001000984c       0x40 ..\..\platform\libs\libplatform.a(cm.o)
-                0x000000001000984c                cm_sync
- .text.cm_read  0x000000001000988c       0x44 ..\..\platform\libs\libplatform.a(cm.o)
-                0x000000001000988c                cm_read
+                0x00000000100097a0       0xb0 ..\..\platform\libs\libplatform.a(cm.o)
+ .text.cm_sync  0x0000000010009850       0x40 ..\..\platform\libs\libplatform.a(cm.o)
+                0x0000000010009850                cm_sync
+ .text.cm_read  0x0000000010009890       0x44 ..\..\platform\libs\libplatform.a(cm.o)
+                0x0000000010009890                cm_read
  .text.cm_write
-                0x00000000100098d0       0x5c ..\..\platform\libs\libplatform.a(cm.o)
-                0x00000000100098d0                cm_write
- .text.cm_init  0x000000001000992c      0x1fa ..\..\platform\libs\libplatform.a(cm.o)
-                0x000000001000992c                cm_init
+                0x00000000100098d4       0x5c ..\..\platform\libs\libplatform.a(cm.o)
+                0x00000000100098d4                cm_write
+ .text.cm_init  0x0000000010009930      0x1fa ..\..\platform\libs\libplatform.a(cm.o)
+                0x0000000010009930                cm_init
  .text.xcfg_init
-                0x0000000010009b26       0x56 ..\..\platform\libs\libplatform.a(xcfg.o)
-                0x0000000010009b26                xcfg_init
+                0x0000000010009b2a       0x56 ..\..\platform\libs\libplatform.a(xcfg.o)
+                0x0000000010009b2a                xcfg_init
  .text.bt_warning_set_playing
-                0x0000000010009b7c        0x2 ..\..\platform\libs\libplatform.a(esbc.o)
-                0x0000000010009b7c                bt_warning_set_playing
+                0x0000000010009b80        0x2 ..\..\platform\libs\libplatform.a(esbc.o)
+                0x0000000010009b80                bt_warning_set_playing
  .text.esbc_res_play
-                0x0000000010009b7e       0x3a ..\..\platform\libs\libplatform.a(esbc.o)
-                0x0000000010009b7e                esbc_res_play
+                0x0000000010009b82       0x3a ..\..\platform\libs\libplatform.a(esbc.o)
+                0x0000000010009b82                esbc_res_play
  .text.esbc_inner_res_play
-                0x0000000010009bb8       0x56 ..\..\platform\libs\libplatform.a(esbc.o)
-                0x0000000010009bb8                esbc_inner_res_play
+                0x0000000010009bbc       0x56 ..\..\platform\libs\libplatform.a(esbc.o)
+                0x0000000010009bbc                esbc_inner_res_play
  .text.main_startup
-                0x0000000010009c0e        0xa ..\..\platform\libs\libplatform.a(main.o)
-                0x0000000010009c0e                main_startup
+                0x0000000010009c12        0xa ..\..\platform\libs\libplatform.a(main.o)
+                0x0000000010009c12                main_startup
  .text.bt_sco_patch_enter
-                0x0000000010009c18       0x90 ..\..\platform\libs\libplatform.a(main.o)
-                0x0000000010009c18                bt_sco_patch_enter
+                0x0000000010009c1c       0x90 ..\..\platform\libs\libplatform.a(main.o)
+                0x0000000010009c1c                bt_sco_patch_enter
  .text.bt_sco_patch_exit
-                0x0000000010009ca8       0x3e ..\..\platform\libs\libplatform.a(main.o)
-                0x0000000010009ca8                bt_sco_patch_exit
+                0x0000000010009cac       0x3e ..\..\platform\libs\libplatform.a(main.o)
+                0x0000000010009cac                bt_sco_patch_exit
  .text.sys_patch_set
-                0x0000000010009ce6      0x122 ..\..\platform\libs\libplatform.a(main.o)
-                0x0000000010009ce6                sys_patch_set
+                0x0000000010009cea      0x122 ..\..\platform\libs\libplatform.a(main.o)
+                0x0000000010009cea                sys_patch_set
  .text.platform_main_do
-                0x0000000010009e08       0x7a ..\..\platform\libs\libplatform.a(main.o)
-                0x0000000010009e08                platform_main_do
+                0x0000000010009e0c       0x7a ..\..\platform\libs\libplatform.a(main.o)
+                0x0000000010009e0c                platform_main_do
  .text.charge_init
-                0x0000000010009e82      0x164 ..\..\platform\libs\libplatform.a(charge.o)
-                0x0000000010009e82                charge_init
+                0x0000000010009e86      0x164 ..\..\platform\libs\libplatform.a(charge.o)
+                0x0000000010009e86                charge_init
  .text.debug_set
-                0x0000000010009fe6       0x14 ..\..\platform\libs\libplatform.a(debug.o)
-                0x0000000010009fe6                debug_set
+                0x0000000010009fea       0x14 ..\..\platform\libs\libplatform.a(debug.o)
+                0x0000000010009fea                debug_set
  .text.patch_init
-                0x0000000010009ffa       0x54 ..\..\platform\libs\libplatform.a(patch.o)
-                0x0000000010009ffa                patch_init
+                0x0000000010009ffe       0x54 ..\..\platform\libs\libplatform.a(patch.o)
+                0x0000000010009ffe                patch_init
  .text.pmu_init
-                0x000000001000a04e      0x3b2 ..\..\platform\libs\libplatform.a(power.o)
-                0x000000001000a04e                pmu_init
+                0x000000001000a052      0x3b2 ..\..\platform\libs\libplatform.a(power.o)
+                0x000000001000a052                pmu_init
  .text.qtest_is_loading_local_addr
-                0x000000001000a400       0x2a ..\..\platform\libs\libplatform.a(qtest.o)
-                0x000000001000a400                qtest_is_loading_local_addr
+                0x000000001000a404       0x2a ..\..\platform\libs\libplatform.a(qtest.o)
+                0x000000001000a404                qtest_is_loading_local_addr
  .text.qtest_feature_is_btdisconnet_pwroff
-                0x000000001000a42a        0xe ..\..\platform\libs\libplatform.a(qtest.o)
-                0x000000001000a42a                qtest_feature_is_btdisconnet_pwroff
+                0x000000001000a42e        0xe ..\..\platform\libs\libplatform.a(qtest.o)
+                0x000000001000a42e                qtest_feature_is_btdisconnet_pwroff
  .text.qtest_xcfg_init
-                0x000000001000a438       0x56 ..\..\platform\libs\libplatform.a(qtest.o)
-                0x000000001000a438                qtest_xcfg_init
+                0x000000001000a43c       0x56 ..\..\platform\libs\libplatform.a(qtest.o)
+                0x000000001000a43c                qtest_xcfg_init
  .text.bsp_qtest_init
-                0x000000001000a48e       0x72 ..\..\platform\libs\libplatform.a(qtest.o)
-                0x000000001000a48e                bsp_qtest_init
- *fill*         0x000000001000a500        0x0 
+                0x000000001000a492       0x72 ..\..\platform\libs\libplatform.a(qtest.o)
+                0x000000001000a492                bsp_qtest_init
+ *fill*         0x000000001000a504       0xfc 
  .text.sys_ahook_func
-                0x000000001000a500       0xf6 ..\..\platform\libs\libplatform.a(sys_hook.o)
-                0x000000001000a500                sys_ahook_func
- *fill*         0x000000001000a5f6        0xa 
+                0x000000001000a600       0xf6 ..\..\platform\libs\libplatform.a(sys_hook.o)
+                0x000000001000a600                sys_ahook_func
+ *fill*         0x000000001000a6f6        0xa 
  .text.sys_bhook_func
-                0x000000001000a600      0x1e0 ..\..\platform\libs\libplatform.a(sys_hook.o)
-                0x000000001000a600                sys_bhook_func
- *fill*         0x000000001000a7e0       0x20 
+                0x000000001000a700      0x1e0 ..\..\platform\libs\libplatform.a(sys_hook.o)
+                0x000000001000a700                sys_bhook_func
+ *fill*         0x000000001000a8e0      0x120 
  .text.sys_hook_func
-                0x000000001000a800      0x1ae ..\..\platform\libs\libplatform.a(sys_hook.o)
-                0x000000001000a800                sys_hook_func
+                0x000000001000aa00      0x1ae ..\..\platform\libs\libplatform.a(sys_hook.o)
+                0x000000001000aa00                sys_hook_func
  .text.sys_hook_var_init
-                0x000000001000a9ae       0xaa ..\..\platform\libs\libplatform.a(sys_hook.o)
-                0x000000001000a9ae                sys_hook_var_init
+                0x000000001000abae       0xaa ..\..\platform\libs\libplatform.a(sys_hook.o)
+                0x000000001000abae                sys_hook_var_init
  .text.voltage.trim
-                0x000000001000aa58      0x134 ..\..\platform\libs\libplatform.a(voltage_trim.o)
-                0x000000001000aa58                voltage_trim_value_init
+                0x000000001000ac58      0x134 ..\..\platform\libs\libplatform.a(voltage_trim.o)
+                0x000000001000ac58                voltage_trim_value_init
  .text.irq_init
-                0x000000001000ab8c        0x2 ..\..\platform\libs\libplatform.a(interrupt.o)
-                0x000000001000ab8c                irq_init
+                0x000000001000ad8c        0x2 ..\..\platform\libs\libplatform.a(interrupt.o)
+                0x000000001000ad8c                irq_init
  .text.thread_main_entry
-                0x000000001000ab8e      0x318 ..\..\platform\libs\libplatform.a(startup.o)
+                0x000000001000ad8e      0x318 ..\..\platform\libs\libplatform.a(startup.o)
  .text.startup.init
-                0x000000001000aea6      0x168 ..\..\platform\libs\libplatform.a(startup.o)
-                0x000000001000aea6                sys_startup
- *fill*         0x000000001000b00e       0x72 
+                0x000000001000b0a6      0x168 ..\..\platform\libs\libplatform.a(startup.o)
+                0x000000001000b0a6                sys_startup
+ *fill*         0x000000001000b20e       0x72 
  .text.set_sys_clk_do
-                0x000000001000b080       0x7a ..\..\platform\libs\libplatform.a(sys_clk.o)
-                0x000000001000b080                set_sys_clk_do
+                0x000000001000b280       0x7a ..\..\platform\libs\libplatform.a(sys_clk.o)
+                0x000000001000b280                set_sys_clk_do
  .text.sys_clk_set_do
-                0x000000001000b0fa       0xf6 ..\..\platform\libs\libplatform.a(sys_clk.o)
-                0x000000001000b0fa                sys_clk_set_do
+                0x000000001000b2fa       0xf6 ..\..\platform\libs\libplatform.a(sys_clk.o)
+                0x000000001000b2fa                sys_clk_set_do
  .text.lc_tsco_free_link
-                0x000000001000b1f0       0x74 ..\..\platform\libs\libbtstack.a(ext_tsco.o)
-                0x000000001000b1f0                lc_tsco_free_link
+                0x000000001000b3f0       0x74 ..\..\platform\libs\libbtstack.a(ext_tsco.o)
+                0x000000001000b3f0                lc_tsco_free_link
  .text.lc_con_cmp
-                0x000000001000b264      0x190 ..\..\platform\libs\libbtstack.a(lc.o)
-                0x000000001000b264                lc_con_cmp
+                0x000000001000b464      0x190 ..\..\platform\libs\libbtstack.a(lc.o)
+                0x000000001000b464                lc_con_cmp
  .text.tws_get_snoop_plugin_service_hook
-                0x000000001000b3f4       0x8c ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b3f4                tws_get_snoop_plugin_service_hook
+                0x000000001000b5f4       0x8c ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b5f4                tws_get_snoop_plugin_service_hook
  .text.tws_set_snoop_plugin_service_hook
-                0x000000001000b480       0xc2 ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b480                tws_set_snoop_plugin_service_hook
+                0x000000001000b680       0xc2 ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b680                tws_set_snoop_plugin_service_hook
  .text.tws_get_rfcomm_service_fix
-                0x000000001000b542       0x36 ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b542                tws_get_rfcomm_service_fix
+                0x000000001000b742       0x36 ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b742                tws_get_rfcomm_service_fix
  .text.tws_get_snoop_service
-                0x000000001000b578       0x6c ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b578                tws_get_snoop_service
+                0x000000001000b778       0x6c ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b778                tws_get_snoop_service
  .text.tws_set_rfcomm_service_fix
-                0x000000001000b5e4       0x86 ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b5e4                tws_set_rfcomm_service_fix
+                0x000000001000b7e4       0x86 ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b7e4                tws_set_rfcomm_service_fix
  .text.tws_set_snoop_service
-                0x000000001000b66a      0x10e ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b66a                tws_set_snoop_service
+                0x000000001000b86a      0x10e ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b86a                tws_set_snoop_service
  .text.tws_switch_service_ok
-                0x000000001000b778      0x35e ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000b778                tws_switch_service_ok
+                0x000000001000b978      0x35e ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000b978                tws_switch_service_ok
  .text.tws_send_snoop_service_cfm
-                0x000000001000bad6        0x4 ..\..\platform\libs\libbtstack.a(tws_acl.o)
-                0x000000001000bad6                tws_send_snoop_service_cfm
+                0x000000001000bcd6        0x4 ..\..\platform\libs\libbtstack.a(tws_acl.o)
+                0x000000001000bcd6                tws_send_snoop_service_cfm
  .text.tws_switch_save_acl_tx_fix
-                0x000000001000bada      0x17a ..\..\platform\libs\libbtstack.a(tws_switch.o)
-                0x000000001000bada                tws_switch_save_acl_tx_fix
- .text.rf_init  0x000000001000bc54       0x60 ..\..\platform\libs\libbtstack.a(rf.o)
-                0x000000001000bc54                rf_init
+                0x000000001000bcda      0x17a ..\..\platform\libs\libbtstack.a(tws_switch.o)
+                0x000000001000bcda                tws_switch_save_acl_tx_fix
+ .text.rf_init  0x000000001000be54       0x60 ..\..\platform\libs\libbtstack.a(rf.o)
+                0x000000001000be54                rf_init
  .text.bias_en_rx
-                0x000000001000bcb4       0x14 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bcb4                bias_en_rx
+                0x000000001000beb4       0x14 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000beb4                bias_en_rx
  .text.bias_en_tx_dcoc
-                0x000000001000bcc8       0x14 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bcc8                bias_en_tx_dcoc
+                0x000000001000bec8       0x14 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000bec8                bias_en_tx_dcoc
  .text.sx_en_rx
-                0x000000001000bcdc       0x2a ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bcdc                sx_en_rx
+                0x000000001000bedc       0x2a ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000bedc                sx_en_rx
  .text.sx_en_rx_rc_trim
-                0x000000001000bd06       0x22 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bd06                sx_en_rx_rc_trim
+                0x000000001000bf06       0x22 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000bf06                sx_en_rx_rc_trim
  .text.rx_en_rx_bq_dcoc
-                0x000000001000bd28       0x4c ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bd28                rx_en_rx_bq_dcoc
+                0x000000001000bf28       0x4c ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000bf28                rx_en_rx_bq_dcoc
  .text.tx_en_tx_dcoc
-                0x000000001000bd74       0x2c ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bd74                tx_en_tx_dcoc
+                0x000000001000bf74       0x2c ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000bf74                tx_en_tx_dcoc
  .text.rf_rx_cacl_dc
-                0x000000001000bda0       0x98 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000bda0                rf_rx_cacl_dc
+                0x000000001000bfa0       0x98 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000bfa0                rf_rx_cacl_dc
  .text.rf_trim_rxdc
-                0x000000001000be38      0x1dc ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000be38                rf_trim_rxdc
+                0x000000001000c038      0x1dc ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c038                rf_trim_rxdc
  .text.rfphy_rxdc_cal
-                0x000000001000c014       0xf0 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c014                rfphy_rxdc_cal
+                0x000000001000c214       0xf0 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c214                rfphy_rxdc_cal
  .text.check_compare_ok
-                0x000000001000c104       0x66 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c104                check_compare_ok
+                0x000000001000c304       0x66 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c304                check_compare_ok
  .text.rfphy_txdc_cal_do
-                0x000000001000c16a      0x27c ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c16a                rfphy_txdc_cal_do
+                0x000000001000c36a      0x27c ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c36a                rfphy_txdc_cal_do
  .text.rfphy_txdc_cal
-                0x000000001000c3e6      0x116 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c3e6                rfphy_txdc_cal
+                0x000000001000c5e6      0x116 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c5e6                rfphy_txdc_cal
  .text.rfphy_txrx_init
-                0x000000001000c4fc      0x282 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c4fc                rfphy_txrx_init
+                0x000000001000c6fc      0x282 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c6fc                rfphy_txrx_init
  .text.rfphy_agc_init
-                0x000000001000c77e      0x12e ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c77e                rfphy_agc_init
+                0x000000001000c97e      0x12e ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000c97e                rfphy_agc_init
  .text.rfphy_txpwr_init
-                0x000000001000c8ac       0xb6 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c8ac                rfphy_txpwr_init
+                0x000000001000caac       0xb6 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000caac                rfphy_txpwr_init
  .text.rfphy_txrxdly_init
-                0x000000001000c962       0xb8 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000c962                rfphy_txrxdly_init
+                0x000000001000cb62       0xb8 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000cb62                rfphy_txrxdly_init
  .text.rfphy_init
-                0x000000001000ca1a      0x104 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000ca1a                rfphy_init
+                0x000000001000cc1a      0x104 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000cc1a                rfphy_init
  .text.modem_init
-                0x000000001000cb1e       0xd2 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000cb1e                modem_init
+                0x000000001000cd1e       0xd2 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000cd1e                modem_init
  .text.rfphy_api_init
-                0x000000001000cbf0       0x26 ..\..\platform\libs\libbtstack.a(rf_viva.o)
-                0x000000001000cbf0                rfphy_api_init
+                0x000000001000cdf0       0x26 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+                0x000000001000cdf0                rfphy_api_init
  .text.stack.api
-                0x000000001000cc16      0x108 ..\..\platform\libs\libbtstack.a(bt_api.o)
-                0x000000001000cc16                bt_connect_for_the_first_time
-                0x000000001000cc34                bt_connect_address
-                0x000000001000cc3c                bt_nor_connect
-                0x000000001000cc56                bt_nor_get_link_info_addr
-                0x000000001000cc86                bt_disconnect
-                0x000000001000ccc4                bt_off
-                0x000000001000cd1c                bt_api_init
+                0x000000001000ce16      0x108 ..\..\platform\libs\libbtstack.a(bt_api.o)
+                0x000000001000ce16                bt_connect_for_the_first_time
+                0x000000001000ce34                bt_connect_address
+                0x000000001000ce3c                bt_nor_connect
+                0x000000001000ce56                bt_nor_get_link_info_addr
+                0x000000001000ce86                bt_disconnect
+                0x000000001000cec4                bt_off
+                0x000000001000cf1c                bt_api_init
  .text.bt_wait_lc_link_disconnect
-                0x000000001000cd1e       0x2c ..\..\platform\libs\libbtstack.a(bt_api.o)
-                0x000000001000cd1e                bt_wait_lc_link_disconnect
+                0x000000001000cf1e       0x2c ..\..\platform\libs\libbtstack.a(bt_api.o)
+                0x000000001000cf1e                bt_wait_lc_link_disconnect
  .text.bt_talking_pen_fix_enable
-                0x000000001000cd4a        0x4 ..\..\platform\libs\libbtstack.a(bt_api.o)
-                0x000000001000cd4a                bt_talking_pen_fix_enable
+                0x000000001000cf4a        0x4 ..\..\platform\libs\libbtstack.a(bt_api.o)
+                0x000000001000cf4a                bt_talking_pen_fix_enable
  .text.bt_get_tws_remote_status
-                0x000000001000cd4e       0x1a ..\..\platform\libs\libbtstack.a(bt_api.o)
-                0x000000001000cd4e                bt_get_tws_remote_status
+                0x000000001000cf4e       0x1a ..\..\platform\libs\libbtstack.a(bt_api.o)
+                0x000000001000cf4e                bt_get_tws_remote_status
  .text.link_ctrl_timer_hid_recon_handler
-                0x000000001000cd68       0x7a ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000cd68                link_ctrl_timer_hid_recon_handler
+                0x000000001000cf68       0x7a ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000cf68                link_ctrl_timer_hid_recon_handler
  .text.stack.api
-                0x000000001000cde2      0x71a ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000cde2                btstack_play_pause
-                0x000000001000ce5e                btstack_call_answer_incom
-                0x000000001000ce74                btstack_call_answer_incom_reject_other
-                0x000000001000ce8a                btstack_call_terminate
-                0x000000001000cf46                btstack_siri_on
-                0x000000001000cf6e                btstack_play_private_switch
-                0x000000001000d01c                bt_is_support_vol_ctrl
-                0x000000001000d05e                btstack_send_tws_vol_ctrl_status
-                0x000000001000d06c                bt_init
-                0x000000001000d09c                lc_disconnect
-                0x000000001000d15c                btstack_disconnect_do
-                0x000000001000d340                btstack_disconnect
-                0x000000001000d36a                btstack_volume_change_do
-                0x000000001000d3b4                btstack_volume_change
-                0x000000001000d3fa                bt_get_a2dp_status
+                0x000000001000cfe2      0x71a ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000cfe2                btstack_play_pause
+                0x000000001000d05e                btstack_call_answer_incom
+                0x000000001000d074                btstack_call_answer_incom_reject_other
+                0x000000001000d08a                btstack_call_terminate
+                0x000000001000d146                btstack_siri_on
+                0x000000001000d16e                btstack_play_private_switch
+                0x000000001000d21c                bt_is_support_vol_ctrl
+                0x000000001000d25e                btstack_send_tws_vol_ctrl_status
+                0x000000001000d26c                bt_init
+                0x000000001000d29c                lc_disconnect
+                0x000000001000d35c                btstack_disconnect_do
+                0x000000001000d540                btstack_disconnect
+                0x000000001000d56a                btstack_volume_change_do
+                0x000000001000d5b4                btstack_volume_change
+                0x000000001000d5fa                bt_get_a2dp_status
  .text.btstack_connect_address
-                0x000000001000d4fc       0x5c ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d4fc                btstack_connect_address
+                0x000000001000d6fc       0x5c ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d6fc                btstack_connect_address
  .text.btstack_tws_send_set_bypass
-                0x000000001000d558        0xa ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d558                btstack_tws_send_set_bypass
+                0x000000001000d758        0xa ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d758                btstack_tws_send_set_bypass
  .text.btstack_reset_bt_name
-                0x000000001000d562        0x8 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d562                btstack_reset_bt_name
+                0x000000001000d762        0x8 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d762                btstack_reset_bt_name
  .text.btstack_low_latency_en
-                0x000000001000d56a       0x14 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d56a                btstack_low_latency_en
+                0x000000001000d76a       0x14 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d76a                btstack_low_latency_en
  .text.btstack_low_latency_dis
-                0x000000001000d57e       0x14 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d57e                btstack_low_latency_dis
+                0x000000001000d77e       0x14 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d77e                btstack_low_latency_dis
  .text.btstack_audio_enable
-                0x000000001000d592       0x98 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d592                btstack_audio_enable
+                0x000000001000d792       0x98 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d792                btstack_audio_enable
  .text.btstack_audio_bypass
-                0x000000001000d62a       0x96 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d62a                btstack_audio_bypass
+                0x000000001000d82a       0x96 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d82a                btstack_audio_bypass
  .text.btstack_var_init
-                0x000000001000d6c0       0x68 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d6c0                btstack_var_init
+                0x000000001000d8c0       0x68 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d8c0                btstack_var_init
  .text.btstack_establish_service_connection_do
-                0x000000001000d728       0xb0 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d728                btstack_establish_service_connection_do
+                0x000000001000d928       0xb0 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d928                btstack_establish_service_connection_do
  .text.btstack_establish_service_connection
-                0x000000001000d7d8        0xc ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d7d8                btstack_establish_service_connection
+                0x000000001000d9d8        0xc ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d9d8                btstack_establish_service_connection
  .text.btstack_continue_establish_service_connection
-                0x000000001000d7e4       0x36 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d7e4                btstack_continue_establish_service_connection
+                0x000000001000d9e4       0x36 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000d9e4                btstack_continue_establish_service_connection
  .text.lc_is_exits
-                0x000000001000d81a       0x22 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d81a                lc_is_exits
+                0x000000001000da1a       0x22 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000da1a                lc_is_exits
  .text.tws_lc_is_exits
-                0x000000001000d83c       0x42 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d83c                tws_lc_is_exits
+                0x000000001000da3c       0x42 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000da3c                tws_lc_is_exits
  .text.bt_tws_sync_ring_tone
-                0x000000001000d87e       0xd6 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d87e                bt_tws_sync_ring_tone
+                0x000000001000da7e       0xd6 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000da7e                bt_tws_sync_ring_tone
  .text.stack.setup
-                0x000000001000d954      0x1ea ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000d954                btstack_setup
+                0x000000001000db54      0x1ea ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000db54                btstack_setup
  .text.btstack_sco_setup
-                0x000000001000db3e       0xa8 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000db3e                btstack_sco_setup
+                0x000000001000dd3e       0xa8 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000dd3e                btstack_sco_setup
  .text.btstack_sco_kill
-                0x000000001000dbe6       0xca ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000dbe6                btstack_sco_kill
+                0x000000001000dde6       0xca ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000dde6                btstack_sco_kill
  .text.stack.run_loop
-                0x000000001000dcb0      0x190 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x000000001000dcb0                btstack_message
+                0x000000001000deb0      0x190 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x000000001000deb0                btstack_message
  .text.stack.handler
-                0x000000001000de40       0x52 ..\..\platform\libs\libbtstack.a(btstack_main.o)
-                0x000000001000de40                user_packet_handler_fix
+                0x000000001000e040       0x52 ..\..\platform\libs\libbtstack.a(btstack_main.o)
+                0x000000001000e040                user_packet_handler_fix
  .text.stack.setup
-                0x000000001000de92      0x22c ..\..\platform\libs\libbtstack.a(btstack_main.o)
-                0x000000001000de92                btstack_main
+                0x000000001000e092      0x22c ..\..\platform\libs\libbtstack.a(btstack_main.o)
+                0x000000001000e092                btstack_main
  .text.bt_get_pin_code
-                0x000000001000e0be        0xa ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0be                bt_get_pin_code
+                0x000000001000e2be        0xa ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2be                bt_get_pin_code
  .text.hfp_get_at_cmd
-                0x000000001000e0c8        0xa ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0c8                hfp_get_at_cmd
+                0x000000001000e2c8        0xa ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2c8                hfp_get_at_cmd
  .text.bt_a2dp_default_volume_is_enable
-                0x000000001000e0d2        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0d2                bt_a2dp_default_volume_is_enable
+                0x000000001000e2d2        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2d2                bt_a2dp_default_volume_is_enable
  .text.hfp_notice_network_time
-                0x000000001000e0d6        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0d6                hfp_notice_network_time
+                0x000000001000e2d6        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2d6                hfp_notice_network_time
  .text.dac_fade_out_wait
-                0x000000001000e0d8        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0d8                dac_fade_out_wait
+                0x000000001000e2d8        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2d8                dac_fade_out_wait
  .text.bt_tws_customer_control_tws_scan_sta_en
-                0x000000001000e0da        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0da                bt_tws_customer_control_tws_scan_sta_en
+                0x000000001000e2da        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2da                bt_tws_customer_control_tws_scan_sta_en
  .text.bt_change_nr_sta
-                0x000000001000e0de        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0de                bt_change_nr_sta
+                0x000000001000e2de        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2de                bt_change_nr_sta
  .text.bt_tws_timeout_delay_times
-                0x000000001000e0e2        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0e2                bt_tws_timeout_delay_times
+                0x000000001000e2e2        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2e2                bt_tws_timeout_delay_times
  .text.bt_get_class_of_device
-                0x000000001000e0e6       0x68 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e0e6                bt_get_class_of_device
+                0x000000001000e2e6       0x68 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e2e6                bt_get_class_of_device
  .text.bt_tws_set_lr_same_ch_mac_is_en
-                0x000000001000e14e        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e14e                bt_tws_set_lr_same_ch_mac_is_en
+                0x000000001000e34e        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e34e                bt_tws_set_lr_same_ch_mac_is_en
  .text.bt_tws_is_mac_channel
-                0x000000001000e152        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e152                bt_tws_is_mac_channel
+                0x000000001000e352        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e352                bt_tws_is_mac_channel
  .text.bt_warning_is_playing
-                0x000000001000e156        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e156                bt_warning_is_playing
+                0x000000001000e356        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e356                bt_warning_is_playing
  .text.bt_tws_set_reconn_nor_enable
-                0x000000001000e15a        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e15a                bt_tws_set_reconn_nor_enable
+                0x000000001000e35a        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e35a                bt_tws_set_reconn_nor_enable
  .text.bt_sco_far_delay_enable
-                0x000000001000e15e        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e15e                bt_sco_far_delay_enable
+                0x000000001000e35e        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e35e                bt_sco_far_delay_enable
  .text.bt_tws_slave_conn_nor_fix_enable
-                0x000000001000e162        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e162                bt_tws_slave_conn_nor_fix_enable
+                0x000000001000e362        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e362                bt_tws_slave_conn_nor_fix_enable
  .text.bt_a2dp_music_xiaomi_fix_enable
-                0x000000001000e166        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e166                bt_a2dp_music_xiaomi_fix_enable
+                0x000000001000e366        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e366                bt_a2dp_music_xiaomi_fix_enable
  .text.bt_tws_w4_nor_establish_hook
-                0x000000001000e16a        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e16a                bt_tws_w4_nor_establish_hook
+                0x000000001000e36a        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e36a                bt_tws_w4_nor_establish_hook
  .text.vd_set_snoop_service_hook
-                0x000000001000e16c        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e16c                vd_set_snoop_service_hook
+                0x000000001000e36c        0x2 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e36c                vd_set_snoop_service_hook
  .text.bt_tws_conn_nor_stop_recon_fix_enable
-                0x000000001000e16e        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e16e                bt_tws_conn_nor_stop_recon_fix_enable
+                0x000000001000e36e        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e36e                bt_tws_conn_nor_stop_recon_fix_enable
  .text.bt_sup_time_out_recon_fix_enable
-                0x000000001000e172        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
-                0x000000001000e172                bt_sup_time_out_recon_fix_enable
+                0x000000001000e372        0x4 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x000000001000e372                bt_sup_time_out_recon_fix_enable
  .text.btstack_set_timer
-                0x000000001000e176       0x4a ..\..\platform\libs\libbtstack.a(btstack_run_loop.o)
-                0x000000001000e176                btstack_set_timer
+                0x000000001000e376       0x4a ..\..\platform\libs\libbtstack.a(btstack_run_loop.o)
+                0x000000001000e376                btstack_set_timer
  .text.aap_tws_set_info
-                0x000000001000e1c0       0x24 ..\..\platform\libs\libbtstack.a(aap_server.o)
-                0x000000001000e1c0                aap_tws_set_info
+                0x000000001000e3c0       0x24 ..\..\platform\libs\libbtstack.a(aap_server.o)
+                0x000000001000e3c0                aap_tws_set_info
  .text.remove_aap_connect_context
-                0x000000001000e1e4       0x38 ..\..\platform\libs\libbtstack.a(aap_server.o)
-                0x000000001000e1e4                remove_aap_connect_context
+                0x000000001000e3e4       0x38 ..\..\platform\libs\libbtstack.a(aap_server.o)
+                0x000000001000e3e4                remove_aap_connect_context
  .text.aap_request_can_send_event
-                0x000000001000e21c       0x4e ..\..\platform\libs\libbtstack.a(aap_server.o)
-                0x000000001000e21c                aap_request_can_send_event
+                0x000000001000e41c       0x4e ..\..\platform\libs\libbtstack.a(aap_server.o)
+                0x000000001000e41c                aap_request_can_send_event
  .text.stack.api
-                0x000000001000e26a       0x50 ..\..\platform\libs\libbtstack.a(aap_server.o)
-                0x000000001000e26a                btstack_set_ear_sta
-                0x000000001000e298                btstack_set_nr_sta
-                0x000000001000e2b4                btstack_set_call_mute_sta
+                0x000000001000e46a       0x50 ..\..\platform\libs\libbtstack.a(aap_server.o)
+                0x000000001000e46a                btstack_set_ear_sta
+                0x000000001000e498                btstack_set_nr_sta
+                0x000000001000e4b4                btstack_set_call_mute_sta
  .text.avrcp_set_connected
-                0x000000001000e2ba       0x48 ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e4ba       0x48 ..\..\platform\libs\libbtstack.a(avctp.o)
  .text.avrtp_get_capability_bit
-                0x000000001000e302       0x2a ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e302                avrtp_get_capability_bit
+                0x000000001000e502       0x2a ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e502                avrtp_get_capability_bit
  .text.avrtp_get_capability_event
-                0x000000001000e32c       0x2a ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e32c                avrtp_get_capability_event
+                0x000000001000e52c       0x2a ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e52c                avrtp_get_capability_event
  .text.avrtp_get_capability_allbit
-                0x000000001000e356        0x4 ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e356                avrtp_get_capability_allbit
+                0x000000001000e556        0x4 ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e556                avrtp_get_capability_allbit
  .text.avrcp_parse_cmd
-                0x000000001000e35a      0x28c ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e35a                avrcp_parse_cmd
+                0x000000001000e55a      0x28c ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e55a                avrcp_parse_cmd
  .text.avctp_ready_to_send
-                0x000000001000e5e6       0x50 ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e5e6                avctp_ready_to_send
+                0x000000001000e7e6       0x50 ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e7e6                avctp_ready_to_send
  .text.avctp_state_machine
-                0x000000001000e636      0x16a ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e636                avctp_state_machine
+                0x000000001000e836      0x16a ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e836                avctp_state_machine
  .text.avrcp_parse_rsp
-                0x000000001000e7a0      0x206 ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e7a0                avrcp_parse_rsp
+                0x000000001000e9a0      0x206 ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000e9a0                avrcp_parse_rsp
  .text.avctp_packet_handler_hook
-                0x000000001000e9a6      0x132 ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x000000001000e9a6                avctp_packet_handler_hook
+                0x000000001000eba6      0x132 ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x000000001000eba6                avctp_packet_handler_hook
  .text.avdtp_tx_getcap_rsp
-                0x000000001000ead8      0x104 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000ecd8      0x104 ..\..\platform\libs\libbtstack.a(avdtp.o)
  .text.avdtp_setconf_cmd
-                0x000000001000ebdc      0x3a2 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000eddc      0x3a2 ..\..\platform\libs\libbtstack.a(avdtp.o)
  .text.avdtp_signal_ready_to_send_fix
-                0x000000001000ef7e       0x38 ..\..\platform\libs\libbtstack.a(avdtp.o)
-                0x000000001000ef7e                avdtp_signal_ready_to_send_fix
+                0x000000001000f17e       0x38 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000f17e                avdtp_signal_ready_to_send_fix
  .text.avdtp_end_of_play
-                0x000000001000efb6      0x158 ..\..\platform\libs\libbtstack.a(avdtp.o)
-                0x000000001000efb6                avdtp_end_of_play
+                0x000000001000f1b6      0x158 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000f1b6                avdtp_end_of_play
  .text.avdtp_timer_handler
-                0x000000001000f10e       0x12 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000f30e       0x12 ..\..\platform\libs\libbtstack.a(avdtp.o)
  .text.avdtp_play_pause
-                0x000000001000f120       0x60 ..\..\platform\libs\libbtstack.a(avdtp.o)
-                0x000000001000f120                avdtp_play_pause
- *fill*         0x000000001000f180        0x0 
+                0x000000001000f320       0x60 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000f320                avdtp_play_pause
+ *fill*         0x000000001000f380        0x0 
  .text.avdtp_packet_handler_hook
-                0x000000001000f180      0x576 ..\..\platform\libs\libbtstack.a(avdtp.o)
-                0x000000001000f180                avdtp_packet_handler_hook
+                0x000000001000f380      0x576 ..\..\platform\libs\libbtstack.a(avdtp.o)
+                0x000000001000f380                avdtp_packet_handler_hook
  .text.stack.link_key
-                0x000000001000f6f6      0x180 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
-                0x000000001000f6f6                btstack_put_link_key
+                0x000000001000f8f6      0x180 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
+                0x000000001000f8f6                btstack_put_link_key
  .text.tws_set_nor_new_link_info
-                0x000000001000f876       0x16 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
-                0x000000001000f876                tws_set_nor_new_link_info
+                0x000000001000fa76       0x16 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
+                0x000000001000fa76                tws_set_nor_new_link_info
  .text.tws_set_nor_link_info
-                0x000000001000f88c      0x120 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
-                0x000000001000f88c                tws_set_nor_link_info
+                0x000000001000fa8c      0x120 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
+                0x000000001000fa8c                tws_set_nor_link_info
  .text.stack.setup
-                0x000000001000f9ac       0x64 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
-                0x000000001000f9ac                btstack_open_link_info
+                0x000000001000fbac       0x64 ..\..\platform\libs\libbtstack.a(btstack_link_key_db.o)
+                0x000000001000fbac                btstack_open_link_info
  .text.goep_client_get_goep_client_storage_for_cid
-                0x000000001000fa10       0x1a ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fc10       0x1a ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_get_goep_client_storage_for_rfcomm_cid
-                0x000000001000fa2a       0x1e ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fc2a       0x1e ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_emit_connected_event
-                0x000000001000fa48       0x5e ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fc48       0x5e ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_packet_handler
-                0x000000001000faa6       0xf2 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fca6       0xf2 ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_packet_init
-                0x000000001000fb98       0x4a ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fd98       0x4a ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_packet_append
-                0x000000001000fbe2       0x5e ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fde2       0x5e ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_remove_connection
-                0x000000001000fc40       0x10 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fc40                goep_client_remove_connection
+                0x000000001000fe40       0x10 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fe40                goep_client_remove_connection
  .text.goep_client_handle_query_rfcomm_event
-                0x000000001000fc50       0x7a ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fc50                goep_client_handle_query_rfcomm_event
+                0x000000001000fe50       0x7a ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fe50                goep_client_handle_query_rfcomm_event
  .text.goep_client_disconnect
-                0x000000001000fcca       0x20 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fcca                goep_client_disconnect
+                0x000000001000feca       0x20 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000feca                goep_client_disconnect
  .text.goep_client_set_connection_id
-                0x000000001000fcea       0x12 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fcea                goep_client_set_connection_id
+                0x000000001000feea       0x12 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000feea                goep_client_set_connection_id
  .text.goep_client_get_request_opcode
-                0x000000001000fcfc       0x16 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fcfc                goep_client_get_request_opcode
+                0x000000001000fefc       0x16 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000fefc                goep_client_get_request_opcode
  .text.goep_client_request_can_send_now
-                0x000000001000fd12       0x2c ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fd12                goep_client_request_can_send_now
+                0x000000001000ff12       0x2c ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000ff12                goep_client_request_can_send_now
  .text.goep_client_create_connect_request
-                0x000000001000fd3e       0x3c ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fd3e                goep_client_create_connect_request
+                0x000000001000ff3e       0x3c ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000ff3e                goep_client_create_connect_request
  .text.goep_client_add_variable_header
-                0x000000001000fd7a       0x3c ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fd7a                goep_client_add_variable_header
+                0x000000001000ff7a       0x3c ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000ff7a                goep_client_add_variable_header
  .text.goep_client_add_word_header
-                0x000000001000fdb6       0x28 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fdb6                goep_client_add_word_header
+                0x000000001000ffb6       0x28 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000ffb6                goep_client_add_word_header
  .text.goep_client_packet_add_connection_id
-                0x000000001000fdde       0x22 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001000ffde       0x22 ..\..\platform\libs\libbtstack.a(goep_client.o)
  .text.goep_client_create_get_request
-                0x000000001000fe00       0x18 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fe00                goep_client_create_get_request
+                0x0000000010010000       0x18 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x0000000010010000                goep_client_create_get_request
  .text.goep_client_create_disconnect_request
-                0x000000001000fe18       0x18 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fe18                goep_client_create_disconnect_request
+                0x0000000010010018       0x18 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x0000000010010018                goep_client_create_disconnect_request
  .text.goep_client_add_header_target
-                0x000000001000fe30        0xc ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fe30                goep_client_add_header_target
+                0x0000000010010030        0xc ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x0000000010010030                goep_client_add_header_target
  .text.goep_client_add_header_name
-                0x000000001000fe3c       0xb2 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000fe3c                goep_client_add_header_name
+                0x000000001001003c       0xb2 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001001003c                goep_client_add_header_name
  .text.goep_client_add_header_type
-                0x000000001000feee       0x4e ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000feee                goep_client_add_header_type
+                0x00000000100100ee       0x4e ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x00000000100100ee                goep_client_add_header_type
  .text.goep_client_execute
-                0x000000001000ff3c       0x5e ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000ff3c                goep_client_execute
+                0x000000001001013c       0x5e ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001001013c                goep_client_execute
  .text.tws_get_goep_service
-                0x000000001000ff9a       0x96 ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x000000001000ff9a                tws_get_goep_service
+                0x000000001001019a       0x96 ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x000000001001019a                tws_get_goep_service
  .text.tws_set_goep_service
-                0x0000000010010030       0xcc ..\..\platform\libs\libbtstack.a(goep_client.o)
-                0x0000000010010030                tws_set_goep_service
+                0x0000000010010230       0xcc ..\..\platform\libs\libbtstack.a(goep_client.o)
+                0x0000000010010230                tws_set_goep_service
  .text.stack.api
-                0x00000000100100fc      0x1e6 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
-                0x00000000100100fc                hfp_hf_dial_number
-                0x0000000010010134                hfp_hf_answer_incoming_call
-                0x00000000100101ce                hfp_hf_terminate_call
-                0x0000000010010250                hfp_hf_reject_incoming_call
-                0x0000000010010252                hfp_hf_at_cmd
-                0x000000001001028a                hfp_hf_siri_on
+                0x00000000100102fc      0x1e6 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
+                0x00000000100102fc                hfp_hf_dial_number
+                0x0000000010010334                hfp_hf_answer_incoming_call
+                0x00000000100103ce                hfp_hf_terminate_call
+                0x0000000010010450                hfp_hf_reject_incoming_call
+                0x0000000010010452                hfp_hf_at_cmd
+                0x000000001001048a                hfp_hf_siri_on
  .text.hfp_parse
-                0x00000000100102e2       0x7c ..\..\platform\libs\libbtstack.a(hfp_hf.o)
-                0x00000000100102e2                hfp_parse
+                0x00000000100104e2       0x7c ..\..\platform\libs\libbtstack.a(hfp_hf.o)
+                0x00000000100104e2                hfp_parse
  .text.hfp_handle_rfcomm_event
-                0x000000001001035e       0x64 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
-                0x000000001001035e                hfp_handle_rfcomm_event
+                0x000000001001055e       0x64 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
+                0x000000001001055e                hfp_handle_rfcomm_event
  .text.hfp_hf_run_for_context_service_level_connection_queries_fix
-                0x00000000100103c2       0x70 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
-                0x00000000100103c2                hfp_hf_run_for_context_service_level_connection_queries_fix
+                0x00000000100105c2       0x70 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
+                0x00000000100105c2                hfp_hf_run_for_context_service_level_connection_queries_fix
  .text.hfp_hf_packet_handler_hook
-                0x0000000010010432       0x20 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
-                0x0000000010010432                hfp_hf_packet_handler_hook
+                0x0000000010010632       0x20 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
+                0x0000000010010632                hfp_hf_packet_handler_hook
  .text.map_client_emit_operation_complete_event
-                0x0000000010010452       0x3e ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x0000000010010652       0x3e ..\..\platform\libs\libbtstack.a(map_client.o)
  .text.map_client_emit_connected_event
-                0x0000000010010490       0x5e ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x0000000010010690       0x5e ..\..\platform\libs\libbtstack.a(map_client.o)
  .text.handle_query_rfcomm_event
-                0x00000000100104ee        0x6 ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x00000000100106ee        0x6 ..\..\platform\libs\libbtstack.a(map_client.o)
  .text.map_client_get_message_with_handle
-                0x00000000100104f4       0x38 ..\..\platform\libs\libbtstack.a(map_client.o)
-                0x00000000100104f4                map_client_get_message_with_handle
- *fill*         0x000000001001052c        0x0 
+                0x00000000100106f4       0x38 ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x00000000100106f4                map_client_get_message_with_handle
+ *fill*         0x000000001001072c        0x0 
  .text.map_packet_handler
-                0x000000001001052c      0x3b0 ..\..\platform\libs\libbtstack.a(map_client.o)
-                0x000000001001052c                map_packet_handler
+                0x000000001001072c      0x3b0 ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x000000001001072c                map_packet_handler
  .text.map_client_remove_connection
-                0x00000000100108dc        0x8 ..\..\platform\libs\libbtstack.a(map_client.o)
-                0x00000000100108dc                map_client_remove_connection
+                0x0000000010010adc        0x8 ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x0000000010010adc                map_client_remove_connection
  .text.tws_get_map_service
-                0x00000000100108e4       0x72 ..\..\platform\libs\libbtstack.a(map_client.o)
-                0x00000000100108e4                tws_get_map_service
+                0x0000000010010ae4       0x72 ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x0000000010010ae4                tws_get_map_service
  .text.tws_set_map_service
-                0x0000000010010956       0xac ..\..\platform\libs\libbtstack.a(map_client.o)
-                0x0000000010010956                tws_set_map_service
+                0x0000000010010b56       0xac ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x0000000010010b56                tws_set_map_service
  .text.obex_iterator_init_with_response_packet
-                0x0000000010010a02       0x20 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010a02                obex_iterator_init_with_response_packet
+                0x0000000010010c02       0x20 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010c02                obex_iterator_init_with_response_packet
  .text.obex_iterator_has_more
-                0x0000000010010a22        0xe ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010a22                obex_iterator_has_more
+                0x0000000010010c22        0xe ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010c22                obex_iterator_has_more
  .text.obex_iterator_next
-                0x0000000010010a30       0x3e ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010a30                obex_iterator_next
+                0x0000000010010c30       0x3e ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010c30                obex_iterator_next
  .text.obex_iterator_get_hi
-                0x0000000010010a6e       0x10 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010a6e                obex_iterator_get_hi
+                0x0000000010010c6e       0x10 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010c6e                obex_iterator_get_hi
  .text.obex_iterator_get_data_32
-                0x0000000010010a7e       0x10 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010a7e                obex_iterator_get_data_32
+                0x0000000010010c7e       0x10 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010c7e                obex_iterator_get_data_32
  .text.obex_iterator_get_data_len
-                0x0000000010010a8e       0x38 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010a8e                obex_iterator_get_data_len
+                0x0000000010010c8e       0x38 ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010c8e                obex_iterator_get_data_len
  .text.obex_iterator_get_data
-                0x0000000010010ac6       0x1c ..\..\platform\libs\libbtstack.a(obex_iterator.o)
-                0x0000000010010ac6                obex_iterator_get_data
+                0x0000000010010cc6       0x1c ..\..\platform\libs\libbtstack.a(obex_iterator.o)
+                0x0000000010010cc6                obex_iterator_get_data
  .text.hci_link_ctrl_stop_recon
-                0x0000000010010ae2       0x2e ..\..\platform\libs\libbtstack.a(hci.o)
+                0x0000000010010ce2       0x2e ..\..\platform\libs\libbtstack.a(hci.o)
  .text.hci_event_conn_fail
-                0x0000000010010b10      0x15a ..\..\platform\libs\libbtstack.a(hci.o)
+                0x0000000010010d10      0x15a ..\..\platform\libs\libbtstack.a(hci.o)
  .text.stack.hci
-                0x0000000010010c6a       0x28 ..\..\platform\libs\libbtstack.a(hci.o)
-                0x0000000010010c6a                gap_store_link_key_for_bd_addr
+                0x0000000010010e6a       0x28 ..\..\platform\libs\libbtstack.a(hci.o)
+                0x0000000010010e6a                gap_store_link_key_for_bd_addr
  .text.hci_end_of_connect_complete
-                0x0000000010010c92       0xb0 ..\..\platform\libs\libbtstack.a(hci.o)
-                0x0000000010010c92                hci_end_of_connect_complete
+                0x0000000010010e92       0xb0 ..\..\platform\libs\libbtstack.a(hci.o)
+                0x0000000010010e92                hci_end_of_connect_complete
  .text.stack.handler.event
-                0x0000000010010d42      0x870 ..\..\platform\libs\libbtstack.a(hci.o)
-                0x0000000010010d42                hci_event_handler
+                0x0000000010010f42      0x870 ..\..\platform\libs\libbtstack.a(hci.o)
+                0x0000000010010f42                hci_event_handler
  .text.stack.setup
-                0x00000000100115b2       0xaa ..\..\platform\libs\libbtstack.a(hci.o)
-                0x00000000100115b2                hci_init
+                0x00000000100117b2       0xaa ..\..\platform\libs\libbtstack.a(hci.o)
+                0x00000000100117b2                hci_init
  .text.remove_latt_connection_context
-                0x000000001001165c       0x26 ..\..\platform\libs\libbtstack.a(l2cap_att.o)
-                0x000000001001165c                remove_latt_connection_context
+                0x000000001001185c       0x26 ..\..\platform\libs\libbtstack.a(l2cap_att.o)
+                0x000000001001185c                remove_latt_connection_context
  .text.provide_latt_connection_context_for_bd_addr
-                0x0000000010011682       0x60 ..\..\platform\libs\libbtstack.a(l2cap_att.o)
-                0x0000000010011682                provide_latt_connection_context_for_bd_addr
+                0x0000000010011882       0x60 ..\..\platform\libs\libbtstack.a(l2cap_att.o)
+                0x0000000010011882                provide_latt_connection_context_for_bd_addr
  .text.tws_scan_ctrl_ble
-                0x00000000100116e2       0xbe ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x00000000100116e2                tws_scan_ctrl_ble
+                0x00000000100118e2       0xbe ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x00000000100118e2                tws_scan_ctrl_ble
  .text.tws_scan_ctrl_old
-                0x00000000100117a0       0x84 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x00000000100117a0                tws_scan_ctrl_old
+                0x00000000100119a0       0x84 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x00000000100119a0                tws_scan_ctrl_old
  .text.tws_scan_ctrl
-                0x0000000010011824       0x20 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010011824                tws_scan_ctrl
+                0x0000000010011a24       0x20 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010011a24                tws_scan_ctrl
  .text.btstack_tws_timer_handler
-                0x0000000010011844      0x192 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010011844                btstack_tws_timer_handler
+                0x0000000010011a44      0x192 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010011a44                btstack_tws_timer_handler
  .text.tws_start_fast_pair
-                0x00000000100119d6       0x32 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x00000000100119d6                tws_start_fast_pair
+                0x0000000010011bd6       0x32 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010011bd6                tws_start_fast_pair
  .text.tws_connect_complete_event
-                0x0000000010011a08      0x178 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010011a08                tws_connect_complete_event
- *fill*         0x0000000010011b80        0x0 
+                0x0000000010011c08      0x178 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010011c08                tws_connect_complete_event
+ *fill*         0x0000000010011d80        0x0 
  .text.tws_acl_handler_do_hook
-                0x0000000010011b80       0xc2 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010011b80                tws_acl_handler_do_hook
+                0x0000000010011d80       0xc2 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010011d80                tws_acl_handler_do_hook
  .text.stack.handler
-                0x0000000010011c42      0x46e ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010011c42                tws_packet_handler_hook
-                0x0000000010011ca4                tws_packet_handler_fix
+                0x0000000010011e42      0x46e ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010011e42                tws_packet_handler_hook
+                0x0000000010011ea4                tws_packet_handler_fix
  .text.tws_acl_tx_cfm_cb
-                0x00000000100120b0       0x50 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x00000000100120b0                tws_acl_tx_cfm_cb
+                0x00000000100122b0       0x50 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x00000000100122b0                tws_acl_tx_cfm_cb
  .text.stk.tws.send
-                0x0000000010012100       0x58 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010012100                tws_l2cap_state_machine_hook
+                0x0000000010012300       0x58 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010012300                tws_l2cap_state_machine_hook
  .text.tws_con_init
-                0x0000000010012158       0x74 ..\..\platform\libs\libbtstack.a(tws_con.o)
-                0x0000000010012158                tws_con_init
+                0x0000000010012358       0x74 ..\..\platform\libs\libbtstack.a(tws_con.o)
+                0x0000000010012358                tws_con_init
  .text.btstack_tws_pair_init
-                0x00000000100121cc       0x2e ..\..\platform\libs\libbtstack.a(tws_init.o)
-                0x00000000100121cc                btstack_tws_pair_init
+                0x00000000100123cc       0x2e ..\..\platform\libs\libbtstack.a(tws_init.o)
+                0x00000000100123cc                btstack_tws_pair_init
  .text.tws.init
-                0x00000000100121fa       0x52 ..\..\platform\libs\libbtstack.a(tws_init.o)
-                0x00000000100121fa                btstack_tws_init
+                0x00000000100123fa       0x52 ..\..\platform\libs\libbtstack.a(tws_init.o)
+                0x00000000100123fa                btstack_tws_init
  .text.lc_con_cmp_hook
-                0x000000001001224c       0xb0 ..\..\platform\libs\libbtstack.a(lc_hook.o)
-                0x000000001001224c                lc_con_cmp_hook
+                0x000000001001244c       0xb0 ..\..\platform\libs\libbtstack.a(lc_hook.o)
+                0x000000001001244c                lc_con_cmp_hook
  .text.stk.bt.acl.tx.done
-                0x00000000100122fc       0x28 ..\..\platform\libs\libbtstack.a(lc_hook.o)
-                0x00000000100122fc                ext_acl_data_tx_cfm_hook
+                0x00000000100124fc       0x28 ..\..\platform\libs\libbtstack.a(lc_hook.o)
+                0x00000000100124fc                ext_acl_data_tx_cfm_hook
  .text.lc_flush_acl_tx_pend_fix
-                0x0000000010012324       0x40 ..\..\platform\libs\libbtstack.a(lc_hook.o)
-                0x0000000010012324                lc_flush_acl_tx_pend_fix
+                0x0000000010012524       0x40 ..\..\platform\libs\libbtstack.a(lc_hook.o)
+                0x0000000010012524                lc_flush_acl_tx_pend_fix
  .text.lc_op_vs_switch_to_handler
-                0x0000000010012364      0x12c ..\..\platform\libs\libbtstack.a(lc_hook.o)
-                0x0000000010012364                lc_op_vs_switch_to_handler
- *fill*         0x0000000010012490       0x70 
+                0x0000000010012564      0x12c ..\..\platform\libs\libbtstack.a(lc_hook.o)
+                0x0000000010012564                lc_op_vs_switch_to_handler
+ *fill*         0x0000000010012690       0x70 
  .text.lc_free_hook
-                0x0000000010012500       0xee ..\..\platform\libs\libbtstack.a(lc_hook.o)
-                0x0000000010012500                lc_free_hook
- .text.bb_init  0x00000000100125ee      0x160 ..\..\platform\libs\libbtstack.a(bb.o)
-                0x00000000100125ee                bb_init
+                0x0000000010012700       0xee ..\..\platform\libs\libbtstack.a(lc_hook.o)
+                0x0000000010012700                lc_free_hook
+ .text.bb_init  0x00000000100127ee      0x160 ..\..\platform\libs\libbtstack.a(bb.o)
+                0x00000000100127ee                bb_init
  .text.bb_is_acl_buf
-                0x000000001001274e       0x14 ..\..\platform\libs\libbtstack.a(bb.o)
-                0x000000001001274e                bb_is_acl_buf
+                0x000000001001294e       0x14 ..\..\platform\libs\libbtstack.a(bb.o)
+                0x000000001001294e                bb_is_acl_buf
  .text.tws_ring_get_ticks_status
-                0x0000000010012762       0x56 ..\..\platform\libs\libbtstack.a(ext_tws.o)
-                0x0000000010012762                tws_ring_get_ticks_status
+                0x0000000010012962       0x56 ..\..\platform\libs\libbtstack.a(ext_tws.o)
+                0x0000000010012962                tws_ring_get_ticks_status
  .text.lc_lmp_vd_ctrl_req_handler_fix
-                0x00000000100127b8       0xa6 ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x00000000100129b8       0xa6 ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.lc_lmp_clk_off_req_handler
-                0x000000001001285e       0xba ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012a5e       0xba ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.lc_op_vd_msg_ind_handler
-                0x0000000010012918       0xfe ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012b18       0xfe ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.lc_op_set_cmp_ind_handler
-                0x0000000010012a16       0xc4 ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012c16       0xc4 ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.lc_page_scan_cfm_handler
-                0x0000000010012ada      0x106 ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012cda      0x106 ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.ext_acl_data_tx_cfm_handler
-                0x0000000010012be0       0x6c ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012de0       0x6c ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.lc_lmp_tx_cfm_handler_fix
-                0x0000000010012c4c       0x60 ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012e4c       0x60 ..\..\platform\libs\libbtstack.a(lc_proc.o)
  .text.task_lc_init
-                0x0000000010012cac        0xc ..\..\platform\libs\libbtstack.a(lc_proc.o)
-                0x0000000010012cac                task_lc_init
+                0x0000000010012eac        0xc ..\..\platform\libs\libbtstack.a(lc_proc.o)
+                0x0000000010012eac                task_lc_init
  .text.task_lm_init
-                0x0000000010012cb8        0xc ..\..\platform\libs\libbtstack.a(lm_proc.o)
-                0x0000000010012cb8                task_lm_init
+                0x0000000010012eb8        0xc ..\..\platform\libs\libbtstack.a(lm_proc.o)
+                0x0000000010012eb8                task_lm_init
  .text.tws_ctl_con_cmp
-                0x0000000010012cc4       0x28 ..\..\platform\libs\libbtstack.a(tws.o)
-                0x0000000010012cc4                tws_ctl_con_cmp
- *fill*         0x0000000010012cec       0x14 
+                0x0000000010012ec4       0x28 ..\..\platform\libs\libbtstack.a(tws.o)
+                0x0000000010012ec4                tws_ctl_con_cmp
+ *fill*         0x0000000010012eec       0x14 
  .text.tws_vs_msg_flush_do
-                0x0000000010012d00       0x78 ..\..\platform\libs\libbtstack.a(tws.o)
-                0x0000000010012d00                tws_vs_msg_flush_do
+                0x0000000010012f00       0x78 ..\..\platform\libs\libbtstack.a(tws.o)
+                0x0000000010012f00                tws_vs_msg_flush_do
  .text.tws_msg_flush
-                0x0000000010012d78       0x1a ..\..\platform\libs\libbtstack.a(tws.o)
-                0x0000000010012d78                tws_msg_flush
+                0x0000000010012f78       0x1a ..\..\platform\libs\libbtstack.a(tws.o)
+                0x0000000010012f78                tws_msg_flush
  .text.tws_ctl_con_end
-                0x0000000010012d92       0x16 ..\..\platform\libs\libbtstack.a(tws.o)
-                0x0000000010012d92                tws_ctl_con_end
+                0x0000000010012f92       0x16 ..\..\platform\libs\libbtstack.a(tws.o)
+                0x0000000010012f92                tws_ctl_con_end
  .text.tws_remote_vol_ctrl_flag
-                0x0000000010012da8       0x1e ..\..\platform\libs\libbtstack.a(tws_lmp.o)
-                0x0000000010012da8                tws_remote_vol_ctrl_flag
+                0x0000000010012fa8       0x1e ..\..\platform\libs\libbtstack.a(tws_lmp.o)
+                0x0000000010012fa8                tws_remote_vol_ctrl_flag
  .text.tws_send_set_vol_ctrl_status
-                0x0000000010012dc6       0x32 ..\..\platform\libs\libbtstack.a(tws_lmp.o)
-                0x0000000010012dc6                tws_send_set_vol_ctrl_status
+                0x0000000010012fc6       0x32 ..\..\platform\libs\libbtstack.a(tws_lmp.o)
+                0x0000000010012fc6                tws_send_set_vol_ctrl_status
  .text.tws_vs_msg_flush
-                0x0000000010012df8        0xc ..\..\platform\libs\libbtstack.a(tws_lmp.o)
-                0x0000000010012df8                tws_vs_msg_flush
+                0x0000000010012ff8        0xc ..\..\platform\libs\libbtstack.a(tws_lmp.o)
+                0x0000000010012ff8                tws_vs_msg_flush
  .text.hci_tx_done_fix
-                0x0000000010012e04       0x7e ..\..\platform\libs\libbtstack.a(hcic.o)
+                0x0000000010013004       0x7e ..\..\platform\libs\libbtstack.a(hcic.o)
  .text.hcic_init_hook
-                0x0000000010012e82       0x12 ..\..\platform\libs\libbtstack.a(hcic.o)
-                0x0000000010012e82                hcic_init_hook
+                0x0000000010013082       0x12 ..\..\platform\libs\libbtstack.a(hcic.o)
+                0x0000000010013082                hcic_init_hook
  .text.tws_remote_set_siri_sta
-                0x0000000010012e94        0xe ..\..\platform\libs\libbtstack.a(att_siri_server.o)
-                0x0000000010012e94                tws_remote_set_siri_sta
+                0x0000000010013094        0xe ..\..\platform\libs\libbtstack.a(att_siri_server.o)
+                0x0000000010013094                tws_remote_set_siri_sta
  .text.nanos_task_replace
-                0x0000000010012ea2       0x2e ..\..\platform\libs\libbtstack.a(nanos.o)
-                0x0000000010012ea2                nanos_task_replace
+                0x00000000100130a2       0x2e ..\..\platform\libs\libbtstack.a(nanos.o)
+                0x00000000100130a2                nanos_task_replace
  *(.rodata*)
- *fill*         0x0000000010012ed0        0x0 
- .rodata        0x0000000010012ed0       0x3c Output\obj\platform\bsp\bsp_audio.o
-                0x0000000010012ed0                rec_cfg_tbl
+ *fill*         0x00000000100130d0        0x0 
+ .rodata        0x00000000100130d0       0x3c Output\obj\platform\bsp\bsp_audio.o
+                0x00000000100130d0                rec_cfg_tbl
  .rodata.str1.4
-                0x0000000010012f0c       0x30 Output\obj\platform\bsp\bsp_bt.o
+                0x000000001001310c       0x30 Output\obj\platform\bsp\bsp_bt.o
  .rodata.bt_cfg
-                0x0000000010012f3c       0x18 Output\obj\platform\bsp\bsp_bt.o
-                0x0000000010012f3c                bt_cfg_tbl
+                0x000000001001313c       0x18 Output\obj\platform\bsp\bsp_bt.o
+                0x000000001001313c                bt_cfg_tbl
  .rodata.sup_to
-                0x0000000010012f54        0x4 Output\obj\platform\bsp\bsp_bt.o
-                0x0000000010012f54                sup_to_con_times_tbl
+                0x0000000010013154        0x4 Output\obj\platform\bsp\bsp_bt.o
+                0x0000000010013154                sup_to_con_times_tbl
  .rodata.charge
-                0x0000000010012f58       0x10 Output\obj\platform\bsp\bsp_charge.o
-                0x0000000010012f58                chag_bled_timeout_tbl
-                0x0000000010012f60                chag_limited_tbl
+                0x0000000010013158       0x10 Output\obj\platform\bsp\bsp_charge.o
+                0x0000000010013158                chag_bled_timeout_tbl
+                0x0000000010013160                chag_limited_tbl
  .rodata.eq.table
-                0x0000000010012f68       0x30 Output\obj\platform\bsp\bsp_eq.o
-                0x0000000010012f68                music_eq_tbl
+                0x0000000010013168       0x30 Output\obj\platform\bsp\bsp_eq.o
+                0x0000000010013168                music_eq_tbl
  .rodata.str1.4
-                0x0000000010012f98        0x4 Output\obj\platform\bsp\bsp_spp.o
- .rodata.tkey   0x0000000010012f9c        0x8 Output\obj\platform\bsp\bsp_tkey.o
-                0x0000000010012f9c                tk_fil_high_tbl
+                0x0000000010013198        0x4 Output\obj\platform\bsp\bsp_spp.o
+ .rodata.tkey   0x000000001001319c        0x8 Output\obj\platform\bsp\bsp_tkey.o
+                0x000000001001319c                tk_fil_high_tbl
  .rodata.str1.4
-                0x0000000010012fa4       0x14 Output\obj\platform\functions\func.o
- .rodata        0x0000000010012fb8        0x9 Output\obj\platform\functions\func.o
+                0x00000000100131a4       0x14 Output\obj\platform\functions\func.o
+ .rodata        0x00000000100131b8        0x9 Output\obj\platform\functions\func.o
  .rodata.str1.4
-                0x0000000010012fc1        0x4 Output\obj\platform\functions\func_bt.o
- *fill*         0x0000000010012fc1        0x3 
+                0x00000000100131c1        0x4 Output\obj\platform\functions\func_bt.o
+ *fill*         0x00000000100131c1        0x3 
  .rodata.str1.4
-                0x0000000010012fc4       0x17 Output\obj\platform\functions\func_lowpwr.o
+                0x00000000100131c4       0x17 Output\obj\platform\functions\func_lowpwr.o
                                          0x1c (size before relaxing)
- *fill*         0x0000000010012fdb        0x1 
- .rodata        0x0000000010012fdc       0x20 Output\obj\platform\functions\func_lowpwr.o
+ *fill*         0x00000000100131db        0x1 
+ .rodata        0x00000000100131dc       0x20 Output\obj\platform\functions\func_lowpwr.o
  .rodata.str1.4
-                0x0000000010012ffc        0x4 Output\obj\platform\functions\sfunc_bt_call.o
- .rodata        0x0000000010012ffc       0x22 Output\obj\platform\functions\sfunc_bt_call.o
+                0x00000000100131fc        0x4 Output\obj\platform\functions\sfunc_bt_call.o
+ .rodata        0x00000000100131fc       0x22 Output\obj\platform\functions\sfunc_bt_call.o
  .rodata.str1.4
-                0x000000001001301e        0x4 Output\obj\platform\functions\sfunc_bt_ring.o
- *fill*         0x000000001001301e        0x2 
- .rodata        0x0000000010013020        0xe Output\obj\platform\functions\sfunc_bt_ring.o
- *fill*         0x000000001001302e        0x2 
+                0x000000001001321e        0x4 Output\obj\platform\functions\sfunc_bt_ring.o
+ *fill*         0x000000001001321e        0x2 
+ .rodata        0x0000000010013220        0xe Output\obj\platform\functions\sfunc_bt_ring.o
+ *fill*         0x000000001001322e        0x2 
  .rodata.func.table
-                0x0000000010013030        0x1 Output\obj\projects\earphone\config.o
-                0x0000000010013030                func_sort_table
- *fill*         0x0000000010013031        0x3 
+                0x0000000010013230        0x1 Output\obj\projects\earphone\config.o
+                0x0000000010013230                func_sort_table
+ *fill*         0x0000000010013231        0x3 
  .rodata.str1.4
-                0x0000000010013034       0x14 Output\obj\projects\earphone\main.o
- .rodata        0x0000000010013048      0x260 Output\obj\projects\earphone\plugin\multi_lang.o
-                0x0000000010013048                mul_lang_tbl
+                0x0000000010013234       0x14 Output\obj\projects\earphone\main.o
+ .rodata        0x0000000010013248      0x260 Output\obj\projects\earphone\plugin\multi_lang.o
+                0x0000000010013248                mul_lang_tbl
  .rodata.adkey.table
-                0x00000000100132a8        0xe Output\obj\projects\earphone\port\port_key.o
-                0x00000000100132a8                adkey_table
- *fill*         0x00000000100132b6        0x2 
- .rodata.tkey   0x00000000100132b8       0x4a Output\obj\projects\earphone\port\port_tkey.o
-                0x00000000100132b8                tkey_cfg
-                0x00000000100132ec                tkey_temp_cali_ch
-                0x00000000100132f4                tkey_inear
-                0x00000000100132fc                tkey0
- *fill*         0x0000000010013302        0x2 
+                0x00000000100134a8        0xe Output\obj\projects\earphone\port\port_key.o
+                0x00000000100134a8                adkey_table
+ *fill*         0x00000000100134b6        0x2 
+ .rodata.tkey   0x00000000100134b8       0x4a Output\obj\projects\earphone\port\port_tkey.o
+                0x00000000100134b8                tkey_cfg
+                0x00000000100134ec                tkey_temp_cali_ch
+                0x00000000100134f4                tkey_inear
+                0x00000000100134fc                tkey0
+ *fill*         0x0000000010013502        0x2 
  .rodata.eq.str1.4
-                0x0000000010013304       0x3d ..\..\platform\libs\libplatform.a(audio_eq.o)
- *fill*         0x0000000010013341        0x3 
+                0x0000000010013504       0x3d ..\..\platform\libs\libplatform.a(audio_eq.o)
+ *fill*         0x0000000010013541        0x3 
  .rodata.eq_res_crc_check.str1.4
-                0x0000000010013344       0x1e ..\..\platform\libs\libplatform.a(audio_eq.o)
- *fill*         0x0000000010013362        0x2 
- .rodata.sdadc  0x0000000010013364      0x100 ..\..\platform\libs\libplatform.a(bt_aec.o)
-                0x0000000010013364                aec_dig_gain_tbl
+                0x0000000010013544       0x1e ..\..\platform\libs\libplatform.a(audio_eq.o)
+ *fill*         0x0000000010013562        0x2 
+ .rodata.sdadc  0x0000000010013564      0x100 ..\..\platform\libs\libplatform.a(bt_aec.o)
+                0x0000000010013564                aec_dig_gain_tbl
  .rodata.cm_next_freepage.str1.4
-                0x0000000010013464        0xc ..\..\platform\libs\libplatform.a(cm.o)
+                0x0000000010013664        0xc ..\..\platform\libs\libplatform.a(cm.o)
  .rodata.cm_movepage.str1.4
-                0x0000000010013470       0x10 ..\..\platform\libs\libplatform.a(cm.o)
+                0x0000000010013670       0x10 ..\..\platform\libs\libplatform.a(cm.o)
  .rodata.cm_release.str1.4
-                0x0000000010013480       0x22 ..\..\platform\libs\libplatform.a(cm.o)
- *fill*         0x00000000100134a2        0x2 
+                0x0000000010013680       0x22 ..\..\platform\libs\libplatform.a(cm.o)
+ *fill*         0x00000000100136a2        0x2 
  .rodata.cm_savepage.str1.4
-                0x00000000100134a4       0x13 ..\..\platform\libs\libplatform.a(cm.o)
- *fill*         0x00000000100134b7        0x1 
+                0x00000000100136a4       0x13 ..\..\platform\libs\libplatform.a(cm.o)
+ *fill*         0x00000000100136b7        0x1 
  .rodata.cm_check_loadpage.str1.4
-                0x00000000100134b8       0x3b ..\..\platform\libs\libplatform.a(cm.o)
- *fill*         0x00000000100134f3        0x1 
+                0x00000000100136b8       0x3b ..\..\platform\libs\libplatform.a(cm.o)
+ *fill*         0x00000000100136f3        0x1 
  .rodata.cm_init.str1.4
-                0x00000000100134f4       0x30 ..\..\platform\libs\libplatform.a(cm.o)
+                0x00000000100136f4       0x30 ..\..\platform\libs\libplatform.a(cm.o)
  .rodata.str1.4
-                0x0000000010013524       0x10 ..\..\platform\libs\libplatform.a(main.o)
+                0x0000000010013724       0x10 ..\..\platform\libs\libplatform.a(main.o)
  .rodata.volt_trim
-                0x0000000010013534       0x60 ..\..\platform\libs\libplatform.a(voltage_trim.o)
-                0x0000000010013534                chg_icoef_tbl
-                0x0000000010013574                ft_vbat_trim
-                0x0000000010013584                ft_rf_dig_gain_trim
+                0x0000000010013734       0x60 ..\..\platform\libs\libplatform.a(voltage_trim.o)
+                0x0000000010013734                chg_icoef_tbl
+                0x0000000010013774                ft_vbat_trim
+                0x0000000010013784                ft_rf_dig_gain_trim
  .rodata.thread_main_entry.str1.4
-                0x0000000010013594       0x38 ..\..\platform\libs\libplatform.a(startup.o)
+                0x0000000010013794       0x38 ..\..\platform\libs\libplatform.a(startup.o)
  .rodata.startup.init.str1.4
-                0x00000000100135cc       0x24 ..\..\platform\libs\libplatform.a(startup.o)
+                0x00000000100137cc       0x24 ..\..\platform\libs\libplatform.a(startup.o)
  .rodata.sysclk
-                0x00000000100135f0       0x28 ..\..\platform\libs\libplatform.a(sys_clk.o)
-                0x00000000100135f0                sysclk_info_tbl
+                0x00000000100137f0       0x28 ..\..\platform\libs\libplatform.a(sys_clk.o)
+                0x00000000100137f0                sysclk_info_tbl
  .rodata.bb.tbl
-                0x0000000010013618        0x5 ..\..\platform\libs\libbtstack.a(rf_viva.o)
- *fill*         0x000000001001361d        0x3 
+                0x0000000010013818        0x5 ..\..\platform\libs\libbtstack.a(rf_viva.o)
+ *fill*         0x000000001001381d        0x3 
  .rodata.str1.4
-                0x0000000010013620        0x6 ..\..\platform\libs\libbtstack.a(btstack_api.o)
- *fill*         0x0000000010013626        0x2 
+                0x0000000010013820        0x6 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+ *fill*         0x0000000010013826        0x2 
  .rodata.stack.api
-                0x0000000010013628       0xb4 ..\..\platform\libs\libbtstack.a(btstack_api.o)
-                0x0000000010013628                btstack_api
+                0x0000000010013828       0xb4 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x0000000010013828                btstack_api
  .rodata.stack.setup
-                0x00000000100136dc       0x14 ..\..\platform\libs\libbtstack.a(btstack_api.o)
+                0x00000000100138dc       0x14 ..\..\platform\libs\libbtstack.a(btstack_api.o)
  .rodata.str1.4
-                0x00000000100136f0       0x25 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
+                0x00000000100138f0       0x25 ..\..\platform\libs\libbtstack.a(weak_symbol.o)
                                          0x2d (size before relaxing)
- *fill*         0x0000000010013715        0x3 
+ *fill*         0x0000000010013915        0x3 
  .rodata.stack.avctp
-                0x0000000010013718        0x4 ..\..\platform\libs\libbtstack.a(avctp.o)
-                0x0000000010013718                remote_capability_events
+                0x0000000010013918        0x4 ..\..\platform\libs\libbtstack.a(avctp.o)
+                0x0000000010013918                remote_capability_events
  .rodata.str1.4
-                0x000000001001371c       0x1f ..\..\platform\libs\libbtstack.a(goep_client.o)
- *fill*         0x000000001001373b        0x1 
+                0x000000001001391c       0x1f ..\..\platform\libs\libbtstack.a(goep_client.o)
+ *fill*         0x000000001001393b        0x1 
  .rodata.str1.4
-                0x000000001001373c       0x13 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
- *fill*         0x000000001001374f        0x1 
+                0x000000001001393c       0x13 ..\..\platform\libs\libbtstack.a(hfp_hf.o)
+ *fill*         0x000000001001394f        0x1 
  .rodata.str1.4
-                0x0000000010013750       0x36 ..\..\platform\libs\libbtstack.a(map_client.o)
- *fill*         0x0000000010013786        0x2 
- .rodata        0x0000000010013788       0x1c ..\..\platform\libs\libbtstack.a(map_client.o)
+                0x0000000010013950       0x36 ..\..\platform\libs\libbtstack.a(map_client.o)
+ *fill*         0x0000000010013986        0x2 
+ .rodata        0x0000000010013988       0x1c ..\..\platform\libs\libbtstack.a(map_client.o)
  .rodata.sdp.tbl
-                0x00000000100137a4      0x118 ..\..\platform\libs\libbtstack.a(sdp_tbl.o)
-                0x00000000100137a4                device_id_sdp_service_buffer
-                0x00000000100137e4                avctp_target_category1_service_buffer
-                0x0000000010013828                avdtp_service_buffer
-                0x000000001001386c                hfp_service_buffer
+                0x00000000100139a4      0x118 ..\..\platform\libs\libbtstack.a(sdp_tbl.o)
+                0x00000000100139a4                device_id_sdp_service_buffer
+                0x00000000100139e4                avctp_target_category1_service_buffer
+                0x0000000010013a28                avdtp_service_buffer
+                0x0000000010013a6c                hfp_service_buffer
  .rodata.str1.4
-                0x00000000100138bc       0x11 ..\..\platform\libs\libbtstack.a(hci.o)
- *fill*         0x00000000100138cd        0x3 
+                0x0000000010013abc       0x11 ..\..\platform\libs\libbtstack.a(hci.o)
+ *fill*         0x0000000010013acd        0x3 
  .rodata.str1.4
-                0x00000000100138d0       0x3b ..\..\platform\libs\libbtstack.a(tws_con.o)
- *fill*         0x000000001001390b        0x1 
+                0x0000000010013ad0       0x3b ..\..\platform\libs\libbtstack.a(tws_con.o)
+ *fill*         0x0000000010013b0b        0x1 
  .rodata.str1.4
-                0x000000001001390c        0x6 ..\..\platform\libs\libbtstack.a(lc_hook.o)
+                0x0000000010013b0c        0x6 ..\..\platform\libs\libbtstack.a(lc_hook.o)
  *(.rela*)
  .rela.com_text.timer
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.lowpwr.sleep
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.sfunc_lowbat
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.sfunc_pwrdown
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
- .rela.text.eq  0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
+ .rela.text.eq  0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.eq.mic
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.mictrim
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.aec.proc
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.bt_voice_init
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.esbc_res_play
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.bt_sco_patch_enter
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.init_text
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
- .rela.reset    0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
+ .rela.reset    0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.risr
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.charge
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.qtest
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.qtest_is_loading_local_addr
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.qtest_xcfg_init
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.bsp_qtest_init
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.sys_hook_func
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.sys_hook_var_init
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.music
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.tws_get_snoop_plugin_service_hook
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.tws_set_snoop_plugin_service_hook
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.tws_switch_service_ok
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.isr.txrx
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.com_text.rf
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.rfphy_agc_init
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.stack.api
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.btstack_audio_bypass
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.bt_tws_sync_ring_tone
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.stack.setup
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.rodata.stack.api
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.avrcp_parse_rsp
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.avdtp_packet_handler_hook
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.hfp_parse
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.map_packet_handler
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.hci_event_conn_fail
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.stack.handler.event
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.tws_scan_ctrl_ble
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.btstack_tws_timer_handler
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.tws_acl_handler_do_hook
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.stack.handler
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
  .rela.text.lc_page_scan_cfm_handler
-                0x0000000010013912        0x0 Output\obj\platform\bsp\bsp_audio.o
-                0x0000000010013a00                . = ALIGN (0x200)
- *fill*         0x0000000010013912       0xee 
+                0x0000000010013b12        0x0 Output\obj\platform\bsp\bsp_audio.o
+                0x0000000010013c00                . = ALIGN (0x200)
+ *fill*         0x0000000010013b12       0xee 
 
 .bss            0x0000000000018500      0x218
                 0x0000000000018500                __bss_start = .

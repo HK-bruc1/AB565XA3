@@ -169,6 +169,11 @@ u32 sbcplay_set(uint index, uint type)
         sbcplay_cb.buf = (u8 *)RES_BUF_TEST_WAV;
         sbcplay_cb.len = RES_LEN_TEST_WAV;
         break;
+    
+    case T_WARNING_BALABALA:
+        sbcplay_cb.buf = (u8 *)RES_BUF_BALABALA_SBC;
+        sbcplay_cb.len = RES_LEN_BALABALA_SBC;
+        break;
 
     default:
         break;
