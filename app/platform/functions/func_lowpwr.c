@@ -248,107 +248,148 @@ u32 sfunc_sleep_process(void)
 }
 
 
+/**
+ * @brief  系统休眠模式处理函数
+ *         管理设备进入低功耗休眠状态的过程，包括外设控制、电源管理、唤醒机制等
+ */
 AT(.text.lowpwr.sleep)
 void sfunc_sleep(void)
 {
-    uint32_t sysclk;
-    u32 wkupedg;
-    u16 adc_ch;
+    uint32_t sysclk;   // 保存当前系统时钟配置
+    u32 wkupedg;       // 唤醒事件记录
+    u16 adc_ch;        // ADC通道配置备份
 
+    // 如果以下条件满足则不进入休眠模式：
+    // 1. 启用电池电压检测且处于低电压警告状态
+    // 2. 处于呼吸灯模式
 #if VBAT_DETECT_EN
-    if (is_lowpower_vbat_warning() || sys_cb.breathe_led_sta) {  //低电或呼吸灯不进sniff mode
-        return;
+    if (is_lowpower_vbat_warning() || sys_cb.breathe_led_sta) {
+        return;  // 返回不执行休眠
     }
-#endif // VBAT_DETECT_EN
+#endif 
+
+    // 如果启用扬声器静音复用红色LED功能且相关标志置位
 #if LOUDSPEAKER_MUTE_MUX_RLED_EN
     if (sys_cb1.unmute_rled_on) {
-        return;
+        return;  // 返回不执行休眠
     }
 #endif
 
-    printf("sleep\n");
-#if !USER_LED_SLEEP_EN
-    bt_enter_sleep();
+    printf("sleep\n");  // 调试信息输出
 
-    led_off();
-    rled_off();
+#if !USER_LED_SLEEP_EN
+    bt_enter_sleep();   // 通知蓝牙模块进入休眠模式
+    led_off();          // 关闭主LED
+    rled_off();         // 关闭红色LED
 #endif
 
 #if DAC_DNR_EN
+    // 保存并关闭DAC动态噪声消除功能
     u8 sta = dac_dnr_get_sta();
     dac_dnr_set_sta(0);
 #endif
-    sfunc_sleep_dac_off(1);
-    saradc_exit(adc_cb.channel);                //close saradc及相关通路模拟
+    sfunc_sleep_dac_off(1);  // 关闭DAC电源并设置相应控制寄存器
+    saradc_exit(adc_cb.channel);  // 关闭SAR ADC及相关模拟通路
 
 #if !USER_LED_SLEEP_EN
-    user_tmr_set_enable(0, 0);
+    user_tmr_set_enable(0, 0);  // 禁用用户定时器
 #endif
-    sysclk = sys_clk_get();
-    sys_clk_set(SYS_26M);
-    bsp_bcnt_temp_calibration_start();
+    sysclk = sys_clk_get();         // 保存当前时钟配置
+    sys_clk_set(SYS_26M);          // 设置系统时钟为26MHz以降低功耗
+    bsp_bcnt_temp_calibration_start();  // 开始电池电压和温度校准
 
+    // 如果未启用音频PLL
     if (!sys_cb.sleep_aupll_en) {
-        adpll_disable();
+        adpll_disable();  // 禁用ADPLL(音频锁相环)
     }
+    
+    // 备份当前ADC通道配置
     adc_ch = adc_cb.channel;
+    // 设置ADC通道为电池电压和带隙基准检测
     adc_cb.channel = BIT(ADCCH_VBAT) | BIT(ADCCH_BGOP);
-    memcpy(&__sleep_comm_vma, &__sleep_comm_lma, (u32)&__sleep_comm_size);    //Load sleep comm
+    
+    // 加载休眠模式专用代码到内存
+    memcpy(&__sleep_comm_vma, &__sleep_comm_lma, (u32)&__sleep_comm_size);
 
-    wkupedg = sfunc_sleep_process();                //不能切Flash
+    // 执行休眠过程处理（不能切换Flash）
+    wkupedg = sfunc_sleep_process();
 
+    // 如果之前禁用了ADPLL
     if (!sys_cb.sleep_aupll_en) {
-        adpll_init(DAC_OUT_SPR);                    //enable adpll
+        adpll_init(DAC_OUT_SPR);  // 重新初始化ADPLL
     }
-    dac_clk_source_sel(1);                          //dac clk select adpll_div(PLL0)
-    bsp_bcnt_temp_calibration_stop();
-    adc_cb.channel = adc_ch;
-    bsp_saradc_init(adc_cb.channel);
-    if (wkupedg & BIT(16 + 5)) {                    //pwrkey wakeup, 加快第一次短按检测
+    
+    dac_clk_source_sel(1);  // 设置DAC时钟源为ADPLL分频输出
+    bsp_bcnt_temp_calibration_stop();  // 停止校准过程
+    adc_cb.channel = adc_ch;  // 恢复原始ADC通道配置
+    bsp_saradc_init(adc_cb.channel);  // 重新初始化ADC
+
+    // 处理电源键唤醒情况
+    if (wkupedg & BIT(16 + 5)) {  
         u16 key_val = get_pwrkey();
         if (key_val != NO_KEY) {
-            bsp_key_process(key_val);
+            bsp_key_process(key_val);  // 处理按键事件
+            // 调整按键计数器以加快首次短按检测
             key_cb.cnt = key_cb.filter.scan_cnt - 2;
         }
     }
+
 #if CHARGE_EN
-    bsp_set_stop_time(18000);
-#endif // CHARGE_EN
-    sys_clk_set(sysclk);
-    user_tmr_set_enable(1, 1);
+    bsp_set_stop_time(18000);  // 设置充电停止时间为18秒
+#endif 
+    sys_clk_set(sysclk);  // 恢复原始系统时钟配置
+    user_tmr_set_enable(1, 1);  // 重新启用用户定时器
 
-    sfunc_sleep_dac_off(0);
+    sfunc_sleep_dac_off(0);  // 恢复DAC电源状态
 
-    bsp_change_volume(sys_cb.vol);
+    bsp_change_volume(sys_cb.vol);  // 恢复音量设置
+
 #if DAC_DNR_EN
-    dac_dnr_set_sta(sta);
+    dac_dnr_set_sta(sta);  // 恢复DNR状态
 #endif
-    bt_exit_sleep();
+    bt_exit_sleep();  // 退出蓝牙休眠模式
 
 #if BT_DISP_LOW_VBAT_EN
-    sys_cb1.disp_low_vbat_ticks = 0;
+    sys_cb1.disp_low_vbat_ticks = 0;  // 重置低电量显示计数器
 #endif
 
-    printf("wakeup\n");
+    printf("wakeup\n");  // 输出唤醒信息
 }
 
+/**
+ * @brief  休眠处理通用框架函数
+ *         根据指定条件判断并执行休眠流程，提供统一的休眠管理接口
+ * 
+ * @param  is_sleep  函数指针，指向具体的休眠条件判断函数
+ * @return bool      休眠执行状态：
+ *                   true  - 已成功进入休眠
+ *                   false - 未执行休眠
+ */
 AT(.text.bfunc.sleep)
-bool sleep_process(is_sleep_func is_sleep)
+bool sleep_process(is_sleep_func is_sleep)//bt_is_sleep判断蓝牙是否在睡眠状态
 {
+    // 执行休眠条件检查
     if ((*is_sleep)()) {
+        // 检查全局休眠使能标志和LED休眠允许状态
+        // 如果以下任一条件不满足：
+        // 1. 系统休眠功能未启用(sys_cb.sleep_en == 0)
+        // 2. LED当前状态不允许休眠(port_2led_is_sleep_en == 0)
         if ((!sys_cb.sleep_en) || (!port_2led_is_sleep_en())) {
-            reset_sleep_delay();
-            return false;
+            reset_sleep_delay();  // 重置休眠延迟计数器
+            return false;         // 返回失败
         }
+        
+        // 检查休眠延迟计时器是否到时
         if(sys_cb.sleep_delay == 0) {
-            sfunc_sleep();
-            reset_sleep_delay();
-            return true;
+            sfunc_sleep();        // 执行具体休眠操作
+            reset_sleep_delay();  // 重置休眠延迟计数器
+            return true;          // 返回成功
         }
     } else {
-        reset_sleep_delay();
+        reset_sleep_delay();      // 如果未触发休眠，同样重置计数器
     }
-    return false;
+    
+    return false;  // 默认返回未执行休眠
 }
 
 extern const u8 chg_timeout_tbl[4];

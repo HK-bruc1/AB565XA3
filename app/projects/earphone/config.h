@@ -71,7 +71,7 @@
 #define BT_PWRKEY_5S_DISCOVER_EN        1   //是否使用长按5S开机进入可被发现(耳机长按开机功能)
 #define BT_DISCOVER_TIMEOUT             100 //按键打开可被发现后，多久后仍无连接自动关闭，0不自动关闭，单位100ms
 #define BT_ANTI_LOST_EN                 0   //是否打开蓝牙防丢报警
-#define BT_DUT_TEST_EN                  0   //蓝牙DUT测试使能
+#define BT_DUT_TEST_EN                  1//0   //蓝牙DUT测试使能--------------------》配置工具没有配置进入DUT方式，也要使能DUT模块
 #define BT_FCC_TEST_EN                  0   //蓝牙FCC测试使能
 #define BT_LOCAL_ADDR                   1   //蓝牙是否使用本地地址，0使用配置工具地址
 #define BT_PAIR_SLEEP_EN                xcfg_cb.bt_pair_sleep_en    //蓝牙未连接, 是否进入休眠模式

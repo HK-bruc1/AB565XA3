@@ -19,9 +19,17 @@ extern u8 bt_alg_dbb_on;
 //根据传入的按键类型消息调用对应的处理函数
 bool user_def_key_msg(u8 func_sel)
 {
+    //当功能选择为UDK_SIRI_REDIALING时，会通过get_user_def_lr_msg进行预处理转换。
     if (func_sel == UDK_SIRI_REDIALING) {
         func_sel = get_user_def_lr_msg(UDK_SIRI, UDK_REDIALING);
     }
+    
+    //猜测：
+    //蓝牙状态依赖：多个功能需要蓝牙连接（如SIRI、回拨需要bt_nor_is_connected()）
+    //硬件资源依赖：氛围灯功能需要atmos_gpio.sfr硬件存在
+    //功能配置依赖：ANC模式切换需要xcfg_cb.anc_en配置启用
+    //电源状态保护：通过sys_cb.poweron_flag防止在关机过程中执行操作
+    //全局功能开关：通过xcfg_cb.user_def_en控制是否启用用户自定义功能
     if (!user_def_func_is_ready(func_sel)) {
         return false;
     }
@@ -152,7 +160,7 @@ void func_bt_message_do(u16 msg)
         if (!bt_tws_pair_mode(4)) {                                         //是否长按配对功能
             if (user_def_lkey_tone_is_enable(xcfg_cb.user_def_kl_sel)) {
                 sys_warning_play(T_WARNING_NEXT_TRACK, 1);                  //长按“滴”一声
-//                tws_res_play(TWS_RES_TONE);                                 //tws同步播放
+//                tws_res_play(TWS_RES_TONE);                                 //tws同步播放-------》前者只播放单耳？？？
             }
             if (klu_flag) {
                 f_bt.user_kl_flag = user_def_func_is_ready(xcfg_cb.user_def_kl_sel);     //长按抬键的时候再处理
@@ -187,9 +195,9 @@ void func_bt_message_do(u16 msg)
         if (xcfg_cb.user_def_kd_tone_en) {
             sys_warning_play(T_WARNING_NEXT_TRACK, 1);                  //2击“滴”一声
         }
-        if ((xcfg_cb.user_def_kd_lang_en) && (!bt_nor_is_connected())) {
+        if ((xcfg_cb.user_def_kd_lang_en) && (!bt_nor_is_connected())) {//没有连接手机的情况下才会切换语言
             bt_switch_voice_lang();
-        } else if (user_def_key_msg(xcfg_cb.user_def_kd_sel)) {
+        } else if (user_def_key_msg(xcfg_cb.user_def_kd_sel)) {//里面会有校验，估计是需要连接蓝牙才会执行用户自定义的双击操作
 #if BT_TWS_EN
         } else if(bt_tws_pair_mode(2)) {
 #endif

@@ -372,46 +372,47 @@ void bt_tws_clr_link_info(u8 flag);             //删除tws配对信息
 
 
 enum {
-    TWS_RES_NUM_0,
-    TWS_RES_NUM_1,
-    TWS_RES_NUM_2,
-    TWS_RES_NUM_3,
-    TWS_RES_NUM_4,
-    TWS_RES_NUM_5,
-    TWS_RES_NUM_6,
-    TWS_RES_NUM_7,
-    TWS_RES_NUM_8,
-    TWS_RES_NUM_9,
-    TWS_RES_RING,
-    TWS_RES_LANGUAGE,
-    TWS_RES_LOW_BATTERY,
-    TWS_RES_NOR_CONNECTED,
-    TWS_RES_CONNECTED,
-    TWS_RES_DISCONNECT,
-    TWS_RES_PAIRING,
-    TWS_RES_CALL_HANGUP,
-    TWS_RES_CALL_REJECT,
-    TWS_RES_REDIALING,
-    TWS_RES_MAX_VOL,
-    TWS_RES_MIN_VOL,
-    TWS_RES_MUSIC_MODE,
-    TWS_RES_GAME_MODE,
-    TWS_RES_NR_DISABLE,
-    TWS_RES_ANC,
-    TWS_RES_TRANSPARENCY,
-    TWS_RES_TONE,
-    TWS_RES_WAV_TEST,
-    TWS_RES_MAX,
+    TWS_RES_NUM_0,        // 数字 0 的提示音
+    TWS_RES_NUM_1,        // 数字 1 的提示音
+    TWS_RES_NUM_2,        // 数字 2 的提示音
+    TWS_RES_NUM_3,        // 数字 3 的提示音
+    TWS_RES_NUM_4,        // 数字 4 的提示音
+    TWS_RES_NUM_5,        // 数字 5 的提示音
+    TWS_RES_NUM_6,        // 数字 6 的提示音
+    TWS_RES_NUM_7,        // 数字 7 的提示音
+    TWS_RES_NUM_8,        // 数字 8 的提示音
+    TWS_RES_NUM_9,        // 数字 9 的提示音
+    TWS_RES_RING,         // 来电提示音（来电铃声）
+    TWS_RES_LANGUAGE,     // 语言切换提示音
+    TWS_RES_LOW_BATTERY,  // 低电量提示音
+    TWS_RES_NOR_CONNECTED,// 普通连接提示音（非TWS连接）
+    TWS_RES_CONNECTED,    // TWS连接成功提示音
+    TWS_RES_DISCONNECT,   // TWS断开连接提示音
+    TWS_RES_PAIRING,      // 配对提示音
+    TWS_RES_CALL_HANGUP,  // 通话挂断提示音
+    TWS_RES_CALL_REJECT,  // 拒绝来电提示音
+    TWS_RES_REDIALING,    // 重拨电话提示音
+    TWS_RES_MAX_VOL,      // 音量最大提示音
+    TWS_RES_MIN_VOL,      // 音量最小提示音
+    TWS_RES_MUSIC_MODE,   // 音乐模式提示音
+    TWS_RES_GAME_MODE,    // 游戏模式提示音
+    TWS_RES_NR_DISABLE,   // 降噪关闭提示音
+    TWS_RES_ANC,          // ANC（主动降噪）提示音
+    TWS_RES_TRANSPARENCY, // 通透模式提示音
+    TWS_RES_TONE,         // 音效切换提示音-----------》具体表现为嘟的一声
+    TWS_RES_WAV_TEST,     // WAV测试提示音
 
-    //如果MSG有序列是前面提示音的
-    TWS_RES_RING_STOP   = 50,
-    TWS_BRE_LED_START,
-    TWS_BRE_LED_START1,
-    TWS_BRE_LED_STOP,
-    TWS_ATMOS_LED_ON,
-    TWS_ATMOS_LED_OFF,
+    TWS_RES_MAX,          // 提示音资源总数上限
 
-    //最大不超过63
+    // 如果MSG有序列是前面提示音的
+    TWS_RES_RING_STOP   = 50, // 来电结束提示音（挂断时播放）
+    TWS_BRE_LED_START,        // 呼吸灯开始提示音
+    TWS_BRE_LED_START1,       // 呼吸灯开始提示音（备用）
+    TWS_BRE_LED_STOP,         // 呼吸灯结束提示音
+    TWS_ATMOS_LED_ON,         // 氛围灯开启提示音
+    TWS_ATMOS_LED_OFF,        // 氛围灯关闭提示音
+
+    // 最大不超过63
 };
 
 void tws_res_init(void);                        //api

@@ -129,6 +129,7 @@ void func_bt_warning_tws_con(u16 tws_warning)
     } else {
         if (tws_warning & BT_WARN_TWS_MCON) {
             f_bt.w4_tws_warning = 1;
+            //这是TWS配对成功时的提示音播放（双耳同步播放）
             tws_res_play(TWS_RES_CONNECTED);
         }
     }
@@ -882,6 +883,7 @@ void func_bt(void)
     func_bt_exit(); // 退出蓝牙模式，清理资源
 }
 
+//DUT模式的灯效设置
 AT(.rodata.bt.cbt)
 const u8 led_bt_dut_tbl[] = {
     0xff, 0x00, 0x02, 0x00,
