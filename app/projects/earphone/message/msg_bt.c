@@ -132,7 +132,7 @@ void func_bt_message_do(u16 msg)
 
     switch (msg) {
     case KU_PLAY:
-        ku_sel = UDK_PLAY_PAUSE;
+        ku_sel = UDK_PLAY_PAUSE;//从这个分支进来的话，会强制绑定功能代码，覆盖读取到的配置
     case KU_PLAY_USER_DEF:
     case KU_PLAY_PWR_USER_DEF:
 //        key_voice_play(501, 100, 3);                                        //按键音
